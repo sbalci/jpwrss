@@ -1,0 +1,11 @@
+---
+name:  neofun
+title: New Function
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: New Function
+      type:  Preformatted
+
+...

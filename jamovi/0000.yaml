@@ -1,0 +1,59 @@
+---
+title: What the Package Does (Title Case)
+name: jamoviTemplate
+version: 0.0.0
+jms: '1.0'
+authors:
+  - Who wrote it
+maintainer: The package maintainer <yourself@somewhere.net>
+date: '1970-01-01'
+type: R
+description: >-
+  More about what it does (maybe more than one line) Use four spaces when
+  indenting paragraphs within the Description.
+analyses:
+  - title: New Function
+    name: neofun
+    ns: jamoviTemplate
+    menuGroup: jamoviTemplate
+    menuTitle: New Function
+  - title: Age Pyramid
+    name: agepyramid
+    ns: jamoviTemplate
+    menuGroup: Exploration
+    menuSubgroup: ClinicoPath Descriptive Plots
+    menuTitle: Age Pyramid
+  - title: Example 0
+    name: Example00
+    ns: jamoviTemplate
+    menuGroup: jamoviTemplate
+    menuTitle: Example 0
+  - title: Example 1
+    name: Example01
+    ns: jamoviTemplate
+    menuGroup: jamoviTemplate
+    menuTitle: Example 1
+  - title: Example 2
+    name: Example02
+    ns: jamoviTemplate
+    menuGroup: jamoviTemplate
+    menuTitle: Example 2
+  - title: Example 3
+    name: Example03
+    ns: jamoviTemplate
+    menuGroup: jamoviTemplate
+    menuTitle: Example 3
+  - title: Example 4
+    name: Example04
+    ns: jamoviTemplate
+    menuGroup: jamoviTemplate
+    menuTitle: Example 4
+  - title: Example 5
+    name: Example05
+    ns: jamoviTemplate
+    menuGroup: jamoviTemplate
+    menuTitle: Example 5
+usesNative: true
+minApp: 1.0.8
+
+...
