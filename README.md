@@ -197,9 +197,6 @@ sudo apt install libxml2-dev
 jmvtools::addAnalysis(name = 'neofun', title = 'New Function')
 ```
 
-## using devtools
-
-- If you want to use devtools, remove `NAMESPACE` file. 
 
 
 ## how jamovi module functions?
