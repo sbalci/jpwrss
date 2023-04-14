@@ -1,3 +1,23 @@
+# jpwrss
+
+jamovi wrapper for pwrss package
+
+
+- [pwrss: Statistical Power and Sample Size Calculation Tools](https://cran.r-project.org/web/packages/pwrss/)
+
+- <https://cran.r-project.org/web/packages/pwrss/vignettes/examples.html>
+
+- <http://pwrss.shinyapps.io/lang-tr>
+
+- <http://pwrss.shinyapps.io/lang-en>
+
+- [PowerUpR: Power Analysis Tools for Multilevel Randomized Experiments](https://cran.r-project.org/web/packages/PowerUpR/)
+
+- <https://powerupr.shinyapps.io/index/>
+
+
+---
+
 # Template for a Basic jamovi Module  
 
 - [official documentation](https://dev.jamovi.org/)
@@ -14,7 +34,7 @@
 
 - Install jamovi
     - Get the latest (1.6.3) https://www.jamovi.org/download.html  
-    - If using mac use this: https://www.jamovi.org/downloads/jamovi-unsigned.zip
+
 
 - Install `jmvtools` package with:
 
@@ -26,7 +46,6 @@ install.packages('jmvtools', repos=c('https://repo.jamovi.org', 'https://cran.r-
  <summary>    - Install jamovi package family:</summary>
 
 ```r
-options(repos = c('https://cran.microsoft.com/snapshot/2020-08-24'))
 
 suppressPackageStartupMessages({
   if (!requireNamespace('jmvtools'))
@@ -72,6 +91,10 @@ suppressPackageStartupMessages(library('devtools'))
     - windows: `jmvtools::check("C://Program Files//jamovi//bin")`  
     I recommend changing folder name from default `jamovi x.x` to `jamovi`  
     - mac: `jmvtools::check("~/Applications/jamovi.app")`  
+
+
+- devtools::document()
+- jmvtools::prepare(home = "C://Program Files//jamovi 2.3.21.0//bin")
 
 
 - Inside this repo folder in R run `jmvtools::install()`

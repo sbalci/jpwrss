@@ -14,10 +14,11 @@ Depends:
 Imports:
     jmvcore,
     R6,
-    magrittr
+    magrittr,
+    pwrss
 Suggests:
     dplyr,
     tidyr,
     ggplot2,
     tibble
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
