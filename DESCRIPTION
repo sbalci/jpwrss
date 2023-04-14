@@ -1,6 +1,6 @@
-Package: jamoviTemplate
+Package: jpwrss
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Wrapper `jamovi` Module for `pwrss` Package
 Version: 0.0.0
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
