@@ -11,7 +11,7 @@ agepyramidOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             female = NULL, ...) {
 
             super$initialize(
-                package="jamoviTemplate",
+                package="jpwrss",
                 name="agepyramid",
                 requiresData=TRUE,
                 ...)
@@ -104,7 +104,7 @@ agepyramidBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(options, data=NULL, datasetId="", analysisId="", revision=0) {
             super$initialize(
-                package = "jamoviTemplate",
+                package = "jpwrss",
                 name = "agepyramid",
                 version = c(1,0,0),
                 options = options,

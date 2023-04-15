@@ -2,18 +2,20 @@
 
 jamovi wrapper for pwrss package
 
+🔬🔬🔬🔬 UNDER CONSTRUCTION 🛠⛔️⚠️🔩 
+
 
 - [pwrss: Statistical Power and Sample Size Calculation Tools](https://cran.r-project.org/web/packages/pwrss/)
 
-- <https://cran.r-project.org/web/packages/pwrss/vignettes/examples.html>
+    - <https://cran.r-project.org/web/packages/pwrss/vignettes/examples.html>
 
-- <http://pwrss.shinyapps.io/lang-tr>
+    - <http://pwrss.shinyapps.io/lang-tr>
 
-- <http://pwrss.shinyapps.io/lang-en>
+    - <http://pwrss.shinyapps.io/lang-en>
 
 - [PowerUpR: Power Analysis Tools for Multilevel Randomized Experiments](https://cran.r-project.org/web/packages/PowerUpR/)
 
-- <https://powerupr.shinyapps.io/index/>
+    - <https://powerupr.shinyapps.io/index/>
 
 
 ---
@@ -26,7 +28,7 @@ jamovi wrapper for pwrss package
 
 ## TL;DR
 
-- Use this repo as template: https://github.com/sbalci/jamoviTemplate to generate a new repo
+- Use this repo as template: https://github.com/sbalci/jpwrss to generate a new repo
 
 - Use `R >= 4.0.2`
 
@@ -99,7 +101,7 @@ suppressPackageStartupMessages(library('devtools'))
 
 - Inside this repo folder in R run `jmvtools::install()`
 
-- A file named jamoviTemplate.jmo and install this module to jamovi
+- A file named jpwrss.jmo and install this module to jamovi
 
 - The repo is like an R package except `jamovi` folder. 
 
@@ -225,7 +227,7 @@ https://github.com/sbalci/ClinicoPathJamoviModule
 
 ```bash
 .
-└── jamoviTemplate/
+└── jpwrss/
     ├── R/
     │   ├── neofun.b.R
     │   └── neofun.h.R
@@ -242,7 +244,7 @@ https://github.com/sbalci/ClinicoPathJamoviModule
 ```yaml
   - title: New Function
     name: neofun
-    ns: jamoviTemplate
-    menuGroup: jamoviTemplate
+    ns: jpwrss
+    menuGroup: jpwrss
     menuTitle: New Function
 ```

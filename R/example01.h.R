@@ -11,7 +11,7 @@ Example01Options <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             equVar = TRUE, ...) {
 
             super$initialize(
-                package="jamoviTemplate",
+                package="jpwrss",
                 name="Example01",
                 requiresData=TRUE,
                 ...)
@@ -59,7 +59,7 @@ Example01Base <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(options, data=NULL, datasetId="", analysisId="", revision=0) {
             super$initialize(
-                package = "jamoviTemplate",
+                package = "jpwrss",
                 name = "Example01",
                 version = c(1,0,0),
                 options = options,

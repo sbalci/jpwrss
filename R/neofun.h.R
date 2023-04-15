@@ -12,7 +12,7 @@ neofunOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             varEq = TRUE, ...) {
 
             super$initialize(
-                package="jamoviTemplate",
+                package="jpwrss",
                 name="neofun",
                 requiresData=TRUE,
                 ...)
@@ -76,7 +76,7 @@ neofunBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(options, data=NULL, datasetId="", analysisId="", revision=0) {
             super$initialize(
-                package = "jamoviTemplate",
+                package = "jpwrss",
                 name = "neofun",
                 version = c(1,0,0),
                 options = options,

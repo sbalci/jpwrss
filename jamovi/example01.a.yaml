@@ -1,7 +1,7 @@
 ---
 name:    Example01
 title:   Example 1
-menuGroup: jamoviTemplate
+menuGroup: jpwrss
 version: "1.0.0"
 jas: '1.2'
 

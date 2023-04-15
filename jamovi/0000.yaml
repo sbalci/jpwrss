@@ -1,15 +1,9 @@
 ---
 title: Jamovi Module for Statistical Power and Sample Size Calculation Tools
-name: jamoviTemplate
+name: jpwrss
 version: 0.0.0.1
 jms: '1.0'
-authors:
-  - >-
-    person("Metin", "Bulus", email = "bulusmetin@gmail.com", role = c("aut",
-    "cre"))
-  - >-
-    person(given = "Serdar", family = "Balci", role = c("aut"), email =
-    "serdarbalci@serdarbalci.com", comment = c(ORCID = "0000-0002-7852-3851"))
+authors: 'Metin Bulus, Serdar Balci'
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
 date: '2023-04-15'
 type: R
@@ -44,44 +38,44 @@ description: >-
 analyses:
   - title: New Function
     name: neofun
-    ns: jamoviTemplate
-    menuGroup: jamoviTemplate
+    ns: jpwrss
+    menuGroup: jpwrss
     menuTitle: New Function
   - title: Age Pyramid
     name: agepyramid
-    ns: jamoviTemplate
+    ns: jpwrss
     menuGroup: Exploration
     menuSubgroup: ClinicoPath Descriptive Plots
     menuTitle: Age Pyramid
   - title: Example 0
     name: Example00
-    ns: jamoviTemplate
-    menuGroup: jamoviTemplate
+    ns: jpwrss
+    menuGroup: jpwrss
     menuTitle: Example 0
   - title: Example 1
     name: Example01
-    ns: jamoviTemplate
-    menuGroup: jamoviTemplate
+    ns: jpwrss
+    menuGroup: jpwrss
     menuTitle: Example 1
   - title: Example 2
     name: Example02
-    ns: jamoviTemplate
-    menuGroup: jamoviTemplate
+    ns: jpwrss
+    menuGroup: jpwrss
     menuTitle: Example 2
   - title: Example 3
     name: Example03
-    ns: jamoviTemplate
-    menuGroup: jamoviTemplate
+    ns: jpwrss
+    menuGroup: jpwrss
     menuTitle: Example 3
   - title: Example 4
     name: Example04
-    ns: jamoviTemplate
-    menuGroup: jamoviTemplate
+    ns: jpwrss
+    menuGroup: jpwrss
     menuTitle: Example 4
   - title: Example 5
     name: Example05
-    ns: jamoviTemplate
-    menuGroup: jamoviTemplate
+    ns: jpwrss
+    menuGroup: jpwrss
     menuTitle: Example 5
 usesNative: true
 minApp: 1.0.8
