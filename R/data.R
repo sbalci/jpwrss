@@ -1,6 +1,8 @@
-#' @title histopathology
+#' @title jpwrss example
 #'
-#' @description Fake histopathology research data.
-#' @usage data(histopathology)
+#' @docType data
+#' @keywords datasets
+#' @description Fake research data.
+#' @usage data(powersample)
 #' @format A data frame
-"histopathology"
+'powersample'

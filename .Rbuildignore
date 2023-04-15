@@ -42,15 +42,14 @@
 .jmo$
 ^build/R/
 ^build/js/
-^tododata/
-/tododata/
-tododata
 ^vignettes/
 ^docs/
 ^temp/
 ^build/
 ^.*\.jmo$
 ^.*\.omv$
+^.*\.csv$
+
 
 ### Other R codes
 ^tests$
@@ -64,7 +63,6 @@ R/utils-pipe.R
 ^\.github/
 ^docs$
 ^tic\.R$
-^\.circleci/
 ^appveyor\.yml$
 ^codemeta\.json$
 .gitpod.Dockerfile
@@ -74,3 +72,7 @@ R/utils-pipe.R
 ^\.github$
 ^clang-.*
 ^gfortran.*
+
+^development/
+/data/*.csv
+/data/*.omv

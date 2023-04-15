@@ -518,6 +518,13 @@ refs:
         url: https://github.com/bbc/bbplot
 
 
+    pwrss:
+        type: 'software'
+        author: Metin Bulus
+        year: 2023
+        title: "Statistical Power and Sample Size Calculation Tools"
+        publisher: '[R package]. Retrieved from https://cran.r-project.org/web/packages/pwrss/'
+        url: https://cran.r-project.org/web/packages/pwrss/
 
 
 ...

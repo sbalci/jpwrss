@@ -429,4 +429,11 @@
         `year`=2020, 
         `title`="bbplot: MAKING GGPLOT GRAPHICS IN BBC NEWS STYLE", 
         `publisher`="[R package]. Retrieved from https://github.com/bbc/bbplot", 
-        `url`="https://github.com/bbc/bbplot"))
+        `url`="https://github.com/bbc/bbplot"), 
+    `pwrss`=list(
+        `type`="software", 
+        `author`="Metin Bulus", 
+        `year`=2023, 
+        `title`="Statistical Power and Sample Size Calculation Tools", 
+        `publisher`="[R package]. Retrieved from https://cran.r-project.org/web/packages/pwrss/", 
+        `url`="https://cran.r-project.org/web/packages/pwrss/"))
