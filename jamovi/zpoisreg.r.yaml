@@ -1,0 +1,11 @@
+---
+name:  zpoisreg
+title: Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)
+      type:  Preformatted
+
+...

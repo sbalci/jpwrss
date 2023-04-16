@@ -1,0 +1,11 @@
+---
+name:  ztest
+title: Statistical Power for the Generic z Test
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Statistical Power for the Generic z Test
+      type:  Preformatted
+
+...

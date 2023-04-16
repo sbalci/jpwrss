@@ -1,0 +1,11 @@
+---
+name:  z2corrs
+title: Difference between Two Correlations (Independent Samples z Test)
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Difference between Two Correlations (Independent Samples z Test)
+      type:  Preformatted
+
+...

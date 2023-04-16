@@ -1,0 +1,11 @@
+---
+name:  zmed
+title: Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)
+      type:  Preformatted
+
+...

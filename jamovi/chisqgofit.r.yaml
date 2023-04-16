@@ -1,0 +1,11 @@
+---
+name:  chisqgofit
+title: Goodness-of-Fit or Independence (Chi-square Test)
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Goodness-of-Fit or Independence (Chi-square Test)
+      type:  Preformatted
+
+...

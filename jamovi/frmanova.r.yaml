@@ -1,0 +1,11 @@
+---
+name:  frmanova
+title: Repeated Measures Analysis of Variance (F test)
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Repeated Measures Analysis of Variance (F test)
+      type:  Preformatted
+
+...

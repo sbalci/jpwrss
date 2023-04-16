@@ -1,0 +1,11 @@
+---
+name:  t2means
+title: Difference between Two Means (t or z Test for Independent or Paired Samples)
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Difference between Two Means (t or z Test for Independent or Paired Samples)
+      type:  Preformatted
+
+...

@@ -1,0 +1,11 @@
+---
+name:  tmean
+title: One Mean against a Constant (z or t Test)
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: One Mean against a Constant (z or t Test)
+      type:  Preformatted
+
+...

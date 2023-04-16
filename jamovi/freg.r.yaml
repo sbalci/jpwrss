@@ -1,0 +1,11 @@
+---
+name:  freg
+title: Linear Regression R squared or R squared Difference (F Test)
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Linear Regression R squared or R squared Difference (F Test)
+      type:  Preformatted
+
+...

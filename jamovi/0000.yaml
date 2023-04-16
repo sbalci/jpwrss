@@ -42,6 +42,104 @@ analyses:
     menuGroup: jpwrss
     menuTitle: One Proportion z test
     menuSubgroup: Compare With a Known Value
+  - title: Statistical Power for the Generic Chi-square Test
+    name: chisqtest
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Statistical Power for the Generic Chi-square Test
+  - title: Statistical Power for the Generic F Test
+    name: ftest
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Statistical Power for the Generic F Test
+  - title: Statistical Power for the Generic t Test
+    name: ttest
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Statistical Power for the Generic t Test
+  - title: Statistical Power for the Generic z Test
+    name: ztest
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Statistical Power for the Generic z Test
+  - title: Goodness-of-Fit or Independence (Chi-square Test)
+    name: chisqgofit
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Goodness-of-Fit or Independence (Chi-square Test)
+  - title: Analysis of (Co)Variance (F test)
+    name: fancova
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Analysis of (Co)Variance (F test)
+  - title: Linear Regression R squared or R squared Difference (F Test)
+    name: freg
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Linear Regression R squared or R squared Difference (F Test)
+  - title: Repeated Measures Analysis of Variance (F test)
+    name: frmanova
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Repeated Measures Analysis of Variance (F test)
+  - title: >-
+      Difference between Two Groups (Non-parametric Tests for Independent and
+      Paired Samples)
+    name: np2groups
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: >-
+      Difference between Two Groups (Non-parametric Tests for Independent and
+      Paired Samples)
+  - title: >-
+      Difference between Two Means (t or z Test for Independent or Paired
+      Samples)
+    name: t2means
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: >-
+      Difference between Two Means (t or z Test for Independent or Paired
+      Samples)
+  - title: One Mean against a Constant (z or t Test)
+    name: tmean
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: One Mean against a Constant (z or t Test)
+  - title: Linear Regression Single Coefficient (t or z Test)
+    name: treg
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Linear Regression Single Coefficient (t or z Test)
+  - title: Difference between Two Correlations (Independent Samples z Test)
+    name: z2corrs
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Difference between Two Correlations (Independent Samples z Test)
+  - title: Difference between Two Proportions (z Test)
+    name: z2props
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Difference between Two Proportions (z Test)
+  - title: One Correlation against a Constant (One Sample z Test)
+    name: zcorr
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: One Correlation against a Constant (One Sample z Test)
+  - title: Logistic Regression Single Coefficient (Large Sample Approx Wald’s z Test)
+    name: zlogreg
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Logistic Regression Single Coefficient (Large Sample Approx Wald’s z Test)
+  - title: 'Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)'
+    name: zmed
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: 'Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)'
+  - title: Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)
+    name: zpoisreg
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuTitle: Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)
 usesNative: true
 minApp: 1.0.8
 

@@ -1,0 +1,11 @@
+---
+name:  ttest
+title: Statistical Power for the Generic t Test
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Statistical Power for the Generic t Test
+      type:  Preformatted
+
+...

@@ -1,0 +1,11 @@
+---
+name:  fancova
+title: Analysis of (Co)Variance (F test)
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Analysis of (Co)Variance (F test)
+      type:  Preformatted
+
+...

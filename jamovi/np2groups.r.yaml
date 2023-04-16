@@ -1,0 +1,11 @@
+---
+name:  np2groups
+title: Difference between Two Groups (Non-parametric Tests for Independent and Paired Samples)
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Difference between Two Groups (Non-parametric Tests for Independent and Paired Samples)
+      type:  Preformatted
+
+...
