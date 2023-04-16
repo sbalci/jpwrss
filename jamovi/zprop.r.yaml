@@ -4,9 +4,9 @@ title: One Proportion z test
 jrs:   '1.1'
 
 items:
-    - name:  text1
-      title: One Proportion z test
-      type:  Preformatted
+    # - name:  text1
+    #   title: One Proportion z test
+    #   type:  Preformatted
 
 
     - name:  text2

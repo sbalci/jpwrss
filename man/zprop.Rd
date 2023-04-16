@@ -4,7 +4,17 @@
 \alias{zprop}
 \title{One Proportion z test}
 \usage{
-zprop(calculate = "selectpower", p = 0.4, p0 = 0.5)
+zprop(
+  calculate = "selectpower",
+  p = 0.4,
+  p0 = 0.5,
+  margin = 0,
+  power = 0.8,
+  alpha = 0.05,
+  alternative = "not equal",
+  arcsin.trans = FALSE,
+  n = 200
+)
 }
 \arguments{
 \item{calculate}{.}
@@ -12,11 +22,22 @@ zprop(calculate = "selectpower", p = 0.4, p0 = 0.5)
 \item{p}{.}
 
 \item{p0}{.}
+
+\item{margin}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
+
+\item{arcsin.trans}{.}
+
+\item{n}{.}
 }
 \value{
 A results object containing:
 \tabular{llllll}{
-  \code{results$text1} \tab \tab \tab \tab \tab a preformatted \cr
   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 }

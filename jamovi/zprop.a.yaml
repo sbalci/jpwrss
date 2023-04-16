@@ -2,13 +2,14 @@
 name:  zprop
 title: One Proportion z test
 menuGroup: jpwrss
+menuSubgroup: Compare With a Known Value
 version: '1.0.0'
 jas: '1.2'
 
 options:
 
     - name: calculate
-      title: 'Calculate the following:'
+      title: 'Calculate the following'
       type: List
       options:
         - title: Statistical Power
@@ -18,16 +19,58 @@ options:
       default: selectpower
 
     - name: p
-      title: 'Expected Proportion ='
+      title: 'Expected Proportion (Our proportion)'
       type: Number
       default: 0.4
 
     - name: p0
-      title: 'Constant to Test Against ='
+      title: 'Constant to Test Against (Known Proportion)'
       type: Number
       default: 0.5
 
+    - name: margin
+      title: 'Margin (Difference Toleration)'
+      type: Number
+      default: 0
 
+    - name: power
+      title: 'Statistical Power (1- Beta)'
+      type: Number
+      default: 0.8
+
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+
+    - name: alternative
+      title: 'Alternative Hypothesis'
+      type: List
+      options:
+        - title: Not equal
+          name: not equal
+        - title: Greater
+          name: greater
+        - title: Less
+          name: less
+        - title: Equivalent
+          name: equivalent
+        - title: Non-inferior
+          name: non-inferior
+        - title: Superior
+          name: superior
+      default: not equal
+
+
+    - name: arcsin.trans
+      title: "Arcsin Transformation"
+      type: Bool
+      default: false
+
+    - name: n
+      title: 'Sample Size'
+      type: Number
+      default: 200
 
 
 ...

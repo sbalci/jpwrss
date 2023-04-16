@@ -41,6 +41,7 @@ analyses:
     ns: jpwrss
     menuGroup: jpwrss
     menuTitle: One Proportion z test
+    menuSubgroup: Compare With a Known Value
 usesNative: true
 minApp: 1.0.8
 

@@ -2,22 +2,75 @@ title: One Proportion z test
 name: zprop
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
-  - type: LayoutBox
-    margin: large
+  - type: Label
+    label: Calculation Type
+    fitToGrid: true
     children:
-      - type: ComboBox
-        name: calculate
-  - type: LayoutBox
-    margin: large
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: ComboBox
+            name: calculate
+  - type: Label
+    label: Proportions
+    fitToGrid: true
     children:
-      - type: TextBox
-        name: p
-        format: number
-  - type: LayoutBox
-    margin: large
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: TextBox
+            name: p
+            format: number
+          - type: TextBox
+            name: p0
+            format: number
+          - type: TextBox
+            name: margin
+            format: number
+            enable: '(!alternative:not equal)'
+
+  - type: Label
+    label: Alpha, Power, Sample Size
+    fitToGrid: true
     children:
-      - type: TextBox
-        name: p0
-        format: number
+     - type: LayoutBox
+       margin: large
+       children:
+         - type: TextBox
+           name: alpha
+           format: number
+         - type: TextBox
+           name: power
+           format: number
+           enable: '(calculate:selectsamplesize)'
+         - type: TextBox
+           name: 'n'
+           format: number
+           enable: '(calculate:selectpower)'
+
+  - type: Label
+    label: Alternative Hypothesis Type
+    fitToGrid: true
+    children:
+       - type: LayoutBox
+         margin: large
+         children:
+           - type: ComboBox
+             name: alternative
+
+
+  - type: CollapseBox
+    label: Transformation
+    collapsed: true
+    children:
+      - type: Label
+        label: Transformation
+        children:
+          - type: LayoutBox
+            margin: large
+            children:
+              - type: CheckBox
+                name: arcsin.trans
+
