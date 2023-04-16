@@ -1,0 +1,33 @@
+---
+name:  zprop
+title: One Proportion z test
+menuGroup: jpwrss
+version: '1.0.0'
+jas: '1.2'
+
+options:
+
+    - name: calculate
+      title: 'Calculate the following:'
+      type: List
+      options:
+        - title: Statistical Power
+          name: selectpower
+        - title: Sample Size
+          name: selectsamplesize
+      default: selectpower
+
+    - name: p
+      title: 'Expected Proportion ='
+      type: Number
+      default: 0.4
+
+    - name: p0
+      title: 'Constant to Test Against ='
+      type: Number
+      default: 0.5
+
+
+
+
+...

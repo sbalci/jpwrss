@@ -36,47 +36,11 @@ description: >-
   in (9), (10), (11), (12), (13), and (14). Reference: Bulus and Polat (2023)
   <https://osf.io/ua5fc>.
 analyses:
-  - title: New Function
-    name: neofun
+  - title: One Proportion z test
+    name: zprop
     ns: jpwrss
     menuGroup: jpwrss
-    menuTitle: New Function
-  - title: Age Pyramid
-    name: agepyramid
-    ns: jpwrss
-    menuGroup: Exploration
-    menuSubgroup: ClinicoPath Descriptive Plots
-    menuTitle: Age Pyramid
-  - title: Example 0
-    name: Example00
-    ns: jpwrss
-    menuGroup: jpwrss
-    menuTitle: Example 0
-  - title: Example 1
-    name: Example01
-    ns: jpwrss
-    menuGroup: jpwrss
-    menuTitle: Example 1
-  - title: Example 2
-    name: Example02
-    ns: jpwrss
-    menuGroup: jpwrss
-    menuTitle: Example 2
-  - title: Example 3
-    name: Example03
-    ns: jpwrss
-    menuGroup: jpwrss
-    menuTitle: Example 3
-  - title: Example 4
-    name: Example04
-    ns: jpwrss
-    menuGroup: jpwrss
-    menuTitle: Example 4
-  - title: Example 5
-    name: Example05
-    ns: jpwrss
-    menuGroup: jpwrss
-    menuTitle: Example 5
+    menuTitle: One Proportion z test
 usesNative: true
 minApp: 1.0.8
 
