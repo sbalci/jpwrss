@@ -1,5 +1,6 @@
 
 
+
 # This file is a generated template, your changes will not be overwritten
 
 t2meansClass <-
@@ -9,60 +10,117 @@ t2meansClass <-
             inherit = t2meansBase,
             private = list(
                 .run = function() {
-                    
-                    design1 <- pwrss.t.2means(mu1 = 0.20, margin = -0.05, paired = TRUE,
-                                              power = 0.80, alpha = 0.05,
-                                              alternative = "non-inferior")
+                    design1 <- pwrss.t.2means(
+                        mu1 = 0.20,
+                        margin = -0.05,
+                        paired = TRUE,
+                        power = 0.80,
+                        alpha = 0.05,
+                        alternative = "non-inferior"
+                    )
                     plot(design1)
-                    
-                    
-                    
-                    pwrss.t.2means(mu1 = 30, mu2 = 28, sd1 = 12, sd2 = 8, kappa = 1,
-                                   n2 = 50, alpha = 0.05,
-                                   alternative = "not equal")
-                    
-                    
-                    pwrss.t.2means(mu1 = 30, mu2 = 28, sd1 = 12, sd2 = 8, kappa = 1,
-                                   power = .80, alpha = 0.05,
-                                   alternative = "not equal")
-                                   
-                                   
-                                   pwrss.t.2means(mu1 = 30, mu2 = 28, sd1 = 10.198, kappa = 1,
-                                                  power = .80, alpha = 0.05,
-                                                  pwrss.t.2means(mu1 = 0.196, kappa = 1,
-                                                                 power = .80, alpha = 0.05,
-                                                                 alternative = "not equal")                               alternative = "not equal")
- 
- 
- 
- pwrss.t.2means(mu1 = 0.1883, paired = TRUE, paired.r = 0.50,
-                power = .80, alpha = 0.05,
-                alternative = "not equal")
- 
- 
- 
- pwrss.t.2means(mu1 = 30, mu2 = 28, sd1 = 12, sd2 = 8,
-                margin = -1, power = 0.80,
-                alternative = "non-inferior")
-                
-                pwrss.t.2means(mu1 = 30, mu2 = 28, sd1 = 12, sd2 = 8,
-                               margin = 1, power = 0.80,
-                               alternative = "superior")
 
-                               pwrss.t.2means(mu1 = 30, mu2 = 30, sd1 = 12, sd2 = 8,
-                                              margin = 1, power = 0.80,
-                                              alternative = "equivalent")
-                                              
-                                              
- 
-                    
-                    pwrss.t.2means(mu1 = 30, mu2 = 28, sd1 = 10.583,
-                                   paired = TRUE, paired.r = 0.50,
-                                   power = .80, alpha = 0.05,
-                                   alternative = "not equal")
-                    
-                    
-                    
+
+
+                    pwrss.t.2means(
+                        mu1 = 30,
+                        mu2 = 28,
+                        sd1 = 12,
+                        sd2 = 8,
+                        kappa = 1,
+                        n2 = 50,
+                        alpha = 0.05,
+                        alternative = "not equal"
+                    )
+
+
+                    pwrss.t.2means(
+                        mu1 = 30,
+                        mu2 = 28,
+                        sd1 = 12,
+                        sd2 = 8,
+                        kappa = 1,
+                        power = .80,
+                        alpha = 0.05,
+                        alternative = "not equal"
+                    )
+
+
+                    pwrss.t.2means(
+                        mu1 = 30,
+                        mu2 = 28,
+                        sd1 = 10.198,
+                        kappa = 1,
+                        power = .80,
+                        alpha = 0.05,
+                                                      alternative = "not equal"
+                    )
+
+                    pwrss.t.2means(
+                        mu1 = 0.196,
+                        kappa = 1,
+                        power = .80,
+                        alpha = 0.05,
+                        alternative = "not equal"
+                    )
+
+                    pwrss.t.2means(
+                        mu1 = 0.1883,
+                        paired = TRUE,
+                        paired.r = 0.50,
+                        power = .80,
+                        alpha = 0.05,
+                        alternative = "not equal"
+                    )
+
+
+
+                    pwrss.t.2means(
+                        mu1 = 30,
+                        mu2 = 28,
+                        sd1 = 12,
+                        sd2 = 8,
+                        margin = -1,
+                        power = 0.80,
+                        alternative = "non-inferior"
+                    )
+
+                    pwrss.t.2means(
+                        mu1 = 30,
+                        mu2 = 28,
+                        sd1 = 12,
+                        sd2 = 8,
+                        margin = 1,
+                        power = 0.80,
+                        alternative = "superior"
+                    )
+
+                    pwrss.t.2means(
+                        mu1 = 30,
+                        mu2 = 30,
+                        sd1 = 12,
+                        sd2 = 8,
+                        margin = 1,
+                        power = 0.80,
+                        alternative = "equivalent"
+                    )
+
+
+
+
+                    pwrss.t.2means(
+                        mu1 = 30,
+                        mu2 = 28,
+                        sd1 = 10.583,
+                        paired = TRUE,
+                        paired.r = 0.50,
+                        power = .80,
+                        alpha = 0.05,
+                        alternative = "not equal"
+                    )
+
+
+
                     pwrss.t.2means(
                         mu1,
                         mu2 = 0,
