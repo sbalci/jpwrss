@@ -6,69 +6,54 @@ fregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            dep = NULL,
-            group = NULL,
-            alt = "notequal",
-            varEq = TRUE, ...) {
+            calculate = "selectpower", ...) {
 
             super$initialize(
                 package="jpwrss",
                 name="freg",
-                requiresData=TRUE,
+                requiresData=FALSE,
                 ...)
 
-            private$..dep <- jmvcore::OptionVariable$new(
-                "dep",
-                dep)
-            private$..group <- jmvcore::OptionVariable$new(
-                "group",
-                group)
-            private$..alt <- jmvcore::OptionList$new(
-                "alt",
-                alt,
+            private$..calculate <- jmvcore::OptionList$new(
+                "calculate",
+                calculate,
                 options=list(
-                    "notequal",
-                    "onegreater",
-                    "twogreater"),
-                default="notequal")
-            private$..varEq <- jmvcore::OptionBool$new(
-                "varEq",
-                varEq,
-                default=TRUE)
+                    "selectpower",
+                    "selectsamplesize"),
+                default="selectpower")
 
-            self$.addOption(private$..dep)
-            self$.addOption(private$..group)
-            self$.addOption(private$..alt)
-            self$.addOption(private$..varEq)
+            self$.addOption(private$..calculate)
         }),
     active = list(
-        dep = function() private$..dep$value,
-        group = function() private$..group$value,
-        alt = function() private$..alt$value,
-        varEq = function() private$..varEq$value),
+        calculate = function() private$..calculate$value),
     private = list(
-        ..dep = NA,
-        ..group = NA,
-        ..alt = NA,
-        ..varEq = NA)
+        ..calculate = NA)
 )
 
 fregResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "fregResults",
     inherit = jmvcore::Group,
     active = list(
-        text = function() private$.items[["text"]]),
+        text2 = function() private$.items[["text2"]],
+        plot = function() private$.items[["plot"]]),
     private = list(),
     public=list(
         initialize=function(options) {
             super$initialize(
                 options=options,
                 name="",
-                title="Linear Regression R squared or R squared Difference (F Test)")
+                title="Linear Regression R squared or R squared Difference (F Test)",
+                refs=list(
+                    "pwrss"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
-                name="text",
-                title="Linear Regression R squared or R squared Difference (F Test)"))}))
+                name="text2",
+                title="One Proportion z test"))
+            self$add(jmvcore::Image$new(
+                options=options,
+                name="plot",
+                title="A proportion against a Constant (z Test)",
+                renderFun=".plot"))}))
 
 fregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "fregBase",
@@ -93,41 +78,23 @@ fregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' Linear Regression R squared or R squared Difference (F Test)
 #'
 #' 
-#' @param data .
-#' @param dep .
-#' @param group .
-#' @param alt .
-#' @param varEq .
+#' @param calculate .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'
 #' @export
 freg <- function(
-    data,
-    dep,
-    group,
-    alt = "notequal",
-    varEq = TRUE) {
+    calculate = "selectpower") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("freg requires jmvcore to be installed (restart may be required)")
 
-    if ( ! missing(dep)) dep <- jmvcore::resolveQuo(jmvcore::enquo(dep))
-    if ( ! missing(group)) group <- jmvcore::resolveQuo(jmvcore::enquo(group))
-    if (missing(data))
-        data <- jmvcore::marshalData(
-            parent.frame(),
-            `if`( ! missing(dep), dep, NULL),
-            `if`( ! missing(group), group, NULL))
-
 
     options <- fregOptions$new(
-        dep = dep,
-        group = group,
-        alt = alt,
-        varEq = varEq)
+        calculate = calculate)
 
     analysis <- fregClass$new(
         options = options,

@@ -4,23 +4,16 @@
 \alias{tmean}
 \title{One Mean against a Constant (z or t Test)}
 \usage{
-tmean(data, dep, group, alt = "notequal", varEq = TRUE)
+tmean(calculate = "selectpower")
 }
 \arguments{
-\item{data}{.}
-
-\item{dep}{.}
-
-\item{group}{.}
-
-\item{alt}{.}
-
-\item{varEq}{.}
+\item{calculate}{.}
 }
 \value{
 A results object containing:
 \tabular{llllll}{
-  \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+  \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
+  \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 }
 }
 \description{

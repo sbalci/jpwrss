@@ -4,23 +4,16 @@
 \alias{zpoisreg}
 \title{Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)}
 \usage{
-zpoisreg(data, dep, group, alt = "notequal", varEq = TRUE)
+zpoisreg(calculate = "selectpower")
 }
 \arguments{
-\item{data}{.}
-
-\item{dep}{.}
-
-\item{group}{.}
-
-\item{alt}{.}
-
-\item{varEq}{.}
+\item{calculate}{.}
 }
 \value{
 A results object containing:
 \tabular{llllll}{
-  \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+  \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
+  \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 }
 }
 \description{

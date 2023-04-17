@@ -4,8 +4,22 @@ title: Linear Regression R squared or R squared Difference (F Test)
 jrs:   '1.1'
 
 items:
-    - name:  text
-      title: Linear Regression R squared or R squared Difference (F Test)
+    # - name:  text1
+    #   title: One Proportion z test
+    #   type:  Preformatted
+
+
+    - name:  text2
+      title: One Proportion z test
       type:  Preformatted
+
+
+    - name: plot
+      title: 'A proportion against a Constant (z Test)'
+      type: Image
+      renderFun: .plot
+
+refs:
+    - pwrss
 
 ...

@@ -4,8 +4,22 @@ title: Difference between Two Means (t or z Test for Independent or Paired Sampl
 jrs:   '1.1'
 
 items:
-    - name:  text
-      title: Difference between Two Means (t or z Test for Independent or Paired Samples)
+    # - name:  text1
+    #   title: One Proportion z test
+    #   type:  Preformatted
+
+
+    - name:  text2
+      title: One Proportion z test
       type:  Preformatted
+
+
+    - name: plot
+      title: 'A proportion against a Constant (z Test)'
+      type: Image
+      renderFun: .plot
+
+refs:
+    - pwrss
 
 ...

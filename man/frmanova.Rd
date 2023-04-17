@@ -4,23 +4,16 @@
 \alias{frmanova}
 \title{Repeated Measures Analysis of Variance (F test)}
 \usage{
-frmanova(data, dep, group, alt = "notequal", varEq = TRUE)
+frmanova(calculate = "selectpower")
 }
 \arguments{
-\item{data}{.}
-
-\item{dep}{.}
-
-\item{group}{.}
-
-\item{alt}{.}
-
-\item{varEq}{.}
+\item{calculate}{.}
 }
 \value{
 A results object containing:
 \tabular{llllll}{
-  \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+  \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
+  \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 }
 }
 \description{

@@ -4,23 +4,16 @@
 \alias{t2means}
 \title{Difference between Two Means (t or z Test for Independent or Paired Samples)}
 \usage{
-t2means(data, dep, group, alt = "notequal", varEq = TRUE)
+t2means(calculate = "selectpower")
 }
 \arguments{
-\item{data}{.}
-
-\item{dep}{.}
-
-\item{group}{.}
-
-\item{alt}{.}
-
-\item{varEq}{.}
+\item{calculate}{.}
 }
 \value{
 A results object containing:
 \tabular{llllll}{
-  \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+  \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
+  \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 }
 }
 \description{

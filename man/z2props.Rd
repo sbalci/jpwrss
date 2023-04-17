@@ -4,23 +4,16 @@
 \alias{z2props}
 \title{Difference between Two Proportions (z Test)}
 \usage{
-z2props(data, dep, group, alt = "notequal", varEq = TRUE)
+z2props(calculate = "selectpower")
 }
 \arguments{
-\item{data}{.}
-
-\item{dep}{.}
-
-\item{group}{.}
-
-\item{alt}{.}
-
-\item{varEq}{.}
+\item{calculate}{.}
 }
 \value{
 A results object containing:
 \tabular{llllll}{
-  \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+  \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
+  \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 }
 }
 \description{
