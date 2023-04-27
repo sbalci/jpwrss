@@ -6,7 +6,18 @@ fancovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            eta2 = 0.01,
+            f2 = 0.01,
+            covadj = FALSE,
+            ncov = 1,
+            nway = "1",
+            nlevelsA = 2,
+            nlevelsB = 2,
+            nlevelsC = 2,
+            power = 0.8,
+            alpha = 0.05,
+            n = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -21,13 +32,94 @@ fancovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+            private$..eta2 <- jmvcore::OptionNumber$new(
+                "eta2",
+                eta2,
+                default=0.01)
+            private$..f2 <- jmvcore::OptionNumber$new(
+                "f2",
+                f2,
+                default=0.01)
+            private$..covadj <- jmvcore::OptionBool$new(
+                "covadj",
+                covadj,
+                default=FALSE)
+            private$..ncov <- jmvcore::OptionInteger$new(
+                "ncov",
+                ncov,
+                default=1)
+            private$..nway <- jmvcore::OptionList$new(
+                "nway",
+                nway,
+                options=list(
+                    "1",
+                    "2",
+                    "3"),
+                default="1")
+            private$..nlevelsA <- jmvcore::OptionInteger$new(
+                "nlevelsA",
+                nlevelsA,
+                default=2)
+            private$..nlevelsB <- jmvcore::OptionInteger$new(
+                "nlevelsB",
+                nlevelsB,
+                default=2)
+            private$..nlevelsC <- jmvcore::OptionInteger$new(
+                "nlevelsC",
+                nlevelsC,
+                default=2)
+            private$..power <- jmvcore::OptionNumber$new(
+                "power",
+                power,
+                default=0.8)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..n <- jmvcore::OptionNumber$new(
+                "n",
+                n,
+                default=200)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..eta2)
+            self$.addOption(private$..f2)
+            self$.addOption(private$..covadj)
+            self$.addOption(private$..ncov)
+            self$.addOption(private$..nway)
+            self$.addOption(private$..nlevelsA)
+            self$.addOption(private$..nlevelsB)
+            self$.addOption(private$..nlevelsC)
+            self$.addOption(private$..power)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..n)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        eta2 = function() private$..eta2$value,
+        f2 = function() private$..f2$value,
+        covadj = function() private$..covadj$value,
+        ncov = function() private$..ncov$value,
+        nway = function() private$..nway$value,
+        nlevelsA = function() private$..nlevelsA$value,
+        nlevelsB = function() private$..nlevelsB$value,
+        nlevelsC = function() private$..nlevelsC$value,
+        power = function() private$..power$value,
+        alpha = function() private$..alpha$value,
+        n = function() private$..n$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..eta2 = NA,
+        ..f2 = NA,
+        ..covadj = NA,
+        ..ncov = NA,
+        ..nway = NA,
+        ..nlevelsA = NA,
+        ..nlevelsB = NA,
+        ..nlevelsC = NA,
+        ..power = NA,
+        ..alpha = NA,
+        ..n = NA)
 )
 
 fancovaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +171,17 @@ fancovaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param eta2 .
+#' @param f2 .
+#' @param covadj .
+#' @param ncov .
+#' @param nway .
+#' @param nlevelsA .
+#' @param nlevelsB .
+#' @param nlevelsC .
+#' @param power .
+#' @param alpha .
+#' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +190,36 @@ fancovaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 fancova <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    eta2 = 0.01,
+    f2 = 0.01,
+    covadj = FALSE,
+    ncov = 1,
+    nway = "1",
+    nlevelsA = 2,
+    nlevelsB = 2,
+    nlevelsC = 2,
+    power = 0.8,
+    alpha = 0.05,
+    n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("fancova requires jmvcore to be installed (restart may be required)")
 
 
     options <- fancovaOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        eta2 = eta2,
+        f2 = f2,
+        covadj = covadj,
+        ncov = ncov,
+        nway = nway,
+        nlevelsA = nlevelsA,
+        nlevelsB = nlevelsB,
+        nlevelsC = nlevelsC,
+        power = power,
+        alpha = alpha,
+        n = n)
 
     analysis <- fancovaClass$new(
         options = options,

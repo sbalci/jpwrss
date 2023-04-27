@@ -6,7 +6,11 @@ ftestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            ncp = 1.96,
+            df1 = 2,
+            df2 = 199,
+            alpha = 0.05, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -18,16 +22,43 @@ ftestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "calculate",
                 calculate,
                 options=list(
-                    "selectpower",
-                    "selectsamplesize"),
+                    "selectpower"),
                 default="selectpower")
+            private$..ncp <- jmvcore::OptionNumber$new(
+                "ncp",
+                ncp,
+                default=1.96)
+            private$..df1 <- jmvcore::OptionInteger$new(
+                "df1",
+                df1,
+                default=2)
+            private$..df2 <- jmvcore::OptionInteger$new(
+                "df2",
+                df2,
+                default=199)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..ncp)
+            self$.addOption(private$..df1)
+            self$.addOption(private$..df2)
+            self$.addOption(private$..alpha)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        ncp = function() private$..ncp$value,
+        df1 = function() private$..df1$value,
+        df2 = function() private$..df2$value,
+        alpha = function() private$..alpha$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..ncp = NA,
+        ..df1 = NA,
+        ..df2 = NA,
+        ..alpha = NA)
 )
 
 ftestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +110,10 @@ ftestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param ncp .
+#' @param df1 .
+#' @param df2 .
+#' @param alpha .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +122,22 @@ ftestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 ftest <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    ncp = 1.96,
+    df1 = 2,
+    df2 = 199,
+    alpha = 0.05) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("ftest requires jmvcore to be installed (restart may be required)")
 
 
     options <- ftestOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        ncp = ncp,
+        df1 = df1,
+        df2 = df2,
+        alpha = alpha)
 
     analysis <- ftestClass$new(
         options = options,

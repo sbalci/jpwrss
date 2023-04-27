@@ -6,7 +6,13 @@ zcorrOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            r = 0.5,
+            r0 = 0,
+            power = 0.8,
+            alpha = 0.05,
+            alternative = "not equal",
+            n = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -21,13 +27,59 @@ zcorrOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+            private$..r <- jmvcore::OptionNumber$new(
+                "r",
+                r,
+                default=0.5)
+            private$..r0 <- jmvcore::OptionNumber$new(
+                "r0",
+                r0,
+                default=0)
+            private$..power <- jmvcore::OptionNumber$new(
+                "power",
+                power,
+                default=0.8)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..alternative <- jmvcore::OptionList$new(
+                "alternative",
+                alternative,
+                options=list(
+                    "not equal",
+                    "greater",
+                    "less"),
+                default="not equal")
+            private$..n <- jmvcore::OptionNumber$new(
+                "n",
+                n,
+                default=200)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..r)
+            self$.addOption(private$..r0)
+            self$.addOption(private$..power)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..alternative)
+            self$.addOption(private$..n)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        r = function() private$..r$value,
+        r0 = function() private$..r0$value,
+        power = function() private$..power$value,
+        alpha = function() private$..alpha$value,
+        alternative = function() private$..alternative$value,
+        n = function() private$..n$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..r = NA,
+        ..r0 = NA,
+        ..power = NA,
+        ..alpha = NA,
+        ..alternative = NA,
+        ..n = NA)
 )
 
 zcorrResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +131,12 @@ zcorrBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param r .
+#' @param r0 .
+#' @param power .
+#' @param alpha .
+#' @param alternative .
+#' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +145,26 @@ zcorrBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 zcorr <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    r = 0.5,
+    r0 = 0,
+    power = 0.8,
+    alpha = 0.05,
+    alternative = "not equal",
+    n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("zcorr requires jmvcore to be installed (restart may be required)")
 
 
     options <- zcorrOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        r = r,
+        r0 = r0,
+        power = power,
+        alpha = alpha,
+        alternative = alternative,
+        n = n)
 
     analysis <- zcorrClass$new(
         options = options,

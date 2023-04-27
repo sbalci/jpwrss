@@ -9,3 +9,50 @@ children:
     children:
       - type: ComboBox
         name: calculate
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: mu
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: sd
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: mu0
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: margin
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: power
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: alpha
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: ComboBox
+        name: alternative
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: 'n'
+        format: number

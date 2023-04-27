@@ -6,7 +6,17 @@ frmanovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            eta2 = 0.01,
+            f2 = 0.01,
+            corrrm = 0.5,
+            nlevels = 2,
+            nrm = 2,
+            epsilon = 0.5,
+            type = "between",
+            power = 0.8,
+            alpha = 0.05,
+            n = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -21,13 +31,87 @@ frmanovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+            private$..eta2 <- jmvcore::OptionNumber$new(
+                "eta2",
+                eta2,
+                default=0.01)
+            private$..f2 <- jmvcore::OptionNumber$new(
+                "f2",
+                f2,
+                default=0.01)
+            private$..corrrm <- jmvcore::OptionNumber$new(
+                "corrrm",
+                corrrm,
+                default=0.5)
+            private$..nlevels <- jmvcore::OptionInteger$new(
+                "nlevels",
+                nlevels,
+                default=2)
+            private$..nrm <- jmvcore::OptionInteger$new(
+                "nrm",
+                nrm,
+                default=2)
+            private$..epsilon <- jmvcore::OptionNumber$new(
+                "epsilon",
+                epsilon,
+                default=0.5)
+            private$..type <- jmvcore::OptionList$new(
+                "type",
+                type,
+                options=list(
+                    "between",
+                    "within",
+                    "interaction"),
+                default="between")
+            private$..power <- jmvcore::OptionNumber$new(
+                "power",
+                power,
+                default=0.8)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..n <- jmvcore::OptionNumber$new(
+                "n",
+                n,
+                default=200)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..eta2)
+            self$.addOption(private$..f2)
+            self$.addOption(private$..corrrm)
+            self$.addOption(private$..nlevels)
+            self$.addOption(private$..nrm)
+            self$.addOption(private$..epsilon)
+            self$.addOption(private$..type)
+            self$.addOption(private$..power)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..n)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        eta2 = function() private$..eta2$value,
+        f2 = function() private$..f2$value,
+        corrrm = function() private$..corrrm$value,
+        nlevels = function() private$..nlevels$value,
+        nrm = function() private$..nrm$value,
+        epsilon = function() private$..epsilon$value,
+        type = function() private$..type$value,
+        power = function() private$..power$value,
+        alpha = function() private$..alpha$value,
+        n = function() private$..n$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..eta2 = NA,
+        ..f2 = NA,
+        ..corrrm = NA,
+        ..nlevels = NA,
+        ..nrm = NA,
+        ..epsilon = NA,
+        ..type = NA,
+        ..power = NA,
+        ..alpha = NA,
+        ..n = NA)
 )
 
 frmanovaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +163,16 @@ frmanovaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param eta2 .
+#' @param f2 .
+#' @param corrrm .
+#' @param nlevels .
+#' @param nrm .
+#' @param epsilon .
+#' @param type .
+#' @param power .
+#' @param alpha .
+#' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +181,34 @@ frmanovaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 frmanova <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    eta2 = 0.01,
+    f2 = 0.01,
+    corrrm = 0.5,
+    nlevels = 2,
+    nrm = 2,
+    epsilon = 0.5,
+    type = "between",
+    power = 0.8,
+    alpha = 0.05,
+    n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("frmanova requires jmvcore to be installed (restart may be required)")
 
 
     options <- frmanovaOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        eta2 = eta2,
+        f2 = f2,
+        corrrm = corrrm,
+        nlevels = nlevels,
+        nrm = nrm,
+        epsilon = epsilon,
+        type = type,
+        power = power,
+        alpha = alpha,
+        n = n)
 
     analysis <- frmanovaClass$new(
         options = options,

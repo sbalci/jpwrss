@@ -4,10 +4,24 @@
 \alias{ttest}
 \title{Statistical Power for the Generic t Test}
 \usage{
-ttest(calculate = "selectpower")
+ttest(
+  calculate = "selectpower",
+  ncp = 1.96,
+  df = 199,
+  alpha = 0.05,
+  alternative = "not equal"
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{ncp}{.}
+
+\item{df}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
 }
 \value{
 A results object containing:

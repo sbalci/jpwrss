@@ -9,3 +9,67 @@ children:
     children:
       - type: ComboBox
         name: calculate
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: eta2
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: f2
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: CheckBox
+        name: covadj
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: ncov
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: ComboBox
+        name: nway
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: nlevelsA
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: nlevelsB
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: nlevelsC
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: power
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: alpha
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: 'n'
+        format: number

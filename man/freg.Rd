@@ -4,10 +4,36 @@
 \alias{freg}
 \title{Linear Regression R squared or R squared Difference (F Test)}
 \usage{
-freg(calculate = "selectpower")
+freg(
+  calculate = "selectpower",
+  regmod = "rsqdev",
+  r2 = 0.01,
+  f2 = 0.01,
+  k = 1,
+  m = 1,
+  power = 0.8,
+  alpha = 0.05,
+  n = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{regmod}{.}
+
+\item{r2}{.}
+
+\item{f2}{.}
+
+\item{k}{.}
+
+\item{m}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{n}{.}
 }
 \value{
 A results object containing:

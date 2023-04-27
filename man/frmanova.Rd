@@ -4,10 +4,42 @@
 \alias{frmanova}
 \title{Repeated Measures Analysis of Variance (F test)}
 \usage{
-frmanova(calculate = "selectpower")
+frmanova(
+  calculate = "selectpower",
+  eta2 = 0.01,
+  f2 = 0.01,
+  corrrm = 0.5,
+  nlevels = 2,
+  nrm = 2,
+  epsilon = 0.5,
+  type = "between",
+  power = 0.8,
+  alpha = 0.05,
+  n = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{eta2}{.}
+
+\item{f2}{.}
+
+\item{corrrm}{.}
+
+\item{nlevels}{.}
+
+\item{nrm}{.}
+
+\item{epsilon}{.}
+
+\item{type}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{n}{.}
 }
 \value{
 A results object containing:

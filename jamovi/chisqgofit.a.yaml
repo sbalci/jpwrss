@@ -27,19 +27,19 @@ options:
         - title: Standardized Effect (Cohen's W, Phi, Cramer's V)
           name: stdeff
       default: stdeff
-      
+
     # conditional on 'typeinput == stdeff'
     - name: w
-      title: 'Standardized Effect (Cohen's W, Phi, Cramer's V)'
+      title: "Standardized Effect (Cohen's W, Phi, Cramer's V)"
       type: Number
       default: 0.13
-      
+
     # conditional on 'typeinput == stdeff'
     - name: df
       title: 'Degrees of Freedom'
-      type: Int
+      type: Integer
       default: 1
-      
+
     # not in the function per se
     # conditional on 'typeinput == cellprob'
     # used to create an input of the type 'matrix'
@@ -49,15 +49,17 @@ options:
       title: 'Number of Rows'
       type: Number
       default: 2
-     - name: ncol
+
+    - name: ncol
       title: 'Number of Columns'
       type: Number
       default: 2
+
     # conditional on 'nrow' and 'ncol'
-    # create an input type of "matrix" 
+    # create an input type of "matrix"
     # with dimensions 'nrow' and 'ncol'
     # title: 'Enter Cell Probabilities'
-     
+
     - name: power
       title: 'Statistical Power (1- Beta)'
       type: Number
@@ -67,10 +69,10 @@ options:
       title: 'Type I error rate (alpha)'
       type: Number
       default: 0.05
-      
+
     - name: n
       title: 'Total Sample Size'
       type: Number
       default: 200
-      
+
 ...

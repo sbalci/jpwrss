@@ -6,7 +6,14 @@ z2corrsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            r1 = 0.5,
+            r2 = 0.4,
+            power = 0.8,
+            alpha = 0.05,
+            alternative = "not equal",
+            kappa = 1,
+            n2 = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -21,13 +28,66 @@ z2corrsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+            private$..r1 <- jmvcore::OptionNumber$new(
+                "r1",
+                r1,
+                default=0.5)
+            private$..r2 <- jmvcore::OptionNumber$new(
+                "r2",
+                r2,
+                default=0.4)
+            private$..power <- jmvcore::OptionNumber$new(
+                "power",
+                power,
+                default=0.8)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..alternative <- jmvcore::OptionList$new(
+                "alternative",
+                alternative,
+                options=list(
+                    "not equal",
+                    "greater",
+                    "less"),
+                default="not equal")
+            private$..kappa <- jmvcore::OptionNumber$new(
+                "kappa",
+                kappa,
+                default=1)
+            private$..n2 <- jmvcore::OptionNumber$new(
+                "n2",
+                n2,
+                default=200)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..r1)
+            self$.addOption(private$..r2)
+            self$.addOption(private$..power)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..alternative)
+            self$.addOption(private$..kappa)
+            self$.addOption(private$..n2)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        r1 = function() private$..r1$value,
+        r2 = function() private$..r2$value,
+        power = function() private$..power$value,
+        alpha = function() private$..alpha$value,
+        alternative = function() private$..alternative$value,
+        kappa = function() private$..kappa$value,
+        n2 = function() private$..n2$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..r1 = NA,
+        ..r2 = NA,
+        ..power = NA,
+        ..alpha = NA,
+        ..alternative = NA,
+        ..kappa = NA,
+        ..n2 = NA)
 )
 
 z2corrsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +139,13 @@ z2corrsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param r1 .
+#' @param r2 .
+#' @param power .
+#' @param alpha .
+#' @param alternative .
+#' @param kappa .
+#' @param n2 .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +154,28 @@ z2corrsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 z2corrs <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    r1 = 0.5,
+    r2 = 0.4,
+    power = 0.8,
+    alpha = 0.05,
+    alternative = "not equal",
+    kappa = 1,
+    n2 = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("z2corrs requires jmvcore to be installed (restart may be required)")
 
 
     options <- z2corrsOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        r1 = r1,
+        r2 = r2,
+        power = power,
+        alpha = alpha,
+        alternative = alternative,
+        kappa = kappa,
+        n2 = n2)
 
     analysis <- z2corrsClass$new(
         options = options,

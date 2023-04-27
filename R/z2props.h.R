@@ -6,7 +6,16 @@ z2propsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            p1 = 0.4,
+            p2 = 0.5,
+            margin = 0,
+            power = 0.8,
+            alpha = 0.05,
+            alternative = "not equal",
+            arcsin.trans = FALSE,
+            kappa = 1,
+            n2 = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -21,13 +30,83 @@ z2propsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+            private$..p1 <- jmvcore::OptionNumber$new(
+                "p1",
+                p1,
+                default=0.4)
+            private$..p2 <- jmvcore::OptionNumber$new(
+                "p2",
+                p2,
+                default=0.5)
+            private$..margin <- jmvcore::OptionNumber$new(
+                "margin",
+                margin,
+                default=0)
+            private$..power <- jmvcore::OptionNumber$new(
+                "power",
+                power,
+                default=0.8)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..alternative <- jmvcore::OptionList$new(
+                "alternative",
+                alternative,
+                options=list(
+                    "not equal",
+                    "greater",
+                    "less",
+                    "equivalent",
+                    "non-inferior",
+                    "superior"),
+                default="not equal")
+            private$..arcsin.trans <- jmvcore::OptionBool$new(
+                "arcsin.trans",
+                arcsin.trans,
+                default=FALSE)
+            private$..kappa <- jmvcore::OptionNumber$new(
+                "kappa",
+                kappa,
+                default=1)
+            private$..n2 <- jmvcore::OptionNumber$new(
+                "n2",
+                n2,
+                default=200)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..p1)
+            self$.addOption(private$..p2)
+            self$.addOption(private$..margin)
+            self$.addOption(private$..power)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..alternative)
+            self$.addOption(private$..arcsin.trans)
+            self$.addOption(private$..kappa)
+            self$.addOption(private$..n2)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        p1 = function() private$..p1$value,
+        p2 = function() private$..p2$value,
+        margin = function() private$..margin$value,
+        power = function() private$..power$value,
+        alpha = function() private$..alpha$value,
+        alternative = function() private$..alternative$value,
+        arcsin.trans = function() private$..arcsin.trans$value,
+        kappa = function() private$..kappa$value,
+        n2 = function() private$..n2$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..p1 = NA,
+        ..p2 = NA,
+        ..margin = NA,
+        ..power = NA,
+        ..alpha = NA,
+        ..alternative = NA,
+        ..arcsin.trans = NA,
+        ..kappa = NA,
+        ..n2 = NA)
 )
 
 z2propsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +158,15 @@ z2propsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param p1 .
+#' @param p2 .
+#' @param margin .
+#' @param power .
+#' @param alpha .
+#' @param alternative .
+#' @param arcsin.trans .
+#' @param kappa .
+#' @param n2 .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +175,32 @@ z2propsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 z2props <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    p1 = 0.4,
+    p2 = 0.5,
+    margin = 0,
+    power = 0.8,
+    alpha = 0.05,
+    alternative = "not equal",
+    arcsin.trans = FALSE,
+    kappa = 1,
+    n2 = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("z2props requires jmvcore to be installed (restart may be required)")
 
 
     options <- z2propsOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        p1 = p1,
+        p2 = p2,
+        margin = margin,
+        power = power,
+        alpha = alpha,
+        alternative = alternative,
+        arcsin.trans = arcsin.trans,
+        kappa = kappa,
+        n2 = n2)
 
     analysis <- z2propsClass$new(
         options = options,

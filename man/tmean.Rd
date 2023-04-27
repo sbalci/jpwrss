@@ -4,10 +4,36 @@
 \alias{tmean}
 \title{One Mean against a Constant (z or t Test)}
 \usage{
-tmean(calculate = "selectpower")
+tmean(
+  calculate = "selectpower",
+  mu = 0.25,
+  sd = 1,
+  mu0 = 0,
+  margin = 0,
+  power = 0.8,
+  alpha = 0.05,
+  alternative = "not equal",
+  n = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{mu}{.}
+
+\item{sd}{.}
+
+\item{mu0}{.}
+
+\item{margin}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
+
+\item{n}{.}
 }
 \value{
 A results object containing:

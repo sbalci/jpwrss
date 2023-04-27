@@ -44,13 +44,13 @@ options:
       
     - name: k
       title: 'Total Number of Predictors'
-      type: Int
+      type: Integer
       default: 1
     
     # conditional on 'regmod = 'rsqdif'
     - name: m
       title: 'Number of Predictors in the Subset of Interest'
-      type: Int
+      type: Integer
       default: 1
      
     - name: power

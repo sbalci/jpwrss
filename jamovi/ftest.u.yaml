@@ -9,3 +9,27 @@ children:
     children:
       - type: ComboBox
         name: calculate
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: ncp
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: df1
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: df2
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: alpha
+        format: number

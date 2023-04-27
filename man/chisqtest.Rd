@@ -4,10 +4,16 @@
 \alias{chisqtest}
 \title{Statistical Power for the Generic Chi-square Test}
 \usage{
-chisqtest(calculate = "selectpower")
+chisqtest(calculate = "selectpower", ncp = 1.96, df = 199, alpha = 0.05)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{ncp}{.}
+
+\item{df}{.}
+
+\item{alpha}{.}
 }
 \value{
 A results object containing:

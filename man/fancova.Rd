@@ -4,10 +4,45 @@
 \alias{fancova}
 \title{Analysis of (Co)Variance (F test)}
 \usage{
-fancova(calculate = "selectpower")
+fancova(
+  calculate = "selectpower",
+  eta2 = 0.01,
+  f2 = 0.01,
+  covadj = FALSE,
+  ncov = 1,
+  nway = "1",
+  nlevelsA = 2,
+  nlevelsB = 2,
+  nlevelsC = 2,
+  power = 0.8,
+  alpha = 0.05,
+  n = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{eta2}{.}
+
+\item{f2}{.}
+
+\item{covadj}{.}
+
+\item{ncov}{.}
+
+\item{nway}{.}
+
+\item{nlevelsA}{.}
+
+\item{nlevelsB}{.}
+
+\item{nlevelsC}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{n}{.}
 }
 \value{
 A results object containing:

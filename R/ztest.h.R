@@ -6,7 +6,10 @@ ztestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            ncp = 1.96,
+            alpha = 0.05,
+            alternative = "not equal", ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -18,16 +21,40 @@ ztestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "calculate",
                 calculate,
                 options=list(
-                    "selectpower",
-                    "selectsamplesize"),
+                    "selectpower"),
                 default="selectpower")
+            private$..ncp <- jmvcore::OptionNumber$new(
+                "ncp",
+                ncp,
+                default=1.96)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..alternative <- jmvcore::OptionList$new(
+                "alternative",
+                alternative,
+                options=list(
+                    "not equal",
+                    "greater",
+                    "less"),
+                default="not equal")
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..ncp)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..alternative)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        ncp = function() private$..ncp$value,
+        alpha = function() private$..alpha$value,
+        alternative = function() private$..alternative$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..ncp = NA,
+        ..alpha = NA,
+        ..alternative = NA)
 )
 
 ztestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +106,9 @@ ztestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param ncp .
+#' @param alpha .
+#' @param alternative .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +117,20 @@ ztestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 ztest <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    ncp = 1.96,
+    alpha = 0.05,
+    alternative = "not equal") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("ztest requires jmvcore to be installed (restart may be required)")
 
 
     options <- ztestOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        ncp = ncp,
+        alpha = alpha,
+        alternative = alternative)
 
     analysis <- ztestClass$new(
         options = options,

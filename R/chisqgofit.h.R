@@ -6,7 +6,15 @@ chisqgofitOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            typeinput = "stdeff",
+            w = 0.13,
+            df = 1,
+            nrow = 2,
+            ncol = 2,
+            power = 0.8,
+            alpha = 0.05,
+            n = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -21,13 +29,72 @@ chisqgofitOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+            private$..typeinput <- jmvcore::OptionList$new(
+                "typeinput",
+                typeinput,
+                options=list(
+                    "cellprob",
+                    "stdeff"),
+                default="stdeff")
+            private$..w <- jmvcore::OptionNumber$new(
+                "w",
+                w,
+                default=0.13)
+            private$..df <- jmvcore::OptionInteger$new(
+                "df",
+                df,
+                default=1)
+            private$..nrow <- jmvcore::OptionNumber$new(
+                "nrow",
+                nrow,
+                default=2)
+            private$..ncol <- jmvcore::OptionNumber$new(
+                "ncol",
+                ncol,
+                default=2)
+            private$..power <- jmvcore::OptionNumber$new(
+                "power",
+                power,
+                default=0.8)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..n <- jmvcore::OptionNumber$new(
+                "n",
+                n,
+                default=200)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..typeinput)
+            self$.addOption(private$..w)
+            self$.addOption(private$..df)
+            self$.addOption(private$..nrow)
+            self$.addOption(private$..ncol)
+            self$.addOption(private$..power)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..n)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        typeinput = function() private$..typeinput$value,
+        w = function() private$..w$value,
+        df = function() private$..df$value,
+        nrow = function() private$..nrow$value,
+        ncol = function() private$..ncol$value,
+        power = function() private$..power$value,
+        alpha = function() private$..alpha$value,
+        n = function() private$..n$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..typeinput = NA,
+        ..w = NA,
+        ..df = NA,
+        ..nrow = NA,
+        ..ncol = NA,
+        ..power = NA,
+        ..alpha = NA,
+        ..n = NA)
 )
 
 chisqgofitResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +146,14 @@ chisqgofitBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param typeinput .
+#' @param w .
+#' @param df .
+#' @param nrow .
+#' @param ncol .
+#' @param power .
+#' @param alpha .
+#' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +162,30 @@ chisqgofitBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 chisqgofit <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    typeinput = "stdeff",
+    w = 0.13,
+    df = 1,
+    nrow = 2,
+    ncol = 2,
+    power = 0.8,
+    alpha = 0.05,
+    n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("chisqgofit requires jmvcore to be installed (restart may be required)")
 
 
     options <- chisqgofitOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        typeinput = typeinput,
+        w = w,
+        df = df,
+        nrow = nrow,
+        ncol = ncol,
+        power = power,
+        alpha = alpha,
+        n = n)
 
     analysis <- chisqgofitClass$new(
         options = options,

@@ -4,10 +4,39 @@
 \alias{z2props}
 \title{Difference between Two Proportions (z Test)}
 \usage{
-z2props(calculate = "selectpower")
+z2props(
+  calculate = "selectpower",
+  p1 = 0.4,
+  p2 = 0.5,
+  margin = 0,
+  power = 0.8,
+  alpha = 0.05,
+  alternative = "not equal",
+  arcsin.trans = FALSE,
+  kappa = 1,
+  n2 = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{p1}{.}
+
+\item{p2}{.}
+
+\item{margin}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
+
+\item{arcsin.trans}{.}
+
+\item{kappa}{.}
+
+\item{n2}{.}
 }
 \value{
 A results object containing:

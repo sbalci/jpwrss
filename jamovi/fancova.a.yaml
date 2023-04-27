@@ -17,45 +17,45 @@ options:
           name: selectsamplesize
       default: selectpower
 
-    # use either 'eta2' or 'f2' 
+    # use either 'eta2' or 'f2'
     # update 'eta2' automatically when 'f2' is defined
     - name: eta2
       title: 'Expected Eta-square'
       type: Number
       default: 0.01
-    
+
     # update 'f2' automatically when 'eta2' is defined
     # or remove 'f2'
     - name: f2
       title: 'Expected f-square'
       type: Number
       default: 0.01
-     
+
     # not in the function per se
     - name: covadj
       title: "Covariate Adjusted Effects?"
       type: Bool
-      default: false 
-    
+      default: false
+
     # conditional on 'covadj == true'
-    # 'n.covariates' in the function 
-    - name: ncov 
+    # 'n.covariates' in the function
+    - name: ncov
       title: 'Number of Covariates'
-      type: Int
+      type: Integer
       default: 1
-   
+
     - name: nway
       title: 'Factorial Design'
       type: List
       options:
         - title: One-way
-          name: 1
+          name: "1"
         - title: Two-way
-          name: 2
+          name: "2"
         - title: Three-way
-          name: 3
-      default: 1
-    
+          name: "3"
+      default: "1"
+
     # conditional on 'nway == 1', 'nway == 2', or 'nway == 3'
     # not in the function per se
     # input for 'n.levels' in the function
@@ -64,15 +64,15 @@ options:
     # e.g. 'n.levels = c(nlevelsA, nlevelsB, nlevelsC)' for three-way ANOVA or ANCOVA
     - name: nlevelsA
       title: 'Number of Levels for Factor A'
-      type: Int
+      type: Integer
       default: 2
     - name: nlevelsB
       title: 'Number of Levels for Factor B'
-      type: Int
+      type: Integer
       default: 2
     - name: nlevelsC
       title: 'Number of Levels for Factor C'
-      type: Int
+      type: Integer
       default: 2
 
     - name: power
@@ -84,7 +84,7 @@ options:
       title: 'Type I error rate (alpha)'
       type: Number
       default: 0.05
-      
+
     - name: n
       title: 'Total Sample Size'
       type: Number

@@ -6,7 +6,15 @@ tmeanOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            mu = 0.25,
+            sd = 1,
+            mu0 = 0,
+            margin = 0,
+            power = 0.8,
+            alpha = 0.05,
+            alternative = "not equal",
+            n = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -21,13 +29,76 @@ tmeanOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+            private$..mu <- jmvcore::OptionNumber$new(
+                "mu",
+                mu,
+                default=0.25)
+            private$..sd <- jmvcore::OptionNumber$new(
+                "sd",
+                sd,
+                default=1)
+            private$..mu0 <- jmvcore::OptionNumber$new(
+                "mu0",
+                mu0,
+                default=0)
+            private$..margin <- jmvcore::OptionNumber$new(
+                "margin",
+                margin,
+                default=0)
+            private$..power <- jmvcore::OptionNumber$new(
+                "power",
+                power,
+                default=0.8)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..alternative <- jmvcore::OptionList$new(
+                "alternative",
+                alternative,
+                options=list(
+                    "not equal",
+                    "greater",
+                    "less",
+                    "equivalent",
+                    "non-inferior",
+                    "superior"),
+                default="not equal")
+            private$..n <- jmvcore::OptionNumber$new(
+                "n",
+                n,
+                default=200)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..mu)
+            self$.addOption(private$..sd)
+            self$.addOption(private$..mu0)
+            self$.addOption(private$..margin)
+            self$.addOption(private$..power)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..alternative)
+            self$.addOption(private$..n)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        mu = function() private$..mu$value,
+        sd = function() private$..sd$value,
+        mu0 = function() private$..mu0$value,
+        margin = function() private$..margin$value,
+        power = function() private$..power$value,
+        alpha = function() private$..alpha$value,
+        alternative = function() private$..alternative$value,
+        n = function() private$..n$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..mu = NA,
+        ..sd = NA,
+        ..mu0 = NA,
+        ..margin = NA,
+        ..power = NA,
+        ..alpha = NA,
+        ..alternative = NA,
+        ..n = NA)
 )
 
 tmeanResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +150,14 @@ tmeanBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param mu .
+#' @param sd .
+#' @param mu0 .
+#' @param margin .
+#' @param power .
+#' @param alpha .
+#' @param alternative .
+#' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +166,30 @@ tmeanBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 tmean <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    mu = 0.25,
+    sd = 1,
+    mu0 = 0,
+    margin = 0,
+    power = 0.8,
+    alpha = 0.05,
+    alternative = "not equal",
+    n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("tmean requires jmvcore to be installed (restart may be required)")
 
 
     options <- tmeanOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        mu = mu,
+        sd = sd,
+        mu0 = mu0,
+        margin = margin,
+        power = power,
+        alpha = alpha,
+        alternative = alternative,
+        n = n)
 
     analysis <- tmeanClass$new(
         options = options,

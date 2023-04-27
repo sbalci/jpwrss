@@ -38,12 +38,12 @@ options:
     
     - name: nlevels
       title: 'Number of Levels (Groups)'
-      type: Int
+      type: Integer
       default: 2
       
     - name: nrm
       title: 'Number of Repeated Measures'
-      type: Int
+      type: Integer
       default: 2
    
     - name: epsilon

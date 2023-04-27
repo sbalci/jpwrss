@@ -4,10 +4,54 @@
 \alias{zmed}
 \title{Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)}
 \usage{
-zmed(calculate = "selectpower")
+zmed(
+  calculate = "selectpower",
+  stdinput = FALSE,
+  a = 0.25,
+  b = 0,
+  cp = 0,
+  sdy = 1,
+  sdx = 1,
+  sdm = 1,
+  r2y = 0,
+  r2m = 0,
+  power = 0.8,
+  alpha = 0.05,
+  alternative = "not equal",
+  mc = FALSE,
+  n = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{stdinput}{.}
+
+\item{a}{.}
+
+\item{b}{.}
+
+\item{cp}{.}
+
+\item{sdy}{.}
+
+\item{sdx}{.}
+
+\item{sdm}{.}
+
+\item{r2y}{.}
+
+\item{r2m}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
+
+\item{mc}{.}
+
+\item{n}{.}
 }
 \value{
 A results object containing:

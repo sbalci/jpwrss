@@ -9,3 +9,44 @@ children:
     children:
       - type: ComboBox
         name: calculate
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: r1
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: r2
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: power
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: alpha
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: ComboBox
+        name: alternative
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: kappa
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: n2
+        format: number

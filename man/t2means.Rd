@@ -4,10 +4,54 @@
 \alias{t2means}
 \title{Difference between Two Means (t or z Test for Independent or Paired Samples)}
 \usage{
-t2means(calculate = "selectpower")
+t2means(
+  calculate = "selectpower",
+  paired = FALSE,
+  paired.r = 0.5,
+  stdinput = FALSE,
+  d = 0.2,
+  mu1 = 0.2,
+  mu2 = 0,
+  sd1 = 1,
+  sd2 = 1,
+  margin = 0,
+  power = 0.8,
+  alpha = 0.05,
+  alternative = "not equal",
+  kappa = 1,
+  n2 = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{paired}{.}
+
+\item{paired.r}{.}
+
+\item{stdinput}{.}
+
+\item{d}{.}
+
+\item{mu1}{.}
+
+\item{mu2}{.}
+
+\item{sd1}{.}
+
+\item{sd2}{.}
+
+\item{margin}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
+
+\item{kappa}{.}
+
+\item{n2}{.}
 }
 \value{
 A results object containing:

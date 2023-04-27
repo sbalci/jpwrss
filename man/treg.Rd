@@ -4,10 +4,48 @@
 \alias{treg}
 \title{Linear Regression Single Coefficient (t or z Test)}
 \usage{
-treg(calculate = "selectpower")
+treg(
+  calculate = "selectpower",
+  stdinput = FALSE,
+  beta1 = 0.25,
+  beta0 = 0,
+  margin = 0,
+  sdx = 1,
+  sdy = 1,
+  k = 1,
+  r2 = 0,
+  power = 0.8,
+  alpha = 0.05,
+  alternative = "not equal",
+  n = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{stdinput}{.}
+
+\item{beta1}{.}
+
+\item{beta0}{.}
+
+\item{margin}{.}
+
+\item{sdx}{.}
+
+\item{sdy}{.}
+
+\item{k}{.}
+
+\item{r2}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
+
+\item{n}{.}
 }
 \value{
 A results object containing:

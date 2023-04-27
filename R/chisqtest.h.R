@@ -6,7 +6,10 @@ chisqtestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            ncp = 1.96,
+            df = 199,
+            alpha = 0.05, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -18,16 +21,36 @@ chisqtestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "calculate",
                 calculate,
                 options=list(
-                    "selectpower",
-                    "selectsamplesize"),
+                    "selectpower"),
                 default="selectpower")
+            private$..ncp <- jmvcore::OptionNumber$new(
+                "ncp",
+                ncp,
+                default=1.96)
+            private$..df <- jmvcore::OptionInteger$new(
+                "df",
+                df,
+                default=199)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..ncp)
+            self$.addOption(private$..df)
+            self$.addOption(private$..alpha)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        ncp = function() private$..ncp$value,
+        df = function() private$..df$value,
+        alpha = function() private$..alpha$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..ncp = NA,
+        ..df = NA,
+        ..alpha = NA)
 )
 
 chisqtestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +102,9 @@ chisqtestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param ncp .
+#' @param df .
+#' @param alpha .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +113,20 @@ chisqtestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 chisqtest <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    ncp = 1.96,
+    df = 199,
+    alpha = 0.05) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("chisqtest requires jmvcore to be installed (restart may be required)")
 
 
     options <- chisqtestOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        ncp = ncp,
+        df = df,
+        alpha = alpha)
 
     analysis <- chisqtestClass$new(
         options = options,

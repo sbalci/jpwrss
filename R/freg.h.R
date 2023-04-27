@@ -6,7 +6,15 @@ fregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            regmod = "rsqdev",
+            r2 = 0.01,
+            f2 = 0.01,
+            k = 1,
+            m = 1,
+            power = 0.8,
+            alpha = 0.05,
+            n = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -21,13 +29,72 @@ fregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+            private$..regmod <- jmvcore::OptionList$new(
+                "regmod",
+                regmod,
+                options=list(
+                    "rsqdev",
+                    "rsqdif"),
+                default="rsqdev")
+            private$..r2 <- jmvcore::OptionNumber$new(
+                "r2",
+                r2,
+                default=0.01)
+            private$..f2 <- jmvcore::OptionNumber$new(
+                "f2",
+                f2,
+                default=0.01)
+            private$..k <- jmvcore::OptionInteger$new(
+                "k",
+                k,
+                default=1)
+            private$..m <- jmvcore::OptionInteger$new(
+                "m",
+                m,
+                default=1)
+            private$..power <- jmvcore::OptionNumber$new(
+                "power",
+                power,
+                default=0.8)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..n <- jmvcore::OptionNumber$new(
+                "n",
+                n,
+                default=200)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..regmod)
+            self$.addOption(private$..r2)
+            self$.addOption(private$..f2)
+            self$.addOption(private$..k)
+            self$.addOption(private$..m)
+            self$.addOption(private$..power)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..n)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        regmod = function() private$..regmod$value,
+        r2 = function() private$..r2$value,
+        f2 = function() private$..f2$value,
+        k = function() private$..k$value,
+        m = function() private$..m$value,
+        power = function() private$..power$value,
+        alpha = function() private$..alpha$value,
+        n = function() private$..n$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..regmod = NA,
+        ..r2 = NA,
+        ..f2 = NA,
+        ..k = NA,
+        ..m = NA,
+        ..power = NA,
+        ..alpha = NA,
+        ..n = NA)
 )
 
 fregResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +146,14 @@ fregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param regmod .
+#' @param r2 .
+#' @param f2 .
+#' @param k .
+#' @param m .
+#' @param power .
+#' @param alpha .
+#' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +162,30 @@ fregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 freg <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    regmod = "rsqdev",
+    r2 = 0.01,
+    f2 = 0.01,
+    k = 1,
+    m = 1,
+    power = 0.8,
+    alpha = 0.05,
+    n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("freg requires jmvcore to be installed (restart may be required)")
 
 
     options <- fregOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        regmod = regmod,
+        r2 = r2,
+        f2 = f2,
+        k = k,
+        m = m,
+        power = power,
+        alpha = alpha,
+        n = n)
 
     analysis <- fregClass$new(
         options = options,

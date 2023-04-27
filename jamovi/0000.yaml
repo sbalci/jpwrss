@@ -1,11 +1,11 @@
 ---
 title: Jamovi Module for Statistical Power and Sample Size Calculation Tools
 name: jpwrss
-version: 0.0.0.1
+version: 0.0.0.11
 jms: '1.0'
 authors: 'Metin Bulus, Serdar Balci'
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2023-04-15'
+date: '2023-04-27'
 type: R
 description: >-
   Wrapper `jamovi` Module for `pwrss` Package Statistical power and minimum
@@ -47,7 +47,7 @@ analyses:
     ns: jpwrss
     menuGroup: jpwrss
     menuTitle: Statistical Power for the Generic Chi-square Test
-    menuSubgroup: Contingency Tables
+    menuSubgroup: Generic
   - title: Statistical Power for the Generic F Test
     name: ftest
     ns: jpwrss

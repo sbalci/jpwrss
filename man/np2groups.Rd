@@ -4,10 +4,60 @@
 \alias{np2groups}
 \title{Difference between Two Groups (Non-parametric Tests for Independent and Paired Samples)}
 \usage{
-np2groups(calculate = "selectpower")
+np2groups(
+  calculate = "selectpower",
+  paired = FALSE,
+  paired.r = 0.5,
+  stdinput = FALSE,
+  d = 0.2,
+  mu1 = 0.2,
+  mu2 = 0,
+  sd1 = 1,
+  sd2 = 1,
+  margin = 0,
+  power = 0.8,
+  alpha = 0.05,
+  alternative = "not equal",
+  distribution = "normal",
+  method = "normal",
+  kappa = 1,
+  n2 = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{paired}{.}
+
+\item{paired.r}{.}
+
+\item{stdinput}{.}
+
+\item{d}{.}
+
+\item{mu1}{.}
+
+\item{mu2}{.}
+
+\item{sd1}{.}
+
+\item{sd2}{.}
+
+\item{margin}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
+
+\item{distribution}{.}
+
+\item{method}{.}
+
+\item{kappa}{.}
+
+\item{n2}{.}
 }
 \value{
 A results object containing:

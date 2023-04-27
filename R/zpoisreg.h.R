@@ -6,7 +6,30 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            typeinput = "rateratio",
+            expbeta1 = 1.28,
+            expbeta0 = 1,
+            beta1 = 0.25,
+            beta0 = 0,
+            r2otherx = 0,
+            power = 0.8,
+            alpha = 0.05,
+            alternative = "not equal",
+            method = "demidenko(vc)",
+            distribution = "not equal",
+            mean = 0,
+            sd = 1,
+            min = 0,
+            max = 1,
+            size = 1,
+            prob = 0.5,
+            meanlo = 0,
+            sdlog = 1,
+            lambda = 1,
+            rate = 1,
+            probability = 0.5,
+            n = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -21,13 +44,192 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+            private$..typeinput <- jmvcore::OptionList$new(
+                "typeinput",
+                typeinput,
+                options=list(
+                    "rateratio",
+                    "regcoef"),
+                default="rateratio")
+            private$..expbeta1 <- jmvcore::OptionNumber$new(
+                "expbeta1",
+                expbeta1,
+                default=1.28)
+            private$..expbeta0 <- jmvcore::OptionNumber$new(
+                "expbeta0",
+                expbeta0,
+                default=1)
+            private$..beta1 <- jmvcore::OptionNumber$new(
+                "beta1",
+                beta1,
+                default=0.25)
+            private$..beta0 <- jmvcore::OptionNumber$new(
+                "beta0",
+                beta0,
+                default=0)
+            private$..r2otherx <- jmvcore::OptionNumber$new(
+                "r2otherx",
+                r2otherx,
+                default=0)
+            private$..power <- jmvcore::OptionNumber$new(
+                "power",
+                power,
+                default=0.8)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..alternative <- jmvcore::OptionList$new(
+                "alternative",
+                alternative,
+                options=list(
+                    "not equal",
+                    "greater",
+                    "less"),
+                default="not equal")
+            private$..method <- jmvcore::OptionList$new(
+                "method",
+                method,
+                options=list(
+                    "demidenko(vc)",
+                    "demidenko",
+                    "signorini"),
+                default="demidenko(vc)")
+            private$..distribution <- jmvcore::OptionList$new(
+                "distribution",
+                distribution,
+                options=list(
+                    "normal",
+                    "poisson",
+                    "uniform",
+                    "exponential",
+                    "binomial",
+                    "bernoulli"),
+                default="not equal")
+            private$..mean <- jmvcore::OptionNumber$new(
+                "mean",
+                mean,
+                default=0)
+            private$..sd <- jmvcore::OptionNumber$new(
+                "sd",
+                sd,
+                default=1)
+            private$..min <- jmvcore::OptionNumber$new(
+                "min",
+                min,
+                default=0)
+            private$..max <- jmvcore::OptionNumber$new(
+                "max",
+                max,
+                default=1)
+            private$..size <- jmvcore::OptionNumber$new(
+                "size",
+                size,
+                default=1)
+            private$..prob <- jmvcore::OptionNumber$new(
+                "prob",
+                prob,
+                default=0.5)
+            private$..meanlo <- jmvcore::OptionNumber$new(
+                "meanlo",
+                meanlo,
+                default=0)
+            private$..sdlog <- jmvcore::OptionNumber$new(
+                "sdlog",
+                sdlog,
+                default=1)
+            private$..lambda <- jmvcore::OptionNumber$new(
+                "lambda",
+                lambda,
+                default=1)
+            private$..rate <- jmvcore::OptionNumber$new(
+                "rate",
+                rate,
+                default=1)
+            private$..probability <- jmvcore::OptionNumber$new(
+                "probability",
+                probability,
+                default=0.5)
+            private$..n <- jmvcore::OptionNumber$new(
+                "n",
+                n,
+                default=200)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..typeinput)
+            self$.addOption(private$..expbeta1)
+            self$.addOption(private$..expbeta0)
+            self$.addOption(private$..beta1)
+            self$.addOption(private$..beta0)
+            self$.addOption(private$..r2otherx)
+            self$.addOption(private$..power)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..alternative)
+            self$.addOption(private$..method)
+            self$.addOption(private$..distribution)
+            self$.addOption(private$..mean)
+            self$.addOption(private$..sd)
+            self$.addOption(private$..min)
+            self$.addOption(private$..max)
+            self$.addOption(private$..size)
+            self$.addOption(private$..prob)
+            self$.addOption(private$..meanlo)
+            self$.addOption(private$..sdlog)
+            self$.addOption(private$..lambda)
+            self$.addOption(private$..rate)
+            self$.addOption(private$..probability)
+            self$.addOption(private$..n)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        typeinput = function() private$..typeinput$value,
+        expbeta1 = function() private$..expbeta1$value,
+        expbeta0 = function() private$..expbeta0$value,
+        beta1 = function() private$..beta1$value,
+        beta0 = function() private$..beta0$value,
+        r2otherx = function() private$..r2otherx$value,
+        power = function() private$..power$value,
+        alpha = function() private$..alpha$value,
+        alternative = function() private$..alternative$value,
+        method = function() private$..method$value,
+        distribution = function() private$..distribution$value,
+        mean = function() private$..mean$value,
+        sd = function() private$..sd$value,
+        min = function() private$..min$value,
+        max = function() private$..max$value,
+        size = function() private$..size$value,
+        prob = function() private$..prob$value,
+        meanlo = function() private$..meanlo$value,
+        sdlog = function() private$..sdlog$value,
+        lambda = function() private$..lambda$value,
+        rate = function() private$..rate$value,
+        probability = function() private$..probability$value,
+        n = function() private$..n$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..typeinput = NA,
+        ..expbeta1 = NA,
+        ..expbeta0 = NA,
+        ..beta1 = NA,
+        ..beta0 = NA,
+        ..r2otherx = NA,
+        ..power = NA,
+        ..alpha = NA,
+        ..alternative = NA,
+        ..method = NA,
+        ..distribution = NA,
+        ..mean = NA,
+        ..sd = NA,
+        ..min = NA,
+        ..max = NA,
+        ..size = NA,
+        ..prob = NA,
+        ..meanlo = NA,
+        ..sdlog = NA,
+        ..lambda = NA,
+        ..rate = NA,
+        ..probability = NA,
+        ..n = NA)
 )
 
 zpoisregResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +281,29 @@ zpoisregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param typeinput .
+#' @param expbeta1 .
+#' @param expbeta0 .
+#' @param beta1 .
+#' @param beta0 .
+#' @param r2otherx .
+#' @param power .
+#' @param alpha .
+#' @param alternative .
+#' @param method .
+#' @param distribution .
+#' @param mean .
+#' @param sd .
+#' @param min .
+#' @param max .
+#' @param size .
+#' @param prob .
+#' @param meanlo .
+#' @param sdlog .
+#' @param lambda .
+#' @param rate .
+#' @param probability .
+#' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +312,60 @@ zpoisregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 zpoisreg <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    typeinput = "rateratio",
+    expbeta1 = 1.28,
+    expbeta0 = 1,
+    beta1 = 0.25,
+    beta0 = 0,
+    r2otherx = 0,
+    power = 0.8,
+    alpha = 0.05,
+    alternative = "not equal",
+    method = "demidenko(vc)",
+    distribution = "not equal",
+    mean = 0,
+    sd = 1,
+    min = 0,
+    max = 1,
+    size = 1,
+    prob = 0.5,
+    meanlo = 0,
+    sdlog = 1,
+    lambda = 1,
+    rate = 1,
+    probability = 0.5,
+    n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("zpoisreg requires jmvcore to be installed (restart may be required)")
 
 
     options <- zpoisregOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        typeinput = typeinput,
+        expbeta1 = expbeta1,
+        expbeta0 = expbeta0,
+        beta1 = beta1,
+        beta0 = beta0,
+        r2otherx = r2otherx,
+        power = power,
+        alpha = alpha,
+        alternative = alternative,
+        method = method,
+        distribution = distribution,
+        mean = mean,
+        sd = sd,
+        min = min,
+        max = max,
+        size = size,
+        prob = prob,
+        meanlo = meanlo,
+        sdlog = sdlog,
+        lambda = lambda,
+        rate = rate,
+        probability = probability,
+        n = n)
 
     analysis <- zpoisregClass$new(
         options = options,

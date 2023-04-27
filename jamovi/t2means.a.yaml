@@ -28,23 +28,23 @@ options:
       title: 'Correlation between First and Second Measurements in Paired Samples'
       type: Number
       default: 0.50
-      
+
     # not in the function per se
     - name: stdinput
       title: "Standardized Input?"
       type: Bool
-      default: false 
-      
+      default: false
+
     # if 'stdinput == true'
     # show 'd'
     # remove 'mu1', 'mu2', 'sd1', 'sd2'
     # not in the function per se
     # usage in the function: 'mu1 = d'
     - name: d
-      title: 'Standardized Mean Difference (Cohen's d or Hedge's g)'
+      title: "Standardized Mean Difference (Cohen's d or Hedge's g)"
       type: Number
       default: 0.20
-    
+
     # if 'stdinput == false'
     # show 'mu1', 'mu2', 'sd1', 'sd2'
     # remove 'd'
@@ -108,7 +108,7 @@ options:
       title: 'Ratio of the Sample Size in the First Group to the Second Group'
       type: Number
       default: 1
-      
+
     # title is conditional on 'paired' argument
     - name: n2
       # title: 'Sample Size'

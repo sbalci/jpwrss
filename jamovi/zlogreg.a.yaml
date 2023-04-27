@@ -16,9 +16,9 @@ options:
         - title: Sample Size
           name: selectsamplesize
       default: selectpower
-     
-    # not in the function per se     
-     - name: typeinput
+
+    # not in the function per se
+    - name: typeinput
       title: 'Type of the Effect'
       type: List
       options:
@@ -35,33 +35,33 @@ options:
       title: 'Probability under Null Hypothesis (Base Probability)'
       type: Number
       default: 0.50
-      
+
     # conditional on 'typeinput = prob'
     # remove if 'typeinput = regcoef' or 'typeinput = oddsratio'
     - name: p1
       title: 'Probability under Alternative Hypothesis'
       type: Number
       default: 0.40
-      
+
     # conditional on 'typeinput = oddsratio'
-    # remove if 'typeinput = regcoef' or 'typeinput = prob' 
+    # remove if 'typeinput = regcoef' or 'typeinput = prob'
     - name: oddsratio
       title: 'Odds Ratio'
       type: Number
       default: 0.67
-      
+
     # conditional on 'typeinput = regcoef'
     - name: beta1
       title: 'Regression Coefficient'
       type: Number
       default: 0.25
-      
+
     # conditional on 'typeinput = regcoef'
     - name: beta0
       title: 'Regression Coefficient under Null Hypothesis'
       type: Number
       default: 0
-      
+
     - name: r2otherx
       title: 'Proportion of Variance in the Predictor Explained by Other Covariates'
       type: Number
@@ -88,7 +88,7 @@ options:
         - title: Less
           name: less
       default: not equal
-      
+
     # may not need to include this, use the function default?
     - name: method
       title: 'Method'
@@ -102,7 +102,7 @@ options:
           name: hsieh
       default: demidenko(vc)
 
-   - name: distribution
+    - name: distribution
       title: 'Distribution of the Predictor'
       type: List
       options:
@@ -119,8 +119,8 @@ options:
         - title: Bernoulli
           name: bernoulli
       default: not equal
-      
-    # not in the function per se    
+
+    # not in the function per se
     # conditional on 'distribution == normal'
     # define distribution = list(dist = "normal", mean = mean, sd = sd)
     - name: mean
@@ -132,7 +132,7 @@ options:
       type: Number
       default: 1
 
-    # not in the function per se    
+    # not in the function per se
     # conditional on 'distribution == uniform'
     # define distribution = list(dist = "uniform", min = min, max = max)
     - name: min
@@ -143,8 +143,8 @@ options:
       title: 'Maximum'
       type: Number
       default: 1
-    
-    # not in the function per se    
+
+    # not in the function per se
     # conditional on 'distribution == binomial'
     # define distribution = list(dist = "binomial", size = size, prob = prob)
     - name: size
@@ -157,7 +157,7 @@ options:
       default: 0.50
 
 
-    # not in the function per se    
+    # not in the function per se
     # conditional on 'distribution == lognormal'
     # define distribution = list(dist = "lognormal", meanlog = meanlog, sdlog = sdlog)
     - name: meanlo
@@ -168,16 +168,16 @@ options:
       title: 'Standard Deviation on the Log Scale'
       type: Number
       default: 1
-      
-    # not in the function per se    
+
+    # not in the function per se
     # conditional on 'distribution == poisson'
     # define distribution = list(dist = "poisson", lambda = lambda)
     - name: lambda
       title: 'Lambda'
       type: Number
       default: 1
-   
-    # not in the function per se    
+
+    # not in the function per se
     # conditional on 'distribution == exponential'
     # define distribution = list(dist = "exponential", rate = rate)
     - name: rate
@@ -185,14 +185,14 @@ options:
       type: Number
       default: 1
 
-    # not in the function per se    
+    # not in the function per se
     # conditional on 'distribution == binomial'
     # define distribution = list(dist = "binomial", prob = prob)
-    - name: prob
+    - name: probability
       title: 'Probability'
       type: Number
-      default: 0.50  
-   
+      default: 0.50
+
     - name: n
       title: 'Sample Size'
       type: Number

@@ -6,7 +6,23 @@ np2groupsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            paired = FALSE,
+            paired.r = 0.5,
+            stdinput = FALSE,
+            d = 0.2,
+            mu1 = 0.2,
+            mu2 = 0,
+            sd1 = 1,
+            sd2 = 1,
+            margin = 0,
+            power = 0.8,
+            alpha = 0.05,
+            alternative = "not equal",
+            distribution = "normal",
+            method = "normal",
+            kappa = 1,
+            n2 = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -21,13 +37,141 @@ np2groupsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+            private$..paired <- jmvcore::OptionBool$new(
+                "paired",
+                paired,
+                default=FALSE)
+            private$..paired.r <- jmvcore::OptionNumber$new(
+                "paired.r",
+                paired.r,
+                default=0.5)
+            private$..stdinput <- jmvcore::OptionBool$new(
+                "stdinput",
+                stdinput,
+                default=FALSE)
+            private$..d <- jmvcore::OptionNumber$new(
+                "d",
+                d,
+                default=0.2)
+            private$..mu1 <- jmvcore::OptionNumber$new(
+                "mu1",
+                mu1,
+                default=0.2)
+            private$..mu2 <- jmvcore::OptionNumber$new(
+                "mu2",
+                mu2,
+                default=0)
+            private$..sd1 <- jmvcore::OptionNumber$new(
+                "sd1",
+                sd1,
+                default=1)
+            private$..sd2 <- jmvcore::OptionNumber$new(
+                "sd2",
+                sd2,
+                default=1)
+            private$..margin <- jmvcore::OptionNumber$new(
+                "margin",
+                margin,
+                default=0)
+            private$..power <- jmvcore::OptionNumber$new(
+                "power",
+                power,
+                default=0.8)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..alternative <- jmvcore::OptionList$new(
+                "alternative",
+                alternative,
+                options=list(
+                    "not equal",
+                    "greater",
+                    "less",
+                    "equivalent",
+                    "non-inferior",
+                    "superior"),
+                default="not equal")
+            private$..distribution <- jmvcore::OptionList$new(
+                "distribution",
+                distribution,
+                options=list(
+                    "normal",
+                    "uniform",
+                    "double exponential",
+                    "laplace",
+                    "logistic"),
+                default="normal")
+            private$..method <- jmvcore::OptionList$new(
+                "method",
+                method,
+                options=list(
+                    "guenther",
+                    "noether"),
+                default="normal")
+            private$..kappa <- jmvcore::OptionNumber$new(
+                "kappa",
+                kappa,
+                default=1)
+            private$..n2 <- jmvcore::OptionNumber$new(
+                "n2",
+                n2,
+                default=200)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..paired)
+            self$.addOption(private$..paired.r)
+            self$.addOption(private$..stdinput)
+            self$.addOption(private$..d)
+            self$.addOption(private$..mu1)
+            self$.addOption(private$..mu2)
+            self$.addOption(private$..sd1)
+            self$.addOption(private$..sd2)
+            self$.addOption(private$..margin)
+            self$.addOption(private$..power)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..alternative)
+            self$.addOption(private$..distribution)
+            self$.addOption(private$..method)
+            self$.addOption(private$..kappa)
+            self$.addOption(private$..n2)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        paired = function() private$..paired$value,
+        paired.r = function() private$..paired.r$value,
+        stdinput = function() private$..stdinput$value,
+        d = function() private$..d$value,
+        mu1 = function() private$..mu1$value,
+        mu2 = function() private$..mu2$value,
+        sd1 = function() private$..sd1$value,
+        sd2 = function() private$..sd2$value,
+        margin = function() private$..margin$value,
+        power = function() private$..power$value,
+        alpha = function() private$..alpha$value,
+        alternative = function() private$..alternative$value,
+        distribution = function() private$..distribution$value,
+        method = function() private$..method$value,
+        kappa = function() private$..kappa$value,
+        n2 = function() private$..n2$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..paired = NA,
+        ..paired.r = NA,
+        ..stdinput = NA,
+        ..d = NA,
+        ..mu1 = NA,
+        ..mu2 = NA,
+        ..sd1 = NA,
+        ..sd2 = NA,
+        ..margin = NA,
+        ..power = NA,
+        ..alpha = NA,
+        ..alternative = NA,
+        ..distribution = NA,
+        ..method = NA,
+        ..kappa = NA,
+        ..n2 = NA)
 )
 
 np2groupsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +223,22 @@ np2groupsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param paired .
+#' @param paired.r .
+#' @param stdinput .
+#' @param d .
+#' @param mu1 .
+#' @param mu2 .
+#' @param sd1 .
+#' @param sd2 .
+#' @param margin .
+#' @param power .
+#' @param alpha .
+#' @param alternative .
+#' @param distribution .
+#' @param method .
+#' @param kappa .
+#' @param n2 .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +247,46 @@ np2groupsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 np2groups <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    paired = FALSE,
+    paired.r = 0.5,
+    stdinput = FALSE,
+    d = 0.2,
+    mu1 = 0.2,
+    mu2 = 0,
+    sd1 = 1,
+    sd2 = 1,
+    margin = 0,
+    power = 0.8,
+    alpha = 0.05,
+    alternative = "not equal",
+    distribution = "normal",
+    method = "normal",
+    kappa = 1,
+    n2 = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("np2groups requires jmvcore to be installed (restart may be required)")
 
 
     options <- np2groupsOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        paired = paired,
+        paired.r = paired.r,
+        stdinput = stdinput,
+        d = d,
+        mu1 = mu1,
+        mu2 = mu2,
+        sd1 = sd1,
+        sd2 = sd2,
+        margin = margin,
+        power = power,
+        alpha = alpha,
+        alternative = alternative,
+        distribution = distribution,
+        method = method,
+        kappa = kappa,
+        n2 = n2)
 
     analysis <- np2groupsClass$new(
         options = options,

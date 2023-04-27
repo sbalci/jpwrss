@@ -96,7 +96,7 @@ suppressPackageStartupMessages(library('devtools'))
 
 
 - devtools::document()
-- jmvtools::prepare(home = "C://Program Files//jamovi 2.3.21.0//bin")
+- jmvtools::prepare(home = "C://Program Files//jamovi 2.3.26.0//bin")
 
 
 - Inside this repo folder in R run `jmvtools::install()`

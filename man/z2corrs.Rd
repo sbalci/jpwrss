@@ -4,10 +4,33 @@
 \alias{z2corrs}
 \title{Difference between Two Correlations (Independent Samples z Test)}
 \usage{
-z2corrs(calculate = "selectpower")
+z2corrs(
+  calculate = "selectpower",
+  r1 = 0.5,
+  r2 = 0.4,
+  power = 0.8,
+  alpha = 0.05,
+  alternative = "not equal",
+  kappa = 1,
+  n2 = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{r1}{.}
+
+\item{r2}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
+
+\item{kappa}{.}
+
+\item{n2}{.}
 }
 \value{
 A results object containing:

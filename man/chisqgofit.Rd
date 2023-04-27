@@ -4,10 +4,36 @@
 \alias{chisqgofit}
 \title{Goodness-of-Fit or Independence (Chi-square Test)}
 \usage{
-chisqgofit(calculate = "selectpower")
+chisqgofit(
+  calculate = "selectpower",
+  typeinput = "stdeff",
+  w = 0.13,
+  df = 1,
+  nrow = 2,
+  ncol = 2,
+  power = 0.8,
+  alpha = 0.05,
+  n = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{typeinput}{.}
+
+\item{w}{.}
+
+\item{df}{.}
+
+\item{nrow}{.}
+
+\item{ncol}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{n}{.}
 }
 \value{
 A results object containing:

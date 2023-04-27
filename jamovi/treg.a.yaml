@@ -58,7 +58,7 @@ options:
       
     - name: k
       title: 'Total Number of Predictors'
-      type: Int
+      type: Integer
       default: 1
       
     - name: r2

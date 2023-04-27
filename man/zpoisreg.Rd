@@ -4,10 +4,81 @@
 \alias{zpoisreg}
 \title{Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)}
 \usage{
-zpoisreg(calculate = "selectpower")
+zpoisreg(
+  calculate = "selectpower",
+  typeinput = "rateratio",
+  expbeta1 = 1.28,
+  expbeta0 = 1,
+  beta1 = 0.25,
+  beta0 = 0,
+  r2otherx = 0,
+  power = 0.8,
+  alpha = 0.05,
+  alternative = "not equal",
+  method = "demidenko(vc)",
+  distribution = "not equal",
+  mean = 0,
+  sd = 1,
+  min = 0,
+  max = 1,
+  size = 1,
+  prob = 0.5,
+  meanlo = 0,
+  sdlog = 1,
+  lambda = 1,
+  rate = 1,
+  probability = 0.5,
+  n = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{typeinput}{.}
+
+\item{expbeta1}{.}
+
+\item{expbeta0}{.}
+
+\item{beta1}{.}
+
+\item{beta0}{.}
+
+\item{r2otherx}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
+
+\item{method}{.}
+
+\item{distribution}{.}
+
+\item{mean}{.}
+
+\item{sd}{.}
+
+\item{min}{.}
+
+\item{max}{.}
+
+\item{size}{.}
+
+\item{prob}{.}
+
+\item{meanlo}{.}
+
+\item{sdlog}{.}
+
+\item{lambda}{.}
+
+\item{rate}{.}
+
+\item{probability}{.}
+
+\item{n}{.}
 }
 \value{
 A results object containing:

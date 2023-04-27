@@ -15,19 +15,19 @@ options:
           name: selectpower
       default: selectpower
 
-   - name: ncp
+    - name: ncp
       title: 'Non-centrality Parameter'
       type: Number
       default: 1.96
- 
+
     - name: df
       title: 'Degrees of Freedom'
-      type: Int
+      type: Integer
       default: 199
-    
+
     - name: alpha
       title: 'Type I error rate (alpha)'
       type: Number
       default: 0.05
-      
+
 ...

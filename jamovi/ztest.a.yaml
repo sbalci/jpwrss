@@ -15,7 +15,7 @@ options:
           name: selectpower
       default: selectpower
 
-   - name: ncp
+    - name: ncp
       title: 'Non-centrality Parameter'
       type: Number
       default: 1.96

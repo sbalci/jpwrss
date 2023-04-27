@@ -4,10 +4,30 @@
 \alias{zcorr}
 \title{One Correlation against a Constant (One Sample z Test)}
 \usage{
-zcorr(calculate = "selectpower")
+zcorr(
+  calculate = "selectpower",
+  r = 0.5,
+  r0 = 0,
+  power = 0.8,
+  alpha = 0.05,
+  alternative = "not equal",
+  n = 200
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{r}{.}
+
+\item{r0}{.}
+
+\item{power}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
+
+\item{n}{.}
 }
 \value{
 A results object containing:

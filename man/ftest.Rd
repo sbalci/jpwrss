@@ -4,10 +4,18 @@
 \alias{ftest}
 \title{Statistical Power for the Generic F Test}
 \usage{
-ftest(calculate = "selectpower")
+ftest(calculate = "selectpower", ncp = 1.96, df1 = 2, df2 = 199, alpha = 0.05)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{ncp}{.}
+
+\item{df1}{.}
+
+\item{df2}{.}
+
+\item{alpha}{.}
 }
 \value{
 A results object containing:

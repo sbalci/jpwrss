@@ -6,7 +6,19 @@ tregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower", ...) {
+            calculate = "selectpower",
+            stdinput = FALSE,
+            beta1 = 0.25,
+            beta0 = 0,
+            margin = 0,
+            sdx = 1,
+            sdy = 1,
+            k = 1,
+            r2 = 0,
+            power = 0.8,
+            alpha = 0.05,
+            alternative = "not equal",
+            n = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -21,13 +33,104 @@ tregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+            private$..stdinput <- jmvcore::OptionBool$new(
+                "stdinput",
+                stdinput,
+                default=FALSE)
+            private$..beta1 <- jmvcore::OptionNumber$new(
+                "beta1",
+                beta1,
+                default=0.25)
+            private$..beta0 <- jmvcore::OptionNumber$new(
+                "beta0",
+                beta0,
+                default=0)
+            private$..margin <- jmvcore::OptionNumber$new(
+                "margin",
+                margin,
+                default=0)
+            private$..sdx <- jmvcore::OptionNumber$new(
+                "sdx",
+                sdx,
+                default=1)
+            private$..sdy <- jmvcore::OptionNumber$new(
+                "sdy",
+                sdy,
+                default=1)
+            private$..k <- jmvcore::OptionInteger$new(
+                "k",
+                k,
+                default=1)
+            private$..r2 <- jmvcore::OptionNumber$new(
+                "r2",
+                r2,
+                default=0)
+            private$..power <- jmvcore::OptionNumber$new(
+                "power",
+                power,
+                default=0.8)
+            private$..alpha <- jmvcore::OptionNumber$new(
+                "alpha",
+                alpha,
+                default=0.05)
+            private$..alternative <- jmvcore::OptionList$new(
+                "alternative",
+                alternative,
+                options=list(
+                    "not equal",
+                    "greater",
+                    "less",
+                    "equivalent",
+                    "non-inferior",
+                    "superior"),
+                default="not equal")
+            private$..n <- jmvcore::OptionNumber$new(
+                "n",
+                n,
+                default=200)
 
             self$.addOption(private$..calculate)
+            self$.addOption(private$..stdinput)
+            self$.addOption(private$..beta1)
+            self$.addOption(private$..beta0)
+            self$.addOption(private$..margin)
+            self$.addOption(private$..sdx)
+            self$.addOption(private$..sdy)
+            self$.addOption(private$..k)
+            self$.addOption(private$..r2)
+            self$.addOption(private$..power)
+            self$.addOption(private$..alpha)
+            self$.addOption(private$..alternative)
+            self$.addOption(private$..n)
         }),
     active = list(
-        calculate = function() private$..calculate$value),
+        calculate = function() private$..calculate$value,
+        stdinput = function() private$..stdinput$value,
+        beta1 = function() private$..beta1$value,
+        beta0 = function() private$..beta0$value,
+        margin = function() private$..margin$value,
+        sdx = function() private$..sdx$value,
+        sdy = function() private$..sdy$value,
+        k = function() private$..k$value,
+        r2 = function() private$..r2$value,
+        power = function() private$..power$value,
+        alpha = function() private$..alpha$value,
+        alternative = function() private$..alternative$value,
+        n = function() private$..n$value),
     private = list(
-        ..calculate = NA)
+        ..calculate = NA,
+        ..stdinput = NA,
+        ..beta1 = NA,
+        ..beta0 = NA,
+        ..margin = NA,
+        ..sdx = NA,
+        ..sdy = NA,
+        ..k = NA,
+        ..r2 = NA,
+        ..power = NA,
+        ..alpha = NA,
+        ..alternative = NA,
+        ..n = NA)
 )
 
 tregResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -79,6 +182,18 @@ tregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
+#' @param stdinput .
+#' @param beta1 .
+#' @param beta0 .
+#' @param margin .
+#' @param sdx .
+#' @param sdy .
+#' @param k .
+#' @param r2 .
+#' @param power .
+#' @param alpha .
+#' @param alternative .
+#' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -87,14 +202,38 @@ tregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 treg <- function(
-    calculate = "selectpower") {
+    calculate = "selectpower",
+    stdinput = FALSE,
+    beta1 = 0.25,
+    beta0 = 0,
+    margin = 0,
+    sdx = 1,
+    sdy = 1,
+    k = 1,
+    r2 = 0,
+    power = 0.8,
+    alpha = 0.05,
+    alternative = "not equal",
+    n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("treg requires jmvcore to be installed (restart may be required)")
 
 
     options <- tregOptions$new(
-        calculate = calculate)
+        calculate = calculate,
+        stdinput = stdinput,
+        beta1 = beta1,
+        beta0 = beta0,
+        margin = margin,
+        sdx = sdx,
+        sdy = sdy,
+        k = k,
+        r2 = r2,
+        power = power,
+        alpha = alpha,
+        alternative = alternative,
+        n = n)
 
     analysis <- tregClass$new(
         options = options,

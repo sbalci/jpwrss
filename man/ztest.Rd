@@ -4,10 +4,21 @@
 \alias{ztest}
 \title{Statistical Power for the Generic z Test}
 \usage{
-ztest(calculate = "selectpower")
+ztest(
+  calculate = "selectpower",
+  ncp = 1.96,
+  alpha = 0.05,
+  alternative = "not equal"
+)
 }
 \arguments{
 \item{calculate}{.}
+
+\item{ncp}{.}
+
+\item{alpha}{.}
+
+\item{alternative}{.}
 }
 \value{
 A results object containing:
