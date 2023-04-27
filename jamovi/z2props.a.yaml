@@ -8,7 +8,7 @@ jas: '1.2'
 
 options:
     - name: calculate
-      title: 'Calculate the following'
+      title: 'Calculate the Following'
       type: List
       options:
         - title: Statistical Power
@@ -17,4 +17,62 @@ options:
           name: selectsamplesize
       default: selectpower
 
+    - name: p1
+      title: 'Expected Proportion in the First Group'
+      type: Number
+      default: 0.4
+
+    - name: p2
+      title: 'Expected Proportion in the Second Group'
+      type: Number
+      default: 0.5
+
+    - name: margin
+      title: 'Margin (Difference Toleration)'
+      type: Number
+      default: 0
+
+    - name: power
+      title: 'Statistical Power (1- Beta)'
+      type: Number
+      default: 0.8
+
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+
+    - name: alternative
+      title: 'Alternative Hypothesis'
+      type: List
+      options:
+        - title: Not equal
+          name: not equal
+        - title: Greater
+          name: greater
+        - title: Less
+          name: less
+        - title: Equivalent
+          name: equivalent
+        - title: Non-inferior
+          name: non-inferior
+        - title: Superior
+          name: superior
+      default: not equal
+
+    - name: arcsin.trans
+      title: "Arcsine Transformation"
+      type: Bool
+      default: false
+
+    - name: kappa
+      title: 'Ratio of the Sample Size in the First Group to the Second Group'
+      type: Number
+      default: 1
+      
+    - name: n2
+      title: 'Sample Size in the Second Group'
+      type: Number
+      default: 200
+      
 ...

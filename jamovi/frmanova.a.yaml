@@ -8,7 +8,7 @@ jas: '1.2'
 
 options:
     - name: calculate
-      title: 'Calculate the following'
+      title: 'Calculate the Following'
       type: List
       options:
         - title: Statistical Power
@@ -17,5 +17,65 @@ options:
           name: selectsamplesize
       default: selectpower
 
- 
+    # use either 'eta2' or 'f2' 
+    # update 'eta2' automatically when 'f2' is defined
+    - name: eta2
+      title: 'Expected Eta-square'
+      type: Number
+      default: 0.01
+    
+    # update 'f2' automatically when 'eta2' is defined
+    # or remove 'f2'
+    - name: f2
+      title: 'Expected f-square'
+      type: Number
+      default: 0.01
+     
+    - name: corrrm
+      title: "Correlation between Repeated Measures"
+      type: Number
+      default: 0.50
+    
+    - name: nlevels
+      title: 'Number of Levels (Groups)'
+      type: Int
+      default: 2
+      
+    - name: nrm
+      title: 'Number of Repeated Measures'
+      type: Int
+      default: 2
+   
+    - name: epsilon
+      title: "Non-sperhicity Correction Factor"
+      type: Number
+      default: 0.50
+      
+    - name: type
+      title: 'Type of the Effect'
+      type: List
+      options:
+        - title: Between
+          name: between
+        - title: Within
+          name: within
+        - title: Interaction
+          name: interaction
+      default: between
+
+    - name: power
+      title: 'Statistical Power (1- Beta)'
+      type: Number
+      default: 0.8
+
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+      
+    - name: n
+      title: 'Total Sample Size'
+      type: Number
+      default: 200
+      
 ...

@@ -9,7 +9,7 @@ jas: '1.2'
 options:
 
     - name: calculate
-      title: 'Calculate the following'
+      title: 'Calculate the Following'
       type: List
       options:
         - title: Statistical Power
@@ -61,9 +61,8 @@ options:
           name: superior
       default: not equal
 
-
     - name: arcsin.trans
-      title: "Arcsin Transformation"
+      title: "Arcsine Transformation"
       type: Bool
       default: false
 
@@ -71,6 +70,5 @@ options:
       title: 'Sample Size'
       type: Number
       default: 200
-
 
 ...

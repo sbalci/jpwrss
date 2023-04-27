@@ -8,7 +8,7 @@ jas: '1.2'
 
 options:
     - name: calculate
-      title: 'Calculate the following'
+      title: 'Calculate the Following'
       type: List
       options:
         - title: Statistical Power
@@ -17,5 +17,60 @@ options:
           name: selectsamplesize
       default: selectpower
 
+    # not in the function per se
+    - name: typeinput
+      title: 'Type of the Effect'
+      type: List
+      options:
+        - title: Contingency Table (Cell Probabilities)
+          name: cellprob
+        - title: Standardized Effect (Cohen's W, Phi, Cramer's V)
+          name: stdeff
+      default: stdeff
+      
+    # conditional on 'typeinput == stdeff'
+    - name: w
+      title: 'Standardized Effect (Cohen's W, Phi, Cramer's V)'
+      type: Number
+      default: 0.13
+      
+    # conditional on 'typeinput == stdeff'
+    - name: df
+      title: 'Degrees of Freedom'
+      type: Int
+      default: 1
+      
+    # not in the function per se
+    # conditional on 'typeinput == cellprob'
+    # used to create an input of the type 'matrix'
+    # in which users will enter cell probabilities
+    # in the function use 'p1 = matrix'
+    - name: nrow
+      title: 'Number of Rows'
+      type: Number
+      default: 2
+     - name: ncol
+      title: 'Number of Columns'
+      type: Number
+      default: 2
+    # conditional on 'nrow' and 'ncol'
+    # create an input type of "matrix" 
+    # with dimensions 'nrow' and 'ncol'
+    # title: 'Enter Cell Probabilities'
+     
+    - name: power
+      title: 'Statistical Power (1- Beta)'
+      type: Number
+      default: 0.8
 
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+      
+    - name: n
+      title: 'Total Sample Size'
+      type: Number
+      default: 200
+      
 ...

@@ -8,7 +8,7 @@ jas: '1.2'
 
 options:
     - name: calculate
-      title: 'Calculate the following'
+      title: 'Calculate the Following'
       type: List
       options:
         - title: Statistical Power
@@ -17,5 +17,94 @@ options:
           name: selectsamplesize
       default: selectpower
 
+    # not in the function per se
+    - name: stdinput
+      title: "Standardized Input?"
+      type: Bool
+      default: false 
+      
+    # title conditional on 'stdbeta = false'
+    - name: a
+      # title: 'Standardized Regression Coefficient for X -> M (Path a)'
+      title: 'Regression Coefficient for X -> M (Path a)'
+      type: Number
+      default: 0.25
+      
+    # title conditional on 'stdbeta = false'
+    - name: b
+      # title: 'Standardized Regression Coefficient for M -> Y (Path b)'
+      title: 'Regression Coefficient for M -> Y (Path b)'
+      type: Number
+      default: 0
+  
+    # title conditional on 'stdbeta = false'
+    - name: cp
+      # title: 'Standardized Regression Coefficient for X -> Y (Path cp)'
+      title: 'Regression Coefficient for X -> Y (Path cp)'
+      type: Number
+      default: 0
+    
+    # conditional on 'stdbeta == false'
+    # if 'stdinput == true' remove 'sdy'
+    - name: sdy
+      title: 'Standard Deviation of the Outcome'
+      type: Number
+      default: 1     
+      
+    # conditional on 'stdbeta == false'
+    # if 'stdinput == true' remove 'sdx'
+    - name: sdx
+      title: 'Standard Deviation of the Predictor'
+      type: Number
+      default: 1 
 
+    # conditional on 'stdbeta == false'
+    # if 'stdinput == true' remove 'sdm'
+    - name: sdm
+      title: 'Standard Deviation of the Mediator'
+      type: Number
+      default: 1         
+      
+    - name: r2y
+      title: 'Expected (Adj) R-squared for the Outcome Model'
+      type: Number
+      default: 0
+      
+    - name: r2m
+      title: 'Expected (Adj) R-squared for the Mediator Model'
+      type: Number
+      default: 0
+
+    - name: power
+      title: 'Statistical Power (1- Beta)'
+      type: Number
+      default: 0.8
+
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+
+    - name: alternative
+      title: 'Alternative Hypothesis'
+      type: List
+      options:
+        - title: Not equal
+          name: not equal
+        - title: Greater
+          name: greater
+        - title: Less
+          name: less
+      default: not equal
+    
+    # conditional on 'calculate == selectpower'
+    - name: mc
+      title: "Monte Carlo Power"
+      type: Bool
+      default: false 
+      
+    - name: n
+      title: 'Sample Size'
+      type: Number
+      default: 200
 ...

@@ -8,7 +8,7 @@ jas: '1.2'
 
 options:
     - name: calculate
-      title: 'Calculate the following'
+      title: 'Calculate the Following'
       type: List
       options:
         - title: Statistical Power
@@ -17,5 +17,46 @@ options:
           name: selectsamplesize
       default: selectpower
 
+    - name: r1
+      title: 'Expected Correlation in the First Group'
+      type: Number
+      default: 0.5
+
+    - name: r2
+      title: 'Expected Correlation in the Second Group'
+      type: Number
+      default: 0.4
+
+    - name: power
+      title: 'Statistical Power (1- Beta)'
+      type: Number
+      default: 0.8
+
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+
+    - name: alternative
+      title: 'Alternative Hypothesis'
+      type: List
+      options:
+        - title: Not equal
+          name: not equal
+        - title: Greater
+          name: greater
+        - title: Less
+          name: less
+      default: not equal
+
+    - name: kappa
+      title: 'Ratio of the Sample Size in the First Group to the Second Group'
+      type: Number
+      default: 1
+      
+    - name: n2
+      title: 'Sample Size in the Second Group'
+      type: Number
+      default: 200
 
 ...

@@ -8,7 +8,7 @@ jas: '1.2'
 
 options:
     - name: calculate
-      title: 'Calculate the following'
+      title: 'Calculate the Following'
       type: List
       options:
         - title: Statistical Power
@@ -16,6 +16,186 @@ options:
         - title: Sample Size
           name: selectsamplesize
       default: selectpower
+     
+    # not in the function per se     
+     - name: typeinput
+      title: 'Type of the Effect'
+      type: List
+      options:
+        - title: Probability
+          name: prob
+        - title: Odds Ratio
+          name: oddsratio
+        - title: Regression Coefficient
+          name: regcoef
+      default: prob
 
+    # remove if 'typeinput = regcoef'
+    - name: p0
+      title: 'Probability under Null Hypothesis (Base Probability)'
+      type: Number
+      default: 0.50
+      
+    # conditional on 'typeinput = prob'
+    # remove if 'typeinput = regcoef' or 'typeinput = oddsratio'
+    - name: p1
+      title: 'Probability under Alternative Hypothesis'
+      type: Number
+      default: 0.40
+      
+    # conditional on 'typeinput = oddsratio'
+    # remove if 'typeinput = regcoef' or 'typeinput = prob' 
+    - name: oddsratio
+      title: 'Odds Ratio'
+      type: Number
+      default: 0.67
+      
+    # conditional on 'typeinput = regcoef'
+    - name: beta1
+      title: 'Regression Coefficient'
+      type: Number
+      default: 0.25
+      
+    # conditional on 'typeinput = regcoef'
+    - name: beta0
+      title: 'Regression Coefficient under Null Hypothesis'
+      type: Number
+      default: 0
+      
+    - name: r2otherx
+      title: 'Proportion of Variance in the Predictor Explained by Other Covariates'
+      type: Number
+      default: 0
+
+    - name: power
+      title: 'Statistical Power (1- Beta)'
+      type: Number
+      default: 0.8
+
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+
+    - name: alternative
+      title: 'Alternative Hypothesis'
+      type: List
+      options:
+        - title: Not equal
+          name: not equal
+        - title: Greater
+          name: greater
+        - title: Less
+          name: less
+      default: not equal
+      
+    # may not need to include this, use the function default?
+    - name: method
+      title: 'Method'
+      type: List
+      options:
+        - title: Demidenko (2007)(Variance Corrected)
+          name: demidenko(vc)
+        - title: Demidenko (2007)
+          name: demidenko
+        - title: Hsieh (1998)
+          name: hsieh
+      default: demidenko(vc)
+
+   - name: distribution
+      title: 'Distribution of the Predictor'
+      type: List
+      options:
+        - title: Normal
+          name: normal
+        - title: Poisson
+          name: poisson
+        - title: Uniform
+          name: uniform
+        - title: Exponential
+          name: exponential
+        - title: Binomial
+          name: binomial
+        - title: Bernoulli
+          name: bernoulli
+      default: not equal
+      
+    # not in the function per se    
+    # conditional on 'distribution == normal'
+    # define distribution = list(dist = "normal", mean = mean, sd = sd)
+    - name: mean
+      title: 'Mean'
+      type: Number
+      default: 0
+    - name: sd
+      title: 'Standard Deviation'
+      type: Number
+      default: 1
+
+    # not in the function per se    
+    # conditional on 'distribution == uniform'
+    # define distribution = list(dist = "uniform", min = min, max = max)
+    - name: min
+      title: 'Minimum'
+      type: Number
+      default: 0
+    - name: max
+      title: 'Maximum'
+      type: Number
+      default: 1
+    
+    # not in the function per se    
+    # conditional on 'distribution == binomial'
+    # define distribution = list(dist = "binomial", size = size, prob = prob)
+    - name: size
+      title: 'Size'
+      type: Number
+      default: 1
+    - name: prob
+      title: 'Probability'
+      type: Number
+      default: 0.50
+
+
+    # not in the function per se    
+    # conditional on 'distribution == lognormal'
+    # define distribution = list(dist = "lognormal", meanlog = meanlog, sdlog = sdlog)
+    - name: meanlo
+      title: 'Mean on the Log Scale'
+      type: Number
+      default: 0
+    - name: sdlog
+      title: 'Standard Deviation on the Log Scale'
+      type: Number
+      default: 1
+      
+    # not in the function per se    
+    # conditional on 'distribution == poisson'
+    # define distribution = list(dist = "poisson", lambda = lambda)
+    - name: lambda
+      title: 'Lambda'
+      type: Number
+      default: 1
+   
+    # not in the function per se    
+    # conditional on 'distribution == exponential'
+    # define distribution = list(dist = "exponential", rate = rate)
+    - name: rate
+      title: 'Rate'
+      type: Number
+      default: 1
+
+    # not in the function per se    
+    # conditional on 'distribution == binomial'
+    # define distribution = list(dist = "binomial", prob = prob)
+    - name: prob
+      title: 'Probability'
+      type: Number
+      default: 0.50  
+   
+    - name: n
+      title: 'Sample Size'
+      type: Number
+      default: 200
 
 ...
