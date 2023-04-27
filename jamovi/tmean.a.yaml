@@ -8,7 +8,7 @@ jas: '1.2'
 
 options:
     - name: calculate
-      title: 'Calculate the following'
+      title: 'Calculate the Following'
       type: List
       options:
         - title: Statistical Power
@@ -17,5 +17,57 @@ options:
           name: selectsamplesize
       default: selectpower
 
+    - name: mu
+      title: 'Expected Mean'
+      type: Number
+      default: 0.25
+      
+    - name: sd
+      title: 'Standard Deviation'
+      type: Number
+      default: 1
+
+    - name: mu0
+      title: 'Constant to Test Against (Known Mean)'
+      type: Number
+      default: 0
+
+    - name: margin
+      title: 'Margin (Difference Toleration)'
+      type: Number
+      default: 0
+
+    - name: power
+      title: 'Statistical Power (1- Beta)'
+      type: Number
+      default: 0.8
+
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+
+    - name: alternative
+      title: 'Alternative Hypothesis'
+      type: List
+      options:
+        - title: Not equal
+          name: not equal
+        - title: Greater
+          name: greater
+        - title: Less
+          name: less
+        - title: Equivalent
+          name: equivalent
+        - title: Non-inferior
+          name: non-inferior
+        - title: Superior
+          name: superior
+      default: not equal
+
+    - name: n
+      title: 'Sample Size'
+      type: Number
+      default: 200
 
 ...

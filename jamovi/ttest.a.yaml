@@ -8,14 +8,38 @@ jas: '1.2'
 
 options:
     - name: calculate
-      title: 'Calculate the following'
+      title: 'Calculate the Following'
       type: List
       options:
         - title: Statistical Power
           name: selectpower
-        - title: Sample Size
-          name: selectsamplesize
       default: selectpower
 
+   - name: ncp
+      title: 'Non-centrality Parameter'
+      type: Number
+      default: 1.96
+ 
+    - name: df
+      title: 'Degrees of Freedom'
+      type: Int
+      default: 199
+      
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+
+    - name: alternative
+      title: 'Alternative Hypothesis'
+      type: List
+      options:
+        - title: Not equal
+          name: not equal
+        - title: Greater
+          name: greater
+        - title: Less
+          name: less
+      default: not equal
 
 ...

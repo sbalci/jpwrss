@@ -8,7 +8,7 @@ jas: '1.2'
 
 options:
     - name: calculate
-      title: 'Calculate the following'
+      title: 'Calculate the Following'
       type: List
       options:
         - title: Statistical Power
@@ -17,5 +17,55 @@ options:
           name: selectsamplesize
       default: selectpower
 
+    # not in the function per se
+    - name: regmod
+      title: 'Type of the Effect'
+      type: List
+      options:
+        - title: R-squared Deviation from 0
+          name: rsqdev
+        - title: R-squared Difference (Partial R-squared)
+          name: rsqdif
+      default: rsqdev
+      
+    # use either 'r2' or 'f2' 
+    # update 'r2' automatically when 'f2' is defined
+    - name: r2
+      title: 'Expected R-squared'
+      type: Number
+      default: 0.01
+    
+    # update 'f2' automatically when 'r2' is defined
+    # or remove 'f2'
+    - name: f2
+      title: 'Expected f-square'
+      type: Number
+      default: 0.01
+      
+    - name: k
+      title: 'Total Number of Predictors'
+      type: Int
+      default: 1
+    
+    # conditional on 'regmod = 'rsqdif'
+    - name: m
+      title: 'Number of Predictors in the Subset of Interest'
+      type: Int
+      default: 1
+     
+    - name: power
+      title: 'Statistical Power (1- Beta)'
+      type: Number
+      default: 0.8
 
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+      
+    - name: n
+      title: 'Sample Size'
+      type: Number
+      default: 200
+      
 ...

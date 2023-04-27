@@ -6,9 +6,11 @@ menuGroup: jpwrss
 version: '1.0.0'
 jas: '1.2'
 
+# not sure whether we should include this in jpwrss v.1.0.0
+# more non-parametric tests will be included in the next pwrss release
 options:
     - name: calculate
-      title: 'Calculate the following'
+      title: 'Calculate the Following'
       type: List
       options:
         - title: Statistical Power
@@ -17,5 +19,129 @@ options:
           name: selectsamplesize
       default: selectpower
 
+    - name: paired
+      title: "Paired Samples?"
+      type: Bool
+      default: false
+
+    # if 'paired == true'
+    # show 'paired.r'
+    - name: paired.r
+      title: 'Correlation between First and Second Measurements in Paired Samples'
+      type: Number
+      default: 0.50
+      
+    # not in the function per se
+    - name: stdinput
+      title: "Standardized Input?"
+      type: Bool
+      default: false 
+      
+    # if 'stdinput == true'
+    # show 'd'
+    # remove 'mu1', 'mu2', 'sd1', 'sd2'
+    # not in the function per se
+    # usage in the function: 'mu1 = d'
+    - name: d
+      title: 'Standardized Mean Difference (Cohen's d or Hedge's g)'
+      type: Number
+      default: 0.20
+    
+    # if 'stdinput == false'
+    # show 'mu1', 'mu2', 'sd1', 'sd2'
+    # remove 'd'
+    # title is conditional on 'paired' argument
+    # inputs can be on the same panel, separate panel or pop-up window
+    - name: mu1
+      # title: 'Expected Mean in the First Measurement'
+      title: 'Expected Mean in the First Group'
+      type: Number
+      default: 0.20
+    - name: mu2
+      # title: 'Expected Mean in the Second Measurement'
+      title: 'Expected Mean in the Second Group'
+      type: Number
+      default: 0
+    - name: sd1
+      # title: 'Standard Deviation in the First Measurement'
+      title: 'Standard Deviation in the First Group'
+      type: Number
+      default: 1
+    - name: sd2
+      # title: 'Standard Deviation in the Second Measurement'
+      title: 'Standard Deviation in the Second Group'
+      type: Number
+      default: 1
+
+    - name: margin
+      title: 'Margin (Difference Toleration)'
+      type: Number
+      default: 0
+
+    - name: power
+      title: 'Statistical Power (1- Beta)'
+      type: Number
+      default: 0.8
+
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+
+    - name: alternative
+      title: 'Alternative Hypothesis'
+      type: List
+      options:
+        - title: Not equal
+          name: not equal
+        - title: Greater
+          name: greater
+        - title: Less
+          name: less
+        - title: Equivalent
+          name: equivalent
+        - title: Non-inferior
+          name: non-inferior
+        - title: Superior
+          name: superior
+      default: not equal
+      
+    - name: distribution
+      title: 'Parent Distribution'
+      type: List
+      options:
+        - title: Normal
+          name: normal
+        - title: Uniform
+          name: uniform
+        - title: Double Exponential
+          name: double exponential
+        - title: Laplace
+          name: laplace
+        - title: Logistic
+          name: logistic
+      default: normal
+      
+    - name: method
+      title: 'Method'
+      type: List
+      options:
+        - title: Guenther
+          name: guenther
+        - title: Noether
+          name: noether
+      default: normal
+
+    - name: kappa
+      title: 'Ratio of the Sample Size in the First Group to the Second Group'
+      type: Number
+      default: 1
+      
+    # title is conditional on 'paired' argument
+    - name: n2
+      # title: 'Sample Size'
+      title: 'Sample Size in the Second Group'
+      type: Number
+      default: 200
 
 ...
