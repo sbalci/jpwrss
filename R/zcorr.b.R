@@ -12,61 +12,54 @@ zcorrClass <-
                     
                     
                     
-                    pwrss.z.corr(r = 0.20, r0 = 0.10,
-                                 power = 0.80, alpha = 0.05,
-                                 alternative = "greater")
+                  calculate <- self$options$calculate
+                  r <- self$options$r
+                  r0 <- self$options$r0
+                  alpha <- self$options$alpha
+                  power <- self$options$power
+                  alternative <- self$options$alternative
+                  n <- self$options$n
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.z.corr(r = 0.20, r0 = 0,
-                                 power = 0.80, alpha = 0.05,
-                                 alternative = "not equal")
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    pwrss.z.corr(
-                        r = 0.50,
-                        r0 = 0,
-                        alpha = 0.05,
-                        alternative = c("not equal", "greater", "less"),
-                        n = NULL,
-                        power = NULL,
-                        verbose = TRUE
+
+
+
+                  if (calculate == "selectpower") {
+                    power <- NULL
+                    n <- self$options$n
+
+
+                    results_1 <- pwrss::pwrss.z.corr(
+                      r = r,
+                      r0 = r0,
+                      alpha = alpha,
+                      alternative = alternative,
+                      n = n
                     )
 
-                    pwrss.z.cor <-
-                        pwrss.z.corr <- function (r = 0.50,
-                                                  r0 = 0,
-                                                  alpha = 0.05,
-                                                  alternative = c("not equal", "greater", "less"),
-                                                  n = NULL,
-                                                  power = NULL,
-                                                  verbose = TRUE)
+                  }
+
+                  if (calculate == "selectsamplesize") {
+                    power <- self$options$power
+                    n <- NULL
 
 
+                    results_1 <- pwrss::pwrss.z.corr(
+                      r = r,
+                      r0 = r0,
+                      alpha = alpha,
+                      alternative = alternative,
+                      power = power
+                    )
+
+                  }
 
 
+                 
 
-
-
-
-
-
-
-
-
-
-
-
-
-                    cat(
-                        " A Correlation against a Constant (z Test) \n",
+					results_2 <- cat(
+                        "We test our expected correlation, r = ",  r , "\n",
+                        " against a known correlation r0 = ", r0 , "\n",
+                        "The hypotheses are:", "\n",
                         switch(
                             hypothesis,
                             `not equal` = "H0: r = r0 \n HA: r != r0 \n",

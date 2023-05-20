@@ -9,81 +9,53 @@ tmeanClass <-
             inherit = tmeanBase,
             private = list(
                 .run = function() {
-                    pwrss.t.mean(
-                        mu,
-                        sd = 1,
-                        mu0 = 0,
-                        margin = 0,
-                        alpha = 0.05,
-                        alternative = c(
-                            "not equal",
-                            "greater",
-                            "less",
-                            "equivalent",
-                            "non-inferior",
-                            "superior"
-                        ),
-                        n = NULL,
-                        power = NULL,
-                        verbose = TRUE
-                    )
-                    pwrss.z.mean(
-                        mu,
-                        sd = 1,
-                        mu0 = 0,
-                        margin = 0,
-                        alpha = 0.05,
-                        alternative = c(
-                            "not equal",
-                            "greater",
-                            "less",
-                            "equivalent",
-                            "non-inferior",
-                            "superior"
-                        ),
-                        n = NULL,
-                        power = NULL,
-                        verbose = TRUE
+
+                  calculate <- self$options$calculate
+                  p <- self$options$mu
+                  p0 <- self$options$mu0
+                  alpha <- self$options$alpha
+                  power <- self$options$power
+                  alternative <- self$options$alternative
+                  margin <- self$options$margin
+                  n <- self$options$n
+
+                  if (calculate == "selectpower") {
+                    power <- NULL
+                    n <- self$options$n
+
+
+                    results_1 <- pwrss::pwrss.t.mean(
+                      mu = mu,
+                      mu0 = mu0,
+                      alpha = alpha,
+                      alternative = alternative,
+                      n = n,
+                      margin = margin
                     )
 
+                  }
+
+                  if (calculate == "selectsamplesize") {
+                    power <- self$options$power
+                    n <- NULL
 
 
-                    pwrss.z.mean <-
-                        function (mu,
-                                  sd = 1,
-                                  mu0 = 0,
-                                  margin = 0,
-                                  alpha = 0.05,
-                                  alternative = c("not equal",
-                                                  "greater",
-                                                  "less",
-                                                  "equivalent",
-                                                  "non-inferior",
-                                                  "superior"),
-                                  n = NULL,
-                                  power = NULL,
-                                  verbose = TRUE)
+                    results_1 <- pwrss::pwrss.t.mean(
+                      mu = mu,
+                      mu0 = mu0,
+                      alpha = alpha,
+                      alternative = alternative,
+                      power = power,
+                      margin = margin
+                    )
 
-                    pwrss.t.mean <-
-                        function (mu,
-                                  sd = 1,
-                                  mu0 = 0,
-                                  margin = 0,
-                                  alpha = 0.05,
-                                  alternative = c("not equal",
-                                                  "greater",
-                                                  "less",
-                                                  "equivalent",
-                                                  "non-inferior",
-                                                  "superior"),
-                                  n = NULL,
-                                  power = NULL,
-                                  verbose = TRUE)
+                  }
 
 
-
-                    cat(
-                        " A Mean against a Constant (z Test) \n",
+                  results_2 <- cat(
+                        "We test our expected mean, mu = ",  mu , "\n",
+                        " against a known mean mu0 = ", mu0 , "\n",
+                        "The hypotheses are:", "\n",
                         switch(
                             hypothesis,
                             `not equal` = "H0: mu = mu0 \n HA: mu != mu0 \n",
@@ -114,47 +86,6 @@ tmeanClass <-
                         round(1 - power, 3),
                         "\n"
                     )
-
-
-
-                    cat(
-                        " A Mean against a Constant (t Test) \n",
-                        switch(
-                            hypothesis,
-                            `not equal` = "H0: mu = mu0 \n HA: mu != mu0 \n",
-                            `greater` = "H0: mu = mu0 \n HA: mu > mu0 \n",
-                            `less` = "H0: mu = mu0 \n HA: mu < mu0 \n",
-                            `non-inferior` = "H0: mu - mu0 <= margin \n HA: mu - mu0 > margin \n",
-                            `superior` = "H0: mu - mu0 <= margin \n HA: mu - mu0 > margin \n",
-                            `equivalent` = "H0: |mu - mu0| >= margin \n HA: |mu - mu0| < margin \n"
-                        ),
-                        "------------------------------ \n",
-                        " Statistical power =",
-                        round(power, 3),
-                        "\n",
-                        " n =",
-                        ceiling(n),
-                        "\n",
-                        "------------------------------ \n",
-                        "Alternative =",
-                        dQuote(alternative),
-                        "\n",
-                        "Non-centrality parameter =",
-                        round(ncp, 3),
-                        "\n",
-                        "Degrees of freedom =",
-                        round(ceiling(n) - 1, 3),
-                        "\n",
-                        "Type I error rate =",
-                        round(alpha, 3),
-                        "\n",
-                        "Type II error rate =",
-                        round(1 - power, 3),
-                        "\n"
-                    )
-
-
-
 
 
 

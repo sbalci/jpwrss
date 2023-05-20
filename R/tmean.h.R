@@ -6,10 +6,10 @@ tmeanOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower",
-            mu = 0.25,
-            sd = 1,
+            calculate = "selectpower", 
+            mu = 0.20,
             mu0 = 0,
+			sd = 1,
             margin = 0,
             power = 0.8,
             alpha = 0.05,
@@ -29,14 +29,11 @@ tmeanOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
-            private$..mu <- jmvcore::OptionNumber$new(
+
+             private$..mu <- jmvcore::OptionNumber$new(
                 "mu",
                 mu,
-                default=0.25)
-            private$..sd <- jmvcore::OptionNumber$new(
-                "sd",
-                sd,
-                default=1)
+                default=0.20)
             private$..mu0 <- jmvcore::OptionNumber$new(
                 "mu0",
                 mu0,
@@ -71,18 +68,18 @@ tmeanOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 
             self$.addOption(private$..calculate)
             self$.addOption(private$..mu)
-            self$.addOption(private$..sd)
             self$.addOption(private$..mu0)
             self$.addOption(private$..margin)
             self$.addOption(private$..power)
             self$.addOption(private$..alpha)
             self$.addOption(private$..alternative)
             self$.addOption(private$..n)
+			
         }),
+		
     active = list(
         calculate = function() private$..calculate$value,
         mu = function() private$..mu$value,
-        sd = function() private$..sd$value,
         mu0 = function() private$..mu0$value,
         margin = function() private$..margin$value,
         power = function() private$..power$value,
@@ -92,7 +89,6 @@ tmeanOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     private = list(
         ..calculate = NA,
         ..mu = NA,
-        ..sd = NA,
         ..mu0 = NA,
         ..margin = NA,
         ..power = NA,
@@ -113,17 +109,17 @@ tmeanResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="One Mean against a Constant (z or t Test)",
+                title="One Mean t Test",
                 refs=list(
                     "pwrss"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="One Proportion z test"))
+                title="One Mean t Test"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="A proportion against a Constant (z Test)",
+                title="One Mean t Test",
                 renderFun=".plot"))}))
 
 tmeanBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -150,14 +146,6 @@ tmeanBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
-#' @param mu .
-#' @param sd .
-#' @param mu0 .
-#' @param margin .
-#' @param power .
-#' @param alpha .
-#' @param alternative .
-#' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -166,9 +154,8 @@ tmeanBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 tmean <- function(
-    calculate = "selectpower",
-    mu = 0.25,
-    sd = 1,
+	calculate = "selectpower",
+    mu = 0.20,
     mu0 = 0,
     margin = 0,
     power = 0.8,
@@ -181,9 +168,8 @@ tmean <- function(
 
 
     options <- tmeanOptions$new(
-        calculate = calculate,
+		calculate = calculate,
         mu = mu,
-        sd = sd,
         mu0 = mu0,
         margin = margin,
         power = power,

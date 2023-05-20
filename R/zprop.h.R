@@ -113,17 +113,17 @@ zpropResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="One Proportion z test",
+                title="One Proportion z Test",
                 refs=list(
                     "pwrss"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="One Proportion z test"))
+                title="One Proportion z Test"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="A proportion against a Constant (z Test)",
+                title="One Proportion z Test",
                 renderFun=".plot"))}))
 
 zpropBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -148,7 +148,7 @@ zpropBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 
 #' One Proportion z test
 #'
-#' 
+#'
 #' @param calculate .
 #' @param p .
 #' @param p0 .
