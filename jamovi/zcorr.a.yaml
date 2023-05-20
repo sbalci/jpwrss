@@ -1,6 +1,6 @@
 ---
 name:  zcorr
-title: One Correlation against a Constant (One Sample z Test)
+title: One Correlation z Test
 menuGroup: jpwrss
 menuSubgroup: Compare With a Known Value
 version: '1.0.0'
