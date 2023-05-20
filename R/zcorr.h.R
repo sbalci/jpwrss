@@ -6,8 +6,8 @@ zcorrOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            calculate = "selectpower",
-            r = 0.5,
+            calculate = "selectpower", 
+            r = 0.10,
             r0 = 0,
             power = 0.8,
             alpha = 0.05,
@@ -20,17 +20,18 @@ zcorrOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 requiresData=FALSE,
                 ...)
 
-            private$..calculate <- jmvcore::OptionList$new(
+			private$..calculate <- jmvcore::OptionList$new(
                 "calculate",
                 calculate,
                 options=list(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
+
             private$..r <- jmvcore::OptionNumber$new(
                 "r",
                 r,
-                default=0.5)
+                default=0.10)
             private$..r0 <- jmvcore::OptionNumber$new(
                 "r0",
                 r0,
@@ -64,6 +65,7 @@ zcorrOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..alternative)
             self$.addOption(private$..n)
         }),
+		
     active = list(
         calculate = function() private$..calculate$value,
         r = function() private$..r$value,
@@ -94,17 +96,17 @@ zcorrResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="One Correlation against a Constant (One Sample z Test)",
+                title="One Correlation z Test",
                 refs=list(
                     "pwrss"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="One Proportion z test"))
+                title="One Correlation z Test"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="A proportion against a Constant (z Test)",
+                title="One Correlation z Test",
                 renderFun=".plot"))}))
 
 zcorrBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -131,12 +133,6 @@ zcorrBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
-#' @param r .
-#' @param r0 .
-#' @param power .
-#' @param alpha .
-#' @param alternative .
-#' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -145,8 +141,8 @@ zcorrBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 zcorr <- function(
-    calculate = "selectpower",
-    r = 0.5,
+	calculate = "selectpower",
+    r = 0.10,
     r0 = 0,
     power = 0.8,
     alpha = 0.05,
@@ -158,7 +154,7 @@ zcorr <- function(
 
 
     options <- zcorrOptions$new(
-        calculate = calculate,
+		calculate = calculate,
         r = r,
         r0 = r0,
         power = power,

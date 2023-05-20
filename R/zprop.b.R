@@ -77,99 +77,28 @@ zpropClass <-
 
                     results_2 <- paste0(
                         results_2,
-                        "A Proportion against a Constant (z Test) \n",
-                        "We test our expected proportion, p = ",
-                        p ,
-                        " against known proportion p0 = ",
-                        p0 ,
-                        "\n",
-                        "The hypotheses are:",
-                        "\n",
+                        "We test our expected proportion, p = ", p , "\n",
+                        " against a known proportion p0 = ", p0 , "\n",
+                        "The hypotheses are:", "\n",
                         switch(
                             alternative,
                             `not equal` = paste0(
-                                " H0: p = p0 \n HA: p != p0 \n",
-                                " H0: ",
-                                p,
-                                " = ",
-                                p,
-                                "\n HA: ",
-                                p,
-                                "!= ",
-                                p0,
-                                "\n"
+                                " H0: p = p0 \n HA: p != p0 \n"
                             ),
                             `greater` = paste0(
-                                " H0: p = p0 \n HA: p > p0 \n",
-                                " H0: ",
-                                p,
-                                " = ",
-                                p0,
-                                "\n HA: ",
-                                p,
-                                " > ",
-                                p0,
-                                "\n"
+                                " H0: p = p0 \n HA: p > p0 \n"
                             ),
                             `less` = paste0(
-                                " H0: p = p0 \n HA: p < p0 \n",
-                                " H0: ",
-                                p,
-                                " = ",
-                                p0,
-                                " \n HA: ",
-                                p,
-                                " < ",
-                                p0,
-                                " \n"
+                                " H0: p = p0 \n HA: p < p0 \n"
                             ),
                             `non-inferior` = paste0(
-                                " H0: p - p0 <= margin \n HA: p - p0 > margin \n",
-                                " H0: ",
-                                p,
-                                " - ",
-                                p0,
-                                " <= ",
-                                margin,
-                                "\n HA: ",
-                                p,
-                                " - ",
-                                p0,
-                                " > ",
-                                margin,
-                                "\n"
+                                " H0: p - p0 <= margin \n HA: p - p0 > margin \n"
                             ),
                             `superior` = paste0(
-                                " H0: p - p0 <= margin \n HA: p - p0 > margin \n",
-                                " H0: ",
-                                p,
-                                " - ",
-                                p0,
-                                " <= ",
-                                margin,
-                                "\n HA: ",
-                                p,
-                                " - ",
-                                p0,
-                                " > ",
-                                margin,
-                                "\n"
+                                " H0: p - p0 <= margin \n HA: p - p0 > margin \n"
                             ),
                             `equivalent` = paste0(
-                                " H0: |p - p0| >= margin \n HA: |p - p0| < margin \n",
-                                " H0: |",
-                                p,
-                                " - ",
-                                p0,
-                                "| >= ",
-                                margin,
-                                "\n HA: |",
-                                p,
-                                " - ",
-                                p0,
-                                "| < ",
-                                margin,
-                                "\n"
+                                " H0: |p - p0| >= margin \n HA: |p - p0| < margin \n"
                             )
                         ),
                         "------------------------------ \n",
