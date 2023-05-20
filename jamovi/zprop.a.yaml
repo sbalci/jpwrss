@@ -1,6 +1,6 @@
 ---
 name:  zprop
-title: One Proportion z test
+title: One Proportion z Test
 menuGroup: jpwrss
 menuSubgroup: Compare With a Known Value
 version: '1.0.0'

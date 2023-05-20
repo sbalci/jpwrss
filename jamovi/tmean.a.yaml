@@ -1,6 +1,6 @@
 ---
 name:  tmean
-title: One Mean against a Constant (z or t Test)
+title: One Mean t Test
 menuGroup: jpwrss
 menuSubgroup: Compare With a Known Value
 version: '1.0.0'

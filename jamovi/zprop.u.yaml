@@ -13,6 +13,7 @@ children:
         children:
           - type: ComboBox
             name: calculate
+            
   - type: Label
     label: Proportions
     fitToGrid: true

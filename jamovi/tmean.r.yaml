@@ -1,21 +1,16 @@
 ---
 name:  tmean
-title: One Mean against a Constant (z or t Test)
+title: One Mean t Test
 jrs:   '1.1'
 
 items:
-    # - name:  text1
-    #   title: One Proportion z test
-    #   type:  Preformatted
-
 
     - name:  text2
-      title: One Proportion z test
+      title: One Mean t Test
       type:  Preformatted
 
-
     - name: plot
-      title: 'A proportion against a Constant (z Test)'
+      title: 'One Mean t Test'
       type: Image
       renderFun: .plot
 
