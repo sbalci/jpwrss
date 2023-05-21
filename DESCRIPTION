@@ -1,7 +1,7 @@
 Package: jpwrss
 Type: Package
 Title: Jamovi Module for Statistical Power and Sample Size Calculation Tools
-Version: 0.0.0.12
+Version: 0.0.0.13
 Authors@R: c(
     person("Metin", "Bulus", email = "bulusmetin@gmail.com", role = c("aut", "cre")),
     person(given = "Serdar",
