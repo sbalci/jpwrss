@@ -1,10 +1,7 @@
-
-
-
 # This file is a generated template, your changes will not be overwritten
 
 t2meansClass <-
-    if (requireNamespace('jmvcore', quietly = TRUE))
+    if (requireNamespace("jmvcore", quietly = TRUE)) {
         R6::R6Class(
             "t2meansClass",
             inherit = t2meansBase,
@@ -53,7 +50,7 @@ t2meansClass <-
                         kappa = 1,
                         power = .80,
                         alpha = 0.05,
-                                                      alternative = "not equal"
+                        alternative = "not equal"
                     )
 
                     pwrss.t.2means(
@@ -169,100 +166,94 @@ t2meansClass <-
 
 
                     pwrss.z.2means <-
-                        function (mu1,
-                                  mu2 = 0,
-                                  sd1 = 1,
-                                  sd2 = sd1,
-                                  margin = 0,
-                                  kappa = 1,
-                                  alpha = 0.05,
-                                  alternative = c("not equal",
-                                                  "greater",
-                                                  "less",
-                                                  "equivalent",
-                                                  "non-inferior",
-                                                  "superior"),
-                                  n2 = NULL,
-                                  power = NULL,
-                                  verbose = TRUE)
-
-
-                    pwrss.t.2means <- function (mu1,
-                                                mu2 = 0,
-                                                margin = 0,
-                                                sd1 = ifelse(paired, sqrt(1 / (2 *
-                                                                                   (1 - paired.r))), 1),
-                                                sd2 = sd1,
-                                                kappa = 1,
-                                                paired = FALSE,
-                                                paired.r = 0.50,
-                                                alpha = 0.05,
-                                                welch.df = FALSE,
-                                                alternative = c("not equal",
-                                                                "greater",
-                                                                "less",
-                                                                "equivalent",
-                                                                "non-inferior",
-                                                                "superior"),
-                                                n2 = NULL,
-                                                power = NULL,
-                                                verbose = TRUE)
-
-
-
-
-
-
-
-
-
-
-                    cat(
-                        " Difference between Two Means (Independent Samples z Test) \n",
-                        switch(
-                            hypothesis,
-                            `not equal` = "H0: mu1 = mu2 \n HA: mu1 != mu2 \n",
-                            `greater` = "H0: mu1 = mu2 \n HA: mu1 > mu2 \n",
-                            `less` = "H0: mu1 = mu2 \n HA: mu1 < mu2 \n",
-                            `non-inferior` = "H0: mu1 - mu2 <= margin \n HA: mu1 - mu2 > margin \n",
-                            `superior` = "H0: mu1 - mu2 <= margin \n HA: mu1 - mu2 > margin \n",
-                            `equivalent` = "H0: |mu1 - mu2| >= margin \n HA: |mu1 - mu2| < margin \n"
-                        ),
-                        "------------------------------ \n",
-                        " Statistical power =",
-                        round(power, 3),
-                        "\n",
-                        " n1 =",
-                        ceiling(n1),
-                        "\n",
-                        " n2 =",
-                        ceiling(n2),
-                        "\n",
-                        "------------------------------ \n",
-                        "Alternative =",
-                        dQuote(alternative),
-                        "\n",
-                        "Non-centrality parameter =",
-                        round(ncp, 3),
-                        "\n",
-                        "Type I error rate =",
-                        round(alpha, 3),
-                        "\n",
-                        "Type II error rate =",
-                        round(1 - power, 3),
-                        "\n"
-                    )
+                        function(mu1,
+                                 mu2 = 0,
+                                 sd1 = 1,
+                                 sd2 = sd1,
+                                 margin = 0,
+                                 kappa = 1,
+                                 alpha = 0.05,
+                                 alternative = c(
+                                     "not equal",
+                                     "greater",
+                                     "less",
+                                     "equivalent",
+                                     "non-inferior",
+                                     "superior"
+                                 ),
+                                 n2 = NULL,
+                                 power = NULL,
+                                 verbose = TRUE) {
+                            pwrss.t.2means <- function(mu1,
+                                                       mu2 = 0,
+                                                       margin = 0,
+                                                       sd1 = ifelse(paired, sqrt(1 / (2 *
+                                                           (1 - paired.r))), 1),
+                                                       sd2 = sd1,
+                                                       kappa = 1,
+                                                       paired = FALSE,
+                                                       paired.r = 0.50,
+                                                       alpha = 0.05,
+                                                       welch.df = FALSE,
+                                                       alternative = c(
+                                                           "not equal",
+                                                           "greater",
+                                                           "less",
+                                                           "equivalent",
+                                                           "non-inferior",
+                                                           "superior"
+                                                       ),
+                                                       n2 = NULL,
+                                                       power = NULL,
+                                                       verbose = TRUE) {
+                                paste0(
+                                    " Difference between Two Means (Independent Samples z Test) \n",
+                                    switch(alternative,
+                                        ,
+                                        `not equal` = "H0: mu1 = mu2 \n HA: mu1 != mu2 \n",
+                                        `greater` = "H0: mu1 = mu2 \n HA: mu1 > mu2 \n",
+                                        `less` = "H0: mu1 = mu2 \n HA: mu1 < mu2 \n",
+                                        `non-inferior` = "H0: mu1 - mu2 <= margin \n HA: mu1 - mu2 > margin \n",
+                                        `superior` = "H0: mu1 - mu2 <= margin \n HA: mu1 - mu2 > margin \n",
+                                        `equivalent` = "H0: |mu1 - mu2| >= margin \n HA: |mu1 - mu2| < margin \n"
+                                    ),
+                                    "------------------------------ \n",
+                                    " Statistical power =",
+                                    round(as.numeric(results_1[["power"]]), 3),
+                                    "\n",
+                                    " n1 =",
+                                    ceiling(n1),
+                                    "\n",
+                                    " n2 =",
+                                    ceiling(n2),
+                                    "\n",
+                                    "------------------------------ \n",
+                                    "Alternative =",
+                                    dQuote(results_1[["parms"]][["alternative"]]),
+                                    "\n",
+                                    "Non-centrality parameter =",
+                                    round(as.numeric(results_1[["ncp"]]), 3),
+                                    "\n",
+                                    "Type I error rate =",
+                                    round(as.numeric(results_1[["parms"]][["alpha"]]), 3),
+                                    "\n",
+                                    "Type II error rate =",
+                                    round(1 - as.numeric(results_1[["power"]]), 3),
+                                    "\n"
+                                )
+                            }
+                        }
 
 
 
-                    cat(
+                    paste0(
                         ifelse(
                             paired,
                             " Difference between Two means \n (Paired Samples t Test) \n",
                             " Difference between Two means \n (Independent Samples t Test) \n"
                         ),
-                        switch(
-                            hypothesis,
+                        switch(alternative,
+                            ,
                             `not equal` = "H0: mu1 = mu2 \n HA: mu1 != mu2 \n",
                             `greater` = "H0: mu1 = mu2 \n HA: mu1 > mu2 \n",
                             `less` = "H0: mu1 = mu2 \n HA: mu1 < mu2 \n",
@@ -272,7 +263,7 @@ t2meansClass <-
                         ),
                         "------------------------------ \n",
                         " Statistical power =",
-                        round(power, 3),
+                        round(as.numeric(results_1[["power"]]), 3),
                         "\n",
                         if (paired) {
                             c(" n =", ceiling(n))
@@ -282,19 +273,19 @@ t2meansClass <-
                         "\n",
                         "------------------------------ \n",
                         "Alternative =",
-                        dQuote(alternative),
+                        dQuote(results_1[["parms"]][["alternative"]]),
                         "\n",
                         "Degrees of freedom =",
                         round(df, 2),
                         "\n",
                         "Non-centrality parameter =",
-                        round(ncp, 3),
+                        round(as.numeric(results_1[["ncp"]]), 3),
                         "\n",
                         "Type I error rate =",
-                        round(alpha, 3),
+                        round(as.numeric(results_1[["parms"]][["alpha"]]), 3),
                         "\n",
                         "Type II error rate =",
-                        round(1 - power, 3),
+                        round(1 - as.numeric(results_1[["power"]]), 3),
                         "\n"
                     )
 
@@ -309,11 +300,7 @@ t2meansClass <-
 
                     image <- self$results$plot
                     image$setState(results_1)
-
-                }
-
-                ,
-
+                },
                 .plot = function(image, ggtheme, theme, ...) {
                     # read data ----
 
@@ -323,12 +310,7 @@ t2meansClass <-
 
                     print(plot)
                     TRUE
-
                 }
-
-
-
-
-
             )
         )
+    }

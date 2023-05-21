@@ -1,9 +1,7 @@
-
-
 # This file is a generated template, your changes will not be overwritten
 
 fregClass <-
-    if (requireNamespace('jmvcore', quietly = TRUE))
+    if (requireNamespace("jmvcore", quietly = TRUE)) {
         R6::R6Class(
             "fregClass",
             inherit = fregBase,
@@ -23,25 +21,22 @@ fregClass <-
 
                     pwrss.f.reg(r2 = 0.30, k = 3, power = 0.80, alpha = 0.05)
 
-                    
+
                     pwrss.f.reg(r2 = 0.15, k = 5, m = 2, power = 0.80, alpha = 0.05)
 
-                    
-                    
-                    
+
+
+
                     pwrss.f.regression <-
-                        pwrss.f.reg <- function (r2 = 0.10,
-                                                 f2 = r2 / (1 - r2),
-                                                 k = 1,
-                                                 m = k,
-                                                 alpha = 0.05,
-                                                 n = NULL,
-                                                 power = NULL,
-                                                 verbose = TRUE)
-
-
-
-                            cat(
+                        pwrss.f.reg <- function(r2 = 0.10,
+                                                f2 = r2 / (1 - r2),
+                                                k = 1,
+                                                m = k,
+                                                alpha = 0.05,
+                                                n = NULL,
+                                                power = NULL,
+                                                verbose = TRUE) {
+                            paste0(
                                 ifelse(
                                     m == k,
                                     " Linear Regression (F test) \n R-squared Deviation from 0 (zero) \n",
@@ -50,10 +45,10 @@ fregClass <-
                                 "H0: r2 = 0 \n HA: r2 > 0 \n",
                                 "------------------------------ \n",
                                 " Statistical power =",
-                                round(power, 3),
+                                round(as.numeric(results_1[["power"]]), 3),
                                 "\n",
                                 " n =",
-                                ceiling(n),
+                                ceiling(results_1[["n"]]),
                                 "\n",
                                 "------------------------------ \n",
                                 "Numerator degrees of freedom =",
@@ -63,15 +58,16 @@ fregClass <-
                                 round(df2, 3),
                                 "\n",
                                 "Non-centrality parameter =",
-                                round(ncp, 3),
+                                round(as.numeric(results_1[["ncp"]]), 3),
                                 "\n",
                                 "Type I error rate =",
-                                round(alpha, 3),
+                                round(as.numeric(results_1[["parms"]][["alpha"]]), 3),
                                 "\n",
                                 "Type II error rate =",
-                                round(1 - power, 3),
+                                round(1 - as.numeric(results_1[["power"]]), 3),
                                 "\n"
                             )
+                        }
 
 
 
@@ -90,11 +86,7 @@ fregClass <-
 
                     image <- self$results$plot
                     image$setState(results_1)
-
-                }
-
-                ,
-
+                },
                 .plot = function(image, ggtheme, theme, ...) {
                     # read data ----
 
@@ -104,12 +96,7 @@ fregClass <-
 
                     print(plot)
                     TRUE
-
                 }
-
-
-
-
-
             )
         )
+    }

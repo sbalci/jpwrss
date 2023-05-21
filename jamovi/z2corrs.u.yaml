@@ -2,7 +2,7 @@ title: Difference between Two Correlations (Independent Samples z Test)
 name: z2corrs
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: LayoutBox
     margin: large

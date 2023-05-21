@@ -2,7 +2,7 @@ title: Difference between Two Proportions (z Test)
 name: z2props
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: LayoutBox
     margin: large

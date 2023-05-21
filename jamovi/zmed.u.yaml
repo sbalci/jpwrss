@@ -2,7 +2,7 @@ title: 'Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)'
 name: zmed
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: LayoutBox
     margin: large

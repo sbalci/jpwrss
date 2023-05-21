@@ -2,7 +2,7 @@ title: Difference between Two Means (t or z Test for Independent or Paired Sampl
 name: t2means
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: LayoutBox
     margin: large

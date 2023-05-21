@@ -2,7 +2,7 @@ title: Statistical Power for the Generic Chi-square Test
 name: chisqtest
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: LayoutBox
     margin: large

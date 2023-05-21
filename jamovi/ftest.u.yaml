@@ -2,7 +2,7 @@ title: Statistical Power for the Generic F Test
 name: ftest
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: LayoutBox
     margin: large

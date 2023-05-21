@@ -2,7 +2,7 @@ title: Goodness-of-Fit or Independence (Chi-square Test)
 name: chisqgofit
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: LayoutBox
     margin: large

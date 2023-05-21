@@ -2,7 +2,7 @@ title: Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Te
 name: zpoisreg
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: LayoutBox
     margin: large

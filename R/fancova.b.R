@@ -85,7 +85,7 @@ fancovaClass <-
 
 
 
-                            cat(
+                            paste0(
                                 " ",
                                 switch(
                                     n.way,

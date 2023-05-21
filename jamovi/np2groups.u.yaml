@@ -4,7 +4,7 @@ title: >-
 name: np2groups
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: LayoutBox
     margin: large

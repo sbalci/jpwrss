@@ -2,7 +2,7 @@ title: Repeated Measures Analysis of Variance (F test)
 name: frmanova
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: LayoutBox
     margin: large

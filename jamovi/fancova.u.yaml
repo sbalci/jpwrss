@@ -2,7 +2,7 @@ title: Analysis of (Co)Variance (F test)
 name: fancova
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: LayoutBox
     margin: large
