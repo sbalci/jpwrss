@@ -146,9 +146,9 @@ zpropBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 requiresMissings = FALSE)
         }))
 
-#' One Proportion z test
+#' One Proportion z Test
 #'
-#'
+#' 
 #' @param calculate .
 #' @param p .
 #' @param p0 .

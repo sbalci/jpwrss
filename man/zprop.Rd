@@ -2,7 +2,7 @@
 % Please edit documentation in R/zprop.h.R
 \name{zprop}
 \alias{zprop}
-\title{One Proportion z test}
+\title{One Proportion z Test}
 \usage{
 zprop(
   calculate = "selectpower",
@@ -43,5 +43,5 @@ A results object containing:
 }
 }
 \description{
-One Proportion z test
+One Proportion z Test
 }

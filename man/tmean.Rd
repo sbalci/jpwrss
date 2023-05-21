@@ -2,7 +2,7 @@
 % Please edit documentation in R/tmean.h.R
 \name{tmean}
 \alias{tmean}
-\title{One Mean against a Constant (z or t Test)}
+\title{One Mean t Test}
 \usage{
 tmean(
   calculate = "selectpower",
@@ -43,5 +43,5 @@ A results object containing:
 }
 }
 \description{
-One Mean against a Constant (z or t Test)
+One Mean t Test
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/zcorr.h.R
 \name{zcorr}
 \alias{zcorr}
-\title{One Correlation against a Constant (One Sample z Test)}
+\title{One Correlation z Test}
 \usage{
 zcorr(
   calculate = "selectpower",
@@ -37,5 +37,5 @@ A results object containing:
 }
 }
 \description{
-One Correlation against a Constant (One Sample z Test)
+One Correlation z Test
 }

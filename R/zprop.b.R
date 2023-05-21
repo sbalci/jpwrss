@@ -12,27 +12,22 @@ zpropClass <-
             inherit = zpropBase,
             private = list(
                 .run = function() {
-                    
-                    
-                    
-                    
-                    
-                    
+
                     calculate <- self$options$calculate
                     p <- self$options$p
                     p0 <- self$options$p0
                     alpha <- self$options$alpha
-                    power <- self$options$power
+                    power <- NULL
                     alternative <- self$options$alternative
                     arcsin.trans <- self$options$arcsin.trans
                     margin <- self$options$margin
-                    n <- self$options$n
+                    n <- NULL
 
 
 
 
                     if (calculate == "selectpower") {
-                        power <- NULL
+
                         n <- self$options$n
 
 
@@ -50,7 +45,7 @@ zpropClass <-
 
                     if (calculate == "selectsamplesize") {
                         power <- self$options$power
-                        n <- NULL
+
 
 
                         results_1 <- pwrss::pwrss.z.prop(

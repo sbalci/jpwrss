@@ -11,16 +11,16 @@ tmeanClass <-
                 .run = function() {
 
                   calculate <- self$options$calculate
-                  p <- self$options$mu
-                  p0 <- self$options$mu0
+                  mu <- self$options$mu
+                  mu0 <- self$options$mu0
                   alpha <- self$options$alpha
-                  power <- self$options$power
+                  power <- NULL
                   alternative <- self$options$alternative
                   margin <- self$options$margin
-                  n <- self$options$n
+                  n <- NULL
 
                   if (calculate == "selectpower") {
-                    power <- NULL
+
                     n <- self$options$n
 
 
@@ -37,7 +37,6 @@ tmeanClass <-
 
                   if (calculate == "selectsamplesize") {
                     power <- self$options$power
-                    n <- NULL
 
 
                     results_1 <- pwrss::pwrss.t.mean(
@@ -52,12 +51,12 @@ tmeanClass <-
                   }
 
 
-                  results_2 <- cat(
+                  results_2 <- paste0(
                         "We test our expected mean, mu = ",  mu , "\n",
                         " against a known mean mu0 = ", mu0 , "\n",
                         "The hypotheses are:", "\n",
                         switch(
-                            hypothesis,
+                            alternative,
                             `not equal` = "H0: mu = mu0 \n HA: mu != mu0 \n",
                             `greater` = "H0: mu = mu0 \n HA: mu > mu0 \n",
                             `less` = "H0: mu = mu0 \n HA: mu < mu0 \n",
@@ -67,23 +66,23 @@ tmeanClass <-
                         ),
                         "------------------------------ \n",
                         " Statistical power =",
-                        round(power, 3),
+                        round(as.numeric(results_1[["power"]]), 3),
                         "\n",
                         " n =",
-                        ceiling(n),
+                        ceiling(results_1[["n"]]),
                         "\n",
                         "------------------------------ \n",
                         "Alternative =",
-                        dQuote(alternative),
+                        dQuote(results_1[["parms"]][["alternative"]]),
                         "\n",
                         "Non-centrality parameter =",
-                        round(ncp, 3),
+                        round(as.numeric(results_1[["ncp"]]), 3),
                         "\n",
                         "Type I error rate =",
-                        round(alpha, 3),
+                        round(as.numeric(results_1[["parms"]][["alpha"]]), 3),
                         "\n",
                         "Type II error rate =",
-                        round(1 - power, 3),
+                        round(1 - as.numeric(results_1[["power"]]), 3),
                         "\n"
                     )
 
