@@ -209,7 +209,6 @@ t2meansClass <-
                                 paste0(
                                     " Difference between Two Means (Independent Samples z Test) \n",
                                     switch(alternative,
-                                        ,
                                         `not equal` = "H0: mu1 = mu2 \n HA: mu1 != mu2 \n",
                                         `greater` = "H0: mu1 = mu2 \n HA: mu1 > mu2 \n",
                                         `less` = "H0: mu1 = mu2 \n HA: mu1 < mu2 \n",
