@@ -1,0 +1,21 @@
+---
+name:  t2meansindep
+title: Two Independent Means (t Test)
+jrs:   '1.1'
+
+items:
+
+    - name:  text2
+      title: Two Independent Means (t Test)
+      type:  Preformatted
+
+
+    - name: plot
+      title: Two Independent Means (t Test)
+      type: Image
+      renderFun: .plot
+
+refs:
+    - pwrss
+
+...
