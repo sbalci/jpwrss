@@ -7,7 +7,7 @@ t2meansdepClass <-
             inherit = t2meansdepBase,
             private = list(
                 .run = function() {
-                    
+
 					calculate <- self$options$calculate
 					mu1 <- self$options$mu1
 					mu2 <- self$options$mu2
@@ -19,8 +19,8 @@ t2meansdepClass <-
 					alternative <- self$options$alternative
 					margin <- self$options$margin
 					kappa <- self$options$kappa
-					n2 <- NULL
-					
+					n <- NULL
+
 					if (calculate == "selectpower") {
 
 						n <- self$options$n
@@ -35,14 +35,14 @@ t2meansdepClass <-
 							paired.r = paired.r,
 							alpha = alpha,
 							alternative = alternative,
-							n2 = n2,
+							n2 = n,
 							margin = margin
 							)
 
 					}
 
 					if (calculate == "selectsamplesize") {
-				  
+
 						power <- self$options$power
 
 
@@ -61,11 +61,10 @@ t2meansdepClass <-
 
 					}
 
-                          
+
 
                     results_2 <-  paste0(
                         switch(alternative,
-                            ,
                             `not equal` = "H0: mu1 = mu2 \n HA: mu1 != mu2 \n",
                             `greater` = "H0: mu1 = mu2 \n HA: mu1 > mu2 \n",
                             `less` = "H0: mu1 = mu2 \n HA: mu1 < mu2 \n",
@@ -84,7 +83,7 @@ t2meansdepClass <-
                         dQuote(results_1[["parms"]][["alternative"]]),
                         "\n",
                         "Degrees of freedom =",
-                        round(as.numeric(results_1[["df"]]), 3)
+                        round(as.numeric(results_1[["df"]]), 3),
                         "\n",
                         "Non-centrality parameter =",
                         round(as.numeric(results_1[["ncp"]]), 3),
@@ -106,7 +105,7 @@ t2meansdepClass <-
                     image <- self$results$plot
                     image$setState(results_1)
                 },
-				
+
                 .plot = function(image, ggtheme, theme, ...) {
                     # read data ----
 

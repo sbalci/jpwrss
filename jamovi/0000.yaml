@@ -158,6 +158,18 @@ analyses:
     menuGroup: jpwrss
     menuTitle: Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)
     menuSubgroup: Regression
+  - title: Two Dependent Means (t Test)
+    name: t2meansdep
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuSubgroup: Compare Two Values
+    menuTitle: Two Dependent Means (t Test)
+  - title: Two Independent Means (t Test)
+    name: t2meansindep
+    ns: jpwrss
+    menuGroup: jpwrss
+    menuSubgroup: Compare Two Values
+    menuTitle: Two Independent Means (t Test)
 usesNative: true
 minApp: 1.0.8
 

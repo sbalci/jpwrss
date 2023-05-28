@@ -88,5 +88,5 @@ children:
     margin: large
     children:
       - type: TextBox
-        name: n2
+        name: 'n'
         format: number

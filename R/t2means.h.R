@@ -20,7 +20,7 @@ t2meansOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             alpha = 0.05,
             alternative = "not equal",
             kappa = 1,
-            n2 = 200, ...) {
+            n = 200, ...) {
 
             super$initialize(
                 package="jpwrss",
@@ -94,9 +94,9 @@ t2meansOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "kappa",
                 kappa,
                 default=1)
-            private$..n2 <- jmvcore::OptionNumber$new(
-                "n2",
-                n2,
+            private$..n <- jmvcore::OptionNumber$new(
+                "n",
+                n,
                 default=200)
 
             self$.addOption(private$..calculate)
@@ -113,7 +113,7 @@ t2meansOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..alpha)
             self$.addOption(private$..alternative)
             self$.addOption(private$..kappa)
-            self$.addOption(private$..n2)
+            self$.addOption(private$..n)
         }),
     active = list(
         calculate = function() private$..calculate$value,
@@ -130,7 +130,7 @@ t2meansOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         alpha = function() private$..alpha$value,
         alternative = function() private$..alternative$value,
         kappa = function() private$..kappa$value,
-        n2 = function() private$..n2$value),
+        n = function() private$..n$value),
     private = list(
         ..calculate = NA,
         ..paired = NA,
@@ -146,7 +146,7 @@ t2meansOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..alpha = NA,
         ..alternative = NA,
         ..kappa = NA,
-        ..n2 = NA)
+        ..n = NA)
 )
 
 t2meansResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -211,7 +211,7 @@ t2meansBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param alpha .
 #' @param alternative .
 #' @param kappa .
-#' @param n2 .
+#' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text2} \tab \tab \tab \tab \tab a preformatted \cr
@@ -234,7 +234,7 @@ t2means <- function(
     alpha = 0.05,
     alternative = "not equal",
     kappa = 1,
-    n2 = 200) {
+    n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("t2means requires jmvcore to be installed (restart may be required)")
@@ -255,7 +255,7 @@ t2means <- function(
         alpha = alpha,
         alternative = alternative,
         kappa = kappa,
-        n2 = n2)
+        n = n)
 
     analysis <- t2meansClass$new(
         options = options,

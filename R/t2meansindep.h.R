@@ -33,52 +33,42 @@ t2meansindepOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Clas
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
-				
             private$..stdinput <- jmvcore::OptionBool$new(
                 "stdinput",
                 stdinput,
                 default=FALSE)
-				
             private$..d <- jmvcore::OptionNumber$new(
                 "d",
                 d,
                 default=0.2)
-				
             private$..mu1 <- jmvcore::OptionNumber$new(
                 "mu1",
                 mu1,
                 default=0.2)
-				
             private$..mu2 <- jmvcore::OptionNumber$new(
                 "mu2",
                 mu2,
                 default=0)
-				
             private$..sd1 <- jmvcore::OptionNumber$new(
                 "sd1",
                 sd1,
                 default=1)
-				
             private$..sd2 <- jmvcore::OptionNumber$new(
                 "sd2",
                 sd2,
                 default=1)
-				
             private$..margin <- jmvcore::OptionNumber$new(
                 "margin",
                 margin,
                 default=0)
-				
             private$..power <- jmvcore::OptionNumber$new(
                 "power",
                 power,
                 default=0.8)
-				
             private$..alpha <- jmvcore::OptionNumber$new(
                 "alpha",
                 alpha,
                 default=0.05)
-				
             private$..alternative <- jmvcore::OptionList$new(
                 "alternative",
                 alternative,
@@ -90,12 +80,10 @@ t2meansindepOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Clas
                     "non-inferior",
                     "superior"),
                 default="not equal")
-				
             private$..kappa <- jmvcore::OptionNumber$new(
                 "kappa",
                 kappa,
                 default=1)
-				
             private$..n2 <- jmvcore::OptionNumber$new(
                 "n2",
                 n2,
@@ -163,11 +151,11 @@ t2meansindepResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Clas
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="Two Independent Means (t Tests"))
+                title="Two Independent Means (t Test)"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="Two Independent Means (t Tests",
+                title="Two Independent Means (t Test)",
                 renderFun=".plot"))}))
 
 t2meansindepBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -190,12 +178,10 @@ t2meansindepBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 requiresMissings = FALSE)
         }))
 
-#' Difference between Two Means (t or z Test for Independent or Paired Samples)
+#' Two Independent Means (t Test)
 #'
 #' 
 #' @param calculate .
-#' @param paired .
-#' @param paired.r .
 #' @param stdinput .
 #' @param d .
 #' @param mu1 .

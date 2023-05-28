@@ -110,7 +110,7 @@ options:
       default: 1
 
     # title is conditional on 'paired' argument
-    - name: n2
+    - name: n
       # title: 'Sample Size'
       title: 'Sample Size in the Second Group'
       type: Number
