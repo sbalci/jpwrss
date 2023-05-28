@@ -1,0 +1,103 @@
+---
+name:  t2meansindep
+title: Two Independent Means (t Test)
+menuGroup: jpwrss
+menuSubgroup: Compare Two Values
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: calculate
+      title: 'Calculate the Following'
+      type: List
+      options:
+        - title: Statistical Power
+          name: selectpower
+        - title: Sample Size
+          name: selectsamplesize
+      default: selectpower
+
+    # not in the function per se
+    - name: stdinput
+      title: "Standardized Input?"
+      type: Bool
+      default: false
+
+    # if 'stdinput == true'
+    # show 'd'
+    # remove 'mu1', 'mu2', 'sd1', 'sd2'
+    # not in the function per se
+    # usage in the function: 'mu1 = d'
+    - name: d
+      title: "Standardized Mean Difference (Cohen's d or Hedge's g)"
+      type: Number
+      default: 0.20
+
+    # if 'stdinput == false'
+    # show 'mu1', 'mu2', 'sd1', 'sd2'
+    # remove 'd'
+    # inputs can be on the same panel, separate panel or pop-up window
+    - name: mu1
+      title: 'Expected Mean in the First Group'
+      type: Number
+      default: 0.20
+      
+    - name: mu2
+      title: 'Expected Mean in the Second Group'
+      type: Number
+      default: 0
+      
+    - name: sd1
+      title: 'Standard Deviation in the First Group'
+      type: Number
+      default: 1
+      
+    - name: sd2
+      title: 'Standard Deviation in the Second Group'
+      type: Number
+      default: 1
+
+    - name: margin
+      title: 'Margin (Difference Toleration)'
+      type: Number
+      default: 0
+
+    - name: power
+      title: 'Statistical Power (1- Beta)'
+      type: Number
+      default: 0.8
+
+    - name: alpha
+      title: 'Type I error rate (alpha)'
+      type: Number
+      default: 0.05
+
+    - name: alternative
+      title: 'Alternative Hypothesis'
+      type: List
+      options:
+        - title: Not equal
+          name: not equal
+        - title: Greater
+          name: greater
+        - title: Less
+          name: less
+        - title: Equivalent
+          name: equivalent
+        - title: Non-inferior
+          name: non-inferior
+        - title: Superior
+          name: superior
+      default: not equal
+
+    - name: kappa
+      title: 'Ratio of the Sample Size in the First Group to the Second Group'
+      type: Number
+      default: 1
+
+    - name: n2
+      title: 'Sample Size in the Second Group'
+      type: Number
+      default: 200
+
+...

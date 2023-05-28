@@ -1,0 +1,21 @@
+---
+name:  t2meansdep
+title: Two Dependent Means (t Test)
+jrs:   '1.1'
+
+items:
+
+    - name:  text2
+      title: Two Dependent Means (t Test)
+      type:  Preformatted
+
+
+    - name: plot
+      title: Two Dependent Means (t Test)
+      type: Image
+      renderFun: .plot
+
+refs:
+    - pwrss
+
+...

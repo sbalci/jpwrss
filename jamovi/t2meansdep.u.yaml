@@ -1,0 +1,108 @@
+title: Two Dependent Means (t Test)
+name: t2meansdep
+jus: '3.0'
+stage: 0
+compilerMode: tame
+children:
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: ComboBox
+        name: calculate
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: paired.r
+        format: number
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: CheckBox
+        name: stdinput
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: d
+        format: number
+        enable: '(stdinput:true)'
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: mu1
+        format: number
+        enable: '(stdinput:false)'
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: mu2
+        format: number
+        enable: '(stdinput:false)'
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: sd1
+        format: number
+        enable: '(stdinput:false)'
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: sd2
+        format: number
+        enable: '(stdinput:false)'
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: margin
+        format: number
+        enable: '(!alternative:not equal)'
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: power
+        format: number
+        enable: '(calculate:selectsamplesize)'
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: alpha
+        format: number
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: ComboBox
+        name: alternative
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: kappa
+        format: number
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: n2
+        format: number
+        enable: '(calculate:selectpower)'
