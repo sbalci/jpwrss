@@ -7,49 +7,49 @@ z2corrsClass <-
             inherit = z2corrsBase,
             private = list(
                 .run = function() {
-                    pwrss.z.2corrs(
-                        r1 = 0.30, r2 = 0.20,
-                        power = .80, alpha = 0.05,
-                        alternative = "greater"
+                   
+
+                  calculate <- self$options$calculate
+                  r1 <- self$options$r1
+                  r2 <- self$options$r2
+                  alpha <- self$options$alpha
+                  power <- NULL
+                  alternative <- self$options$alternative
+				  kappa <- self$options$kappa
+                  n2 <- NULL
+				  
+				  if (calculate == "selectpower") {
+
+                    n2 <- self$options$n2
+
+                    results_1 <- pwrss::pwrss.z.2corrs(
+                      r1 = r1,
+                      r2 = r2,
+                      alpha = alpha,
+                      alternative = alternative,
+					  kappa = kappa,
+                      n2 = n2
                     )
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.z.2corrs(
-                        r1 = 0.30, r2 = 0.20,
-                        power = .80, alpha = 0.05,
-                        alternative = "not equal"
+                  }
+
+                  if (calculate == "selectsamplesize") {
+                    
+					power <- self$options$power
+
+                    results_1 <- pwrss::pwrss.z.2corrs(
+                      r1 = r1,
+                      r2 = r2,
+                      alpha = alpha,
+                      alternative = alternative,
+					  kappa = kappa,
+                      power = power
                     )
 
+                  }
 
 
-
-
-
-
-
-
-                    pwrss.z.2corrs(
-                        r1 = 0.50,
-                        r2 = 0.30,
-                        alpha = 0.05,
-                        kappa = 1,
-                        alternative = c("not equal", "greater", "less"),
-                        n2 = NULL,
-                        power = NULL,
-                        verbose = TRUE
-                    )
-
-                    pwrss.z.2cors <-
-                        pwrss.z.2corrs <- function(r1 = 0.50,
-                                                   r2 = 0.30,
-                                                   alpha = 0.05,
-                                                   kappa = 1,
-                                                   alternative = c("not equal", "greater", "less"),
-                                                   n2 = NULL,
-                                                   power = NULL,
-                                                   verbose = TRUE) {
-                            paste0(
-                                " Difference between Two Correlations \n (Independent Samples z Test) \n",
+                  results_2 <- paste0(
                                 switch(alternative,
                                     `not equal` = "H0: r1 = r2 \n HA: r1 != r2 \n",
                                     `greater` = "H0: r1 = r2 \n HA: r1 > r2 \n",
@@ -60,10 +60,10 @@ z2corrsClass <-
                                 round(as.numeric(results_1[["power"]]), 3),
                                 "\n",
                                 " n1 =",
-                                ceiling(n1),
+                                ceiling(results_1[["n"]][[1]]),
                                 "\n",
                                 " n2 =",
-                                ceiling(n2),
+                                ceiling(results_1[["n"]][[2]]),
                                 "\n",
                                 "------------------------------ \n",
                                 "Alternative =",
@@ -78,21 +78,19 @@ z2corrsClass <-
                                 "Type II error rate =",
                                 round(1 - as.numeric(results_1[["power"]]), 3),
                                 "\n"
-                            )
-                        }
-
-
-
-
-
-                    # self$results$text1$setContent(print(results_1))
+								)
+							
+							
 
                     self$results$text2$setContent(print(results_2))
 
 
                     image <- self$results$plot
                     image$setState(results_1)
+
                 },
+				
+				
                 .plot = function(image, ggtheme, theme, ...) {
                     # read data ----
 

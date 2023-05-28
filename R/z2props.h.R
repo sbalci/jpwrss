@@ -121,17 +121,17 @@ z2propsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="Difference between Two Proportions (z Test)",
+                title="Two Independent Proportions (z Test)",
                 refs=list(
                     "pwrss"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="One Proportion z test"))
+                title="Two Independent Proportions (z Test)"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="A proportion against a Constant (z Test)",
+                title="Two Independent Proportions (z Test)",
                 renderFun=".plot"))}))
 
 z2propsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
