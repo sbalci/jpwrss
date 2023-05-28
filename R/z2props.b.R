@@ -7,115 +7,67 @@ z2propsClass <-
             inherit = z2propsBase,
             private = list(
                 .run = function() {
-                    pwrss.z.2props(
-                        p1 = 0.45, p2 = 0.50,
-                        alpha = 0.05, power = 0.80,
-                        alternative = "less",
-                        arcsin.trans = FALSE
-                    )
-                    # arcsine transformation
-                    pwrss.z.2props(
-                        p1 = 0.45, p2 = 0.50,
-                        alpha = 0.05, power = 0.80,
-                        alternative = "less",
-                        arcsin.trans = TRUE
-                    )
+                  
+					calculate <- self$options$calculate
+                    p1 <- self$options$p1
+                    p2 <- self$options$p2
+                    alpha <- self$options$alpha
+                    power <- NULL
+                    alternative <- self$options$alternative
+                    arcsin.trans <- self$options$arcsin.trans
+                    margin <- self$options$margin
+					kappa <- self$options$kappa
+                    n2 <- NULL
+				
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.z.2props(
-                        p1 = 0.45, p2 = 0.50,
-                        alpha = 0.05, power = 0.80,
-                        alternative = "not equal"
-                    )
+					if (calculate == "selectpower") {
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.z.2props(
-                        p1 = 0.45, p2 = 0.50, margin = 0.01,
-                        alpha = 0.05, power = 0.80,
-                        alternative = "non-inferior"
-                    )
+                        n <- self$options$n
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.z.2props(
-                        p1 = 0.55, p2 = 0.50, margin = -0.01,
-                        alpha = 0.05, power = 0.80,
-                        alternative = "non-inferior"
-                    )
+                        results_1 <- pwrss::pwrss.z.2props(
+                            p1 = p1,
+                            p2 = p2,
+                            alpha = alpha,
+                            alternative = alternative,
+                            arcsin.trans = arcsin.trans,
+							kappa = kappa,
+                            n2 = n2,
+                            margin = margin
+                        )
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.z.2props(
-                        p1 = 0.45, p2 = 0.50, margin = -0.01,
-                        alpha = 0.05, power = 0.80,
-                        alternative = "superior"
-                    )
+                    }
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.z.2props(
-                        p1 = 0.55, p2 = 0.50, margin = 0.01,
-                        alpha = 0.05, power = 0.80,
-                        alternative = "superior"
-                    )
+                    if (calculate == "selectsamplesize") {
+					
+                        power <- self$options$power
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.z.2props(
-                        p1 = 0.50, p2 = 0.50, margin = 0.01,
-                        alpha = 0.05, power = 0.80,
-                        alternative = "equivalent"
-                    )
+                        results_1 <- pwrss::pwrss.z.2props(
+                            p1 = p1,
+                            p2 = p2,
+                            alpha = alpha,
+                            power = power,
+                            alternative = alternative,
+                            arcsin.trans = arcsin.trans,
+							kappa = kappa,
+                            margin = margin
+                        )
+
+                    }
 
 
 
+                    if (arcsin.trans) {
+                        results_2 <- paste0("Approach: Arcsin Transformation \n")
+                    }
 
+                    if (!arcsin.trans) {
+                        results_2 <- paste0("Approach: Normal Approximation \n")
+                    }
 
-
-
-
-
-                    pwrss.z.2props(
-                        p1,
-                        p2,
-                        margin = 0,
-                        arcsin.trans = FALSE,
-                        kappa = 1,
-                        alpha = 0.05,
-                        alternative = c(
-                            "not equal",
-                            "greater",
-                            "less",
-                            "equivalent",
-                            "non-inferior",
-                            "superior"
-                        ),
-                        n2 = NULL,
-                        power = NULL,
-                        verbose = TRUE
-                    )
-
-
-
-
-
-                    pwrss.z.2props <-
-                        function(p1,
-                                 p2,
-                                 margin = 0,
-                                 arcsin.trans = FALSE,
-                                 kappa = 1,
-                                 alpha = 0.05,
-                                 alternative = c(
-                                     "not equal",
-                                     "greater",
-                                     "less",
-                                     "equivalent",
-                                     "non-inferior",
-                                     "superior"
-                                 ),
-                                 n2 = NULL,
-                                 power = NULL,
-                                 verbose = TRUE) {
-                            paste0(
-                                " Difference between Two Proportions \n (Independent Samples z Test) \n",
-                                switch(alternative,
+					results_2 <- paste0(
+                        results_2,
+                        "The hypotheses are:", "\n",
+                        switch(alternative,
                                     `not equal` = "H0: p1 = p2 \n HA: p1 != p2 \n",
                                     `greater` = "H0: p1 = p2 \n HA: p1 > p2 \n",
                                     `less` = "H0: p1 = p2 \n HA: p1 < p2 \n",
@@ -128,17 +80,17 @@ z2propsClass <-
                                 round(as.numeric(results_1[["power"]]), 3),
                                 "\n",
                                 " n1 =",
-                                ceiling(n1),
+                                ceiling(results_1[["n"]][[1]]),
                                 "\n",
                                 " n2 =",
-                                ceiling(n2),
+                                ceiling(results_1[["n"]][[2]]),
                                 "\n",
                                 "------------------------------ \n",
                                 "Alternative =",
                                 dQuote(results_1[["parms"]][["alternative"]]),
                                 "\n",
                                 "Non-centrality parameter =",
-                                round(lambda, 3),
+                                ceiling(results_1[["ncp"]]),
                                 "\n",
                                 "Type I error rate =",
                                 round(as.numeric(results_1[["parms"]][["alpha"]]), 3),
@@ -146,9 +98,7 @@ z2propsClass <-
                                 "Type II error rate =",
                                 round(1 - as.numeric(results_1[["power"]]), 3),
                                 "\n"
-                            )
-                        }
-
+                    )
 
 
 
@@ -159,7 +109,9 @@ z2propsClass <-
 
                     image <- self$results$plot
                     image$setState(results_1)
+                
                 },
+				
                 .plot = function(image, ggtheme, theme, ...) {
                     # read data ----
 
@@ -170,6 +122,7 @@ z2propsClass <-
                     print(plot)
                     TRUE
                 }
+				
             )
         )
     }
