@@ -84,7 +84,7 @@ t2meansdepClass <-
                         dQuote(results_1[["parms"]][["alternative"]]),
                         "\n",
                         "Degrees of freedom =",
-                        round(as.numeric(results_1[["df"]]), 3)
+                        round(as.numeric(results_1[["df"]]), 3),
                         "\n",
                         "Non-centrality parameter =",
                         round(as.numeric(results_1[["ncp"]]), 3),
