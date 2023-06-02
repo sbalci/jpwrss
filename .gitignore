@@ -64,7 +64,7 @@ build/R
 temp
 build-macos-*
 inst/doc
-docs/
+# docs/
 codemeta.json
 # .Rprofile
 data-raw
