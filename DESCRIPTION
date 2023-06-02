@@ -9,7 +9,9 @@ Authors@R: c(
            role = c("aut"),
            email = "serdarbalci@serdarbalci.com",
            comment = c(ORCID = "0000-0002-7852-3851")),
-    person("Maurizio", "Agosti")
+    person("Maurizio",
+           "Agosti",
+           role = c("aut"))
            )
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
 Date: 2023-05-21
