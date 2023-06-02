@@ -1,0 +1,24 @@
+url: http://www.serdarbalci.com/jpwrss/
+template:
+  bootstrap: 5
+
+authors:
+  Serdar Balci:
+    href: https://www.serdarbalci.com/
+development:
+  mode: true
+navbar:
+  structure:
+    left:  [home, intro, devversion, reference, articles, tutorials, news]
+    right: [twitter, github]
+  components:
+    twitter:
+      icon: "fab fa-twitter fa-lg"
+      href: http://twitter.com/serdarbalci
+    devversion:
+      icon: "fa-cogs"
+      href: dev/index.html
+home:
+  strip_header: true
+template:
+  package: preferably

@@ -10,6 +10,7 @@ jamovi
 ^\.github/workflows/check-release\.yaml$
 ^\.github/workflows/check-standard\.yaml$
 ^\.github/workflows/pkgdown\.yaml$
+development
 
 ^.*\.Rproj$
 ^\.Rproj\.user$
