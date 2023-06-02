@@ -3,7 +3,7 @@ authors:
   Serdar Balci:
     href: https://www.serdarbalci.com/
 development:
-  mode: true
+  mode: devel
 navbar:
   structure:
     left:  [home, intro, devversion, reference, articles, tutorials, news]
