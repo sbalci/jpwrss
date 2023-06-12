@@ -1,6 +1,6 @@
 ---
 name:  fancova
-title: Analysis of (Co)Variance (F test)
+title: ANOVA or ANCOVA (F test)
 menuGroup: jpwrss
 menuSubgroup: Analysis of Variance
 version: '1.0.0'

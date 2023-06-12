@@ -1,4 +1,4 @@
-title: Repeated Measures Analysis of Variance (F test)
+title: Repeated Measures ANOVA (F test)
 name: frmanova
 jus: '3.0'
 stage: 0
@@ -50,21 +50,23 @@ children:
     children:
       - type: ComboBox
         name: type
-  - type: LayoutBox
-    margin: large
+  
+  
+  - type: Label
+    label: Alpha, Power, Sample Size
+    fitToGrid: true
     children:
-      - type: TextBox
-        name: power
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: alpha
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: 'n'
-        format: number
+     - type: LayoutBox
+       margin: large
+       children:
+         - type: TextBox
+           name: alpha
+           format: number
+         - type: TextBox
+           name: power
+           format: number
+           enable: '(calculate:selectsamplesize)'
+         - type: TextBox
+           name: 'n'
+           format: number
+           enable: '(calculate:selectpower)'

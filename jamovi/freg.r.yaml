@@ -1,6 +1,6 @@
 ---
 name:  freg
-title: Linear Regression R squared or R squared Difference (F Test)
+title: Linear Regression (F Test)
 jrs:   '1.1'
 
 items:
@@ -10,12 +10,12 @@ items:
 
 
     - name:  text2
-      title: One Proportion z test
+      title: Linear Regression (F Test)
       type:  Preformatted
 
 
     - name: plot
-      title: 'A proportion against a Constant (z Test)'
+      title: 'Linear Regression (F Test)'
       type: Image
       renderFun: .plot
 
