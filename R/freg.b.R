@@ -7,36 +7,47 @@ fregClass <-
             inherit = fregBase,
             private = list(
                 .run = function() {
-                    pwrss.f.reg(
-                        r2 = 0.10,
-                        f2 = r2 / (1 - r2),
-                        k = 1,
-                        m = k,
-                        alpha = 0.05,
-                        n = NULL,
-                        power = NULL,
-                        verbose = TRUE
-                    )
+                    
+					calculate <- self$options$calculate
+                    r2 <- self$options$r2
+                    k <- self$options$k
+					m <- self$options$m
+                    alpha <- self$options$alpha
+                    power <- NULL
+                    alternative <- self$options$alternative
+                    n <- NULL
+					
+					 if (calculate == "selectpower") {
+
+                        n <- self$options$n
 
 
-                    pwrss.f.reg(r2 = 0.30, k = 3, power = 0.80, alpha = 0.05)
+                       results_1 <- pwrss::pwrss.f.reg(
+							r2 = r2,
+							k = k,
+							m = m,
+							alpha = alpha,
+							n = n
+						)
+
+                    }
+
+                    if (calculate == "selectsamplesize") {
+                        
+						power <- self$options$power
+
+                        results_1 <- pwrss::pwrss.f.reg(
+							r2 = r2,
+							k = k,
+							m = m,
+							alpha = alpha,
+							power = power
+						)
+
+                    }
 
 
-                    pwrss.f.reg(r2 = 0.15, k = 5, m = 2, power = 0.80, alpha = 0.05)
-
-
-
-
-                    pwrss.f.regression <-
-                        pwrss.f.reg <- function(r2 = 0.10,
-                                                f2 = r2 / (1 - r2),
-                                                k = 1,
-                                                m = k,
-                                                alpha = 0.05,
-                                                n = NULL,
-                                                power = NULL,
-                                                verbose = TRUE) {
-                            paste0(
+                    results_2 <- paste0(
                                 ifelse(
                                     m == k,
                                     " Linear Regression (F test) \n R-squared Deviation from 0 (zero) \n",
@@ -52,10 +63,10 @@ fregClass <-
                                 "\n",
                                 "------------------------------ \n",
                                 "Numerator degrees of freedom =",
-                                round(df1, 3),
+                                round(results_1[["df1"]], 3),
                                 "\n",
                                 "Denominator degrees of freedom =",
-                                round(df2, 3),
+                                round(results_1[["df2"]], 3),
                                 "\n",
                                 "Non-centrality parameter =",
                                 round(as.numeric(results_1[["ncp"]]), 3),
@@ -67,19 +78,7 @@ fregClass <-
                                 round(1 - as.numeric(results_1[["power"]]), 3),
                                 "\n"
                             )
-                        }
 
-
-
-
-
-
-
-
-
-
-
-                    # self$results$text1$setContent(print(results_1))
 
                     self$results$text2$setContent(print(results_2))
 

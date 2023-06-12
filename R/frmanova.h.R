@@ -126,17 +126,17 @@ frmanovaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="Repeated Measures Analysis of Variance (F test)",
+                title="Repeated Measures ANOVA (F test)",
                 refs=list(
                     "pwrss"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="One Proportion z test"))
+                title="Repeated Measures ANOVA (F test)"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="A proportion against a Constant (z Test)",
+                title="Repeated Measures ANOVA (F test)",
                 renderFun=".plot"))}))
 
 frmanovaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(

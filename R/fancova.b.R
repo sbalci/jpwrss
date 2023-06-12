@@ -11,96 +11,63 @@ fancovaClass <-
                 .run = function() {
                     
                     
-                    
-                    pwrss.f.ancova(eta2 = 0.059, n.levels = 2,
-                                   power = .80, alpha = 0.05)
+                    calculate <- self$options$calculate
+                    eta2 <- self$options$eta2
+                    n.way <- self$options$n.way
+					if (nway == "1") {n.levels <- self$options$nlevelsA}
+					if (nway == "2") {n.levels <- c(self$options$nlevelsA, self$options$nlevelsB)}
+					if (nway == "3") {n.levels <- c(self$options$nlevelsA, self$options$nlevelsB, self$options$nlevelsC)}
+					n.covariates <- self$options$n.covariates
+                    alpha <- self$options$alpha
+                    power <- NULL
+                    n <- NULL
+					
+					if (calculate == "selectpower") {
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.f.ancova(eta2 = 0.048, n.levels = 2, n.cov = 1,
-                                   alpha = 0.05, power = .80)
+                       n <- self$options$n
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.f.ancova(eta2 = 0.03, n.levels = c(2,2),
-                                   alpha = 0.05, power = 0.80)
-
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.f.ancova(eta2 = 0.02, n.levels = c(2,2), n.cov = 1,
-                                   alpha = 0.05, power = .80)
-
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.f.ancova(eta2 = 0.02, n.levels = c(2,2,3),
-                                   alpha = 0.05, power = 0.80)
-
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.f.ancova(eta2 = 0.01, n.levels = c(2,2,3), n.cov = 1,
-                                   alpha = 0.05, power = .80)
-                                   
-                                   
-                                   
-                                   
-                    
-                    
-                    
-                    design2 <- pwrss.f.ancova(eta2 = 0.10, n.levels = c(2,3),
-                                              power = .80, alpha = 0.05)
-                    plot(design2)
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    pwrss.f.ancova(
-                        eta2 = 0.01,
-                        f2 = eta2 / (1 - eta2),
-                        n.way = length(n.levels),
-                        n.levels = 2,
-                        n.covariates = 0,
-                        alpha = 0.05,
-                        n = NULL,
-                        power = NULL,
-                        verbose = TRUE
+                       results_1 <- pwrss::pwrss.f.ancova(
+							eta2 = 0.01,
+							n.levels = n.levels,
+							n.covariates = n.covariates,
+							alpha = alpha,
+							n = n
                     )
 
+                    }
 
+                    if (calculate == "selectsamplesize") {
+                        
+						power <- self$options$power
 
+                        results_1 <- pwrss::pwrss.f.ancova(
+							eta2 = 0.01,
+							n.levels = n.levels,
+							n.covariates = n.covariates,
+							alpha = alpha,
+							power = power
+                    )
 
+                    }
+					
+                  
 
-
-
-
-
-
-                    pwrss.f.ancova <-
-                        function(eta2 = 0.01,
-                                 f2 = eta2 / (1 - eta2),
-                                 n.way = length(n.levels),
-                                 n.levels = 2,
-                                 n.covariates = 0,
-                                 alpha = 0.05,
-                                 n = NULL,
-                                 power = NULL,
-                                 verbose = TRUE)
-
-
-
-                            paste0(
+                    results_2 <- paste0(
                                 " ",
                                 switch(
-                                    n.way,
+                                    nway,
                                     `1` = "One",
                                     `2` = "Two",
                                     `3` = "Three"
                                 ),
                                 ifelse(
-                                    n.covariates > 0,
+                                    ncov > 0,
                                     "-way Analysis of Covariance (ANCOVA) \n ",
                                     "-way Analysis of Variance (ANOVA) \n "
                                 ),
                                 " H0: 'eta2' or 'f2' = 0 \n  HA: 'eta2' or 'f2' > 0 \n --------------------------------------\n",
                                 switch(
-                                    n.way,
+                                    nway,
                                     `1` = c(" Factor A: ", n.levels, " levels \n"),
                                     `2` = c(
                                         " Factor A: ",
@@ -123,9 +90,30 @@ fancovaClass <-
                                     )
                                 ),
                                 " --------------------------------------\n",
+								" Statistical power =",
+                                round(as.numeric(results_1[["power"]]), 3),
+                                "\n",
+                                " n =",
+                                ceiling(results_1[["n"]]),
+                                "\n",
+                                "------------------------------ \n",
+                                "Numerator degrees of freedom =",
+                                round(results_1[["df1"]], 3),
+                                "\n",
+                                "Denominator degrees of freedom =",
+                                round(results_1[["df2"]], 3),
+                                "\n",
+                                "Non-centrality parameter =",
+                                round(as.numeric(results_1[["ncp"]]), 3),
+                                "\n",
+                                "Type I error rate =",
+                                round(as.numeric(results_1[["parms"]][["alpha"]]), 3),
+                                "\n",
+                                "Type II error rate =",
+                                round(1 - as.numeric(results_1[["power"]]), 3),
+                                "\n",
                                 sep = ""
                             )
-
 
 
                     # self$results$text1$setContent(print(results_1))

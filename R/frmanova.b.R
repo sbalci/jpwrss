@@ -7,78 +7,55 @@ frmanovaClass <-
             inherit = frmanovaBase,
             private = list(
                 .run = function() {
-                    pwrss.f.rmanova(
-                        eta2 = 0.059, n.levels = 2, n.rm = 1,
-                        power = 0.80, alpha = 0.05,
-                        type = "between"
-                    )
+                    
+					calculate <- self$options$calculate
+                    eta2 <- self$options$eta2
+                    n.levels <- self$options$nlevels
+					n.rm <- self$options$nrm
+					corr.rm <- self$options$corrrm
+					type <- self$options$type
+					epsilon <- self$options$epsilon
+                    alpha <- self$options$alpha
+                    power <- NULL
+                    n <- NULL
+					
+					
+					if (calculate == "selectpower") {
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.f.rmanova(
-                        eta2 = 0.022, n.levels = 1, n.rm = 2,
-                        power = 0.80, alpha = 0.05,
-                        corr.rm = 0.50, type = "within"
-                    )
+                       n <- self$options$n
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.f.rmanova(
-                        eta2 = 0.038, n.levels = 2, n.rm = 2,
-                        power = 0.80, alpha = 0.05,
-                        corr.rm = 0.50, type = "between"
-                    )
+                       results_1 <- pwrss::pwrss.f.rmanova(
+							eta2 = eta2,
+							corr.rm = corr.rm,
+							n.levels = n.levels,
+							n.rm = n.rm,
+							epsilon = epsilon,
+							alpha = alpha,
+							type = type,
+							n = n
+							)
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.f.rmanova(
-                        eta2 = 0.022, n.levels = 2, n.rm = 2,
-                        power = 0.80, alpha = 0.05,
-                        corr.rm = 0.50, type = "within"
-                    )
+                    }
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.f.rmanova(
-                        eta2 = 0.01, n.levels = 2, n.rm = 2,
-                        power = 0.80, alpha = 0.05,
-                        corr.rm = 0.50, type = "interaction"
-                    )
+                    if (calculate == "selectsamplesize") {
+                        
+						power <- self$options$power
 
+                       results_1 <- pwrss::pwrss.f.rmanova(
+							eta2 = eta2,
+							corr.rm = corr.rm,
+							n.levels = n.levels,
+							n.rm = n.rm,
+							epsilon = epsilon,
+							alpha = alpha,
+							type = type,
+							power = power
+							)
 
-
-
-
-
-
-
-
-                    pwrss.f.rmanova(
-                        eta2 = 0.10,
-                        f2 = eta2 / (1 - eta2),
-                        corr.rm = 0.50,
-                        n.levels = 2,
-                        n.rm = 2,
-                        epsilon = 1,
-                        alpha = 0.05,
-                        type = c("between", "within", "interaction"),
-                        n = NULL,
-                        power = NULL,
-                        verbose = TRUE
-                    )
-
-
-
-                    pwrss.f.rmanova <-
-                        function(eta2 = 0.10,
-                                 f2 = eta2 / (1 - eta2),
-                                 corr.rm = 0.50,
-                                 n.levels = 2,
-                                 n.rm = 2,
-                                 epsilon = 1,
-                                 alpha = 0.05,
-                                 type = c("between", "within", "interaction"),
-                                 n = NULL,
-                                 power = NULL,
-                                 verbose = TRUE) {
-                            paste0(
-                                " One-way Repeated Measures \n Analysis of Variance (F test) \n",
+                    }
+					
+            
+                    results_2 <- paste0(
                                 "H0: eta2 = 0 (or f2 = 0) \n HA: eta2 > 0 (or f2 > 0) \n",
                                 "------------------------------ \n",
                                 "Number of levels (groups) =",
@@ -96,13 +73,13 @@ frmanovaClass <-
                                 "\n",
                                 "------------------------------ \n",
                                 "Type of the effect =",
-                                dQuote(effect),
+                                dQuote(type),
                                 "\n",
                                 "Numerator degrees of freedom =",
-                                round(df1, 3),
+                                round(results_1[["df1"]], 3),
                                 "\n",
                                 "Denominator degrees of freedom =",
-                                round(df2, 3),
+                                round(results_1[["df2"]], 3),
                                 "\n",
                                 "Non-centrality parameter =",
                                 round(as.numeric(results_1[["ncp"]]), 3),
@@ -114,8 +91,6 @@ frmanovaClass <-
                                 round(1 - as.numeric(results_1[["power"]]), 3),
                                 "\n"
                             )
-                        }
-
 
 
                     # self$results$text1$setContent(print(results_1))
