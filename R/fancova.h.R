@@ -134,17 +134,17 @@ fancovaResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="Analysis of (Co)Variance (F test)",
+                title="ANOVA or ANCOVA (F test)",
                 refs=list(
                     "pwrss"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="One Proportion z test"))
+                title="ANOVA or ANCOVA (F test)"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="A proportion against a Constant (z Test)",
+                title="ANOVA or ANCOVA (F test)",
                 renderFun=".plot"))}))
 
 fancovaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
