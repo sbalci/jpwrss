@@ -1,6 +1,6 @@
 ---
 name:  frmanova
-title: Repeated Measures Analysis of Variance (F test)
+title: Repeated Measures ANOVA (F test)
 menuGroup: jpwrss
 menuSubgroup: Analysis of Variance
 version: '1.0.0'

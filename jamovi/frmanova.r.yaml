@@ -1,6 +1,6 @@
 ---
 name:  frmanova
-title: Repeated Measures Analysis of Variance (F test)
+title: Repeated Measures ANOVA (F test)
 jrs:   '1.1'
 
 items:
@@ -10,12 +10,12 @@ items:
 
 
     - name:  text2
-      title: One Proportion z test
+      title: Repeated Measures ANOVA (F test)
       type:  Preformatted
 
 
     - name: plot
-      title: 'A proportion against a Constant (z Test)'
+      title: Repeated Measures ANOVA (F test)
       type: Image
       renderFun: .plot
 

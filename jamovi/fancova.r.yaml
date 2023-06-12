@@ -1,6 +1,6 @@
 ---
 name:  fancova
-title: Analysis of (Co)Variance (F test)
+title: ANOVA or ANCOVA (F test)
 jrs:   '1.1'
 
 items:
@@ -10,12 +10,12 @@ items:
 
 
     - name:  text2
-      title: One Proportion z test
+      title: ANOVA or ANCOVA (F test)
       type:  Preformatted
 
 
     - name: plot
-      title: 'A proportion against a Constant (z Test)'
+      title: ANOVA or ANCOVA (F test)
       type: Image
       renderFun: .plot
 
