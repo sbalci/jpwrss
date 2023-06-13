@@ -2,7 +2,7 @@
 % Please edit documentation in R/zpoisreg.h.R
 \name{zpoisreg}
 \alias{zpoisreg}
-\title{Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)}
+\title{Poisson Regression Coef (z Test)}
 \usage{
 zpoisreg(
   calculate = "selectpower",
@@ -11,6 +11,7 @@ zpoisreg(
   expbeta0 = 1,
   beta1 = 0.25,
   beta0 = 0,
+  meanexposure = 1,
   r2otherx = 0,
   power = 0.8,
   alpha = 0.05,
@@ -23,11 +24,10 @@ zpoisreg(
   max = 1,
   size = 1,
   prob = 0.5,
-  meanlo = 0,
+  meanlog = 0,
   sdlog = 1,
   lambda = 1,
   rate = 1,
-  probability = 0.5,
   n = 200
 )
 }
@@ -43,6 +43,8 @@ zpoisreg(
 \item{beta1}{.}
 
 \item{beta0}{.}
+
+\item{meanexposure}{.}
 
 \item{r2otherx}{.}
 
@@ -68,15 +70,13 @@ zpoisreg(
 
 \item{prob}{.}
 
-\item{meanlo}{.}
+\item{meanlog}{.}
 
 \item{sdlog}{.}
 
 \item{lambda}{.}
 
 \item{rate}{.}
-
-\item{probability}{.}
 
 \item{n}{.}
 }
@@ -88,5 +88,5 @@ A results object containing:
 }
 }
 \description{
-Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)
+Poisson Regression Coef (z Test)
 }

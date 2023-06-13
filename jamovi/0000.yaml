@@ -1,7 +1,7 @@
 ---
 title: Jamovi Module for Statistical Power and Sample Size Calculation Tools
 name: jpwrss
-version: 0.0.0.14
+version: 0.0.0.15
 jms: '1.0'
 authors:
   - Metin Bulus
@@ -119,11 +119,11 @@ analyses:
     menuGroup: jpwrss
     menuTitle: One Mean t Test
     menuSubgroup: Compare With a Known Value
-  - title: Linear Regression Single Coefficient (t or z Test)
+  - title: Linear Regression Coef (t Test)
     name: treg
     ns: jpwrss
     menuGroup: jpwrss
-    menuTitle: Linear Regression Single Coefficient (t or z Test)
+    menuTitle: Linear Regression Coef (t Test)
     menuSubgroup: Regression
   - title: Difference between Two Correlations (Independent Samples z Test)
     name: z2corrs
@@ -143,11 +143,11 @@ analyses:
     menuGroup: jpwrss
     menuTitle: One Correlation z Test
     menuSubgroup: Compare With a Known Value
-  - title: Logistic Regression Single Coefficient (Large Sample Approx Wald’s z Test)
+  - title: Logistic Regression Coef (z Test)
     name: zlogreg
     ns: jpwrss
     menuGroup: jpwrss
-    menuTitle: Logistic Regression Single Coefficient (Large Sample Approx Wald’s z Test)
+    menuTitle: Logistic Regression Coef (z Test)
     menuSubgroup: Regression
   - title: 'Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)'
     name: zmed
@@ -155,11 +155,11 @@ analyses:
     menuGroup: jpwrss
     menuTitle: 'Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)'
     menuSubgroup: Mediation
-  - title: Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)
+  - title: Poisson Regression Coef (z Test)
     name: zpoisreg
     ns: jpwrss
     menuGroup: jpwrss
-    menuTitle: Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)
+    menuTitle: Poisson Regression Coef (z Test)
     menuSubgroup: Regression
   - title: Two Dependent Means (t Test)
     name: t2meansdep

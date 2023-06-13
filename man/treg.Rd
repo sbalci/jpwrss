@@ -2,10 +2,12 @@
 % Please edit documentation in R/treg.h.R
 \name{treg}
 \alias{treg}
-\title{Linear Regression Single Coefficient (t or z Test)}
+\title{Linear Regression Coef (t Test)}
 \usage{
 treg(
   calculate = "selectpower",
+  predictor = "continuous",
+  p = 0.5,
   stdinput = FALSE,
   beta1 = 0.25,
   beta0 = 0,
@@ -22,6 +24,10 @@ treg(
 }
 \arguments{
 \item{calculate}{.}
+
+\item{predictor}{.}
+
+\item{p}{.}
 
 \item{stdinput}{.}
 
@@ -55,5 +61,5 @@ A results object containing:
 }
 }
 \description{
-Linear Regression Single Coefficient (t or z Test)
+Linear Regression Coef (t Test)
 }

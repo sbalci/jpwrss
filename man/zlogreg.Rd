@@ -2,7 +2,7 @@
 % Please edit documentation in R/zlogreg.h.R
 \name{zlogreg}
 \alias{zlogreg}
-\title{Logistic Regression Single Coefficient (Large Sample Approx Wald’s z Test)}
+\title{Logistic Regression Coef (z Test)}
 \usage{
 zlogreg(
   calculate = "selectpower",
@@ -24,11 +24,10 @@ zlogreg(
   max = 1,
   size = 1,
   prob = 0.5,
-  meanlo = 0,
+  meanlog = 0,
   sdlog = 1,
   lambda = 1,
   rate = 1,
-  probability = 0.5,
   n = 200
 )
 }
@@ -71,15 +70,13 @@ zlogreg(
 
 \item{prob}{.}
 
-\item{meanlo}{.}
+\item{meanlog}{.}
 
 \item{sdlog}{.}
 
 \item{lambda}{.}
 
 \item{rate}{.}
-
-\item{probability}{.}
 
 \item{n}{.}
 }
@@ -91,5 +88,5 @@ A results object containing:
 }
 }
 \description{
-Logistic Regression Single Coefficient (Large Sample Approx Wald’s z Test)
+Logistic Regression Coef (z Test)
 }

@@ -16,68 +16,68 @@ options:
         - title: Sample Size
           name: selectsamplesize
       default: selectpower
-    
+
     # not in the function per se
     - name: predictor
-        title: 'Alternative Hypothesis'
-        type: List
-        options:
-            - title: Continuous
-            name: continuous
-            - title: Binary
-            name: binary
-        default: continuous
-        
+      title: 'Alternative Hypothesis'
+      type: List
+      options:
+        - title: Continuous
+          name: continuous
+        - title: Binary
+          name: binary
+      default: continuous
+
     # title conditional on 'stdbeta = false'
     - name: p
       title: 'Sampling Rate for Binary Predictor'
       type: Number
       default: 0.50
-      
+
     # not in the function per se
     - name: stdinput
       title: "Standardized Input?"
       type: Bool
-      default: false 
-      
+      default: false
+
     # title conditional on 'stdbeta = false'
     - name: beta1
       # title: 'Standardized Regression Coefficient'
       title: 'Regression Coefficient'
       type: Number
       default: 0.25
-      
+
     # title conditional on 'stdbeta = false'
     - name: beta0
       # title: 'Standardized Regression Coefficient under Null Hypothesis'
       title: 'Regression Coefficient under Null Hypothesis'
       type: Number
       default: 0
-      
+
     - name: margin
       title: 'Margin (Difference Toleration)'
       type: Number
       default: 0
-    
+
     # conditional on 'stdbeta == false'
     # if 'stdinput == true' remove 'sdy'
     - name: sdx
       title: 'Standard Deviation of the Predictor'
       type: Number
-      default: 1 
+      default: 1
 
     # conditional on 'stdbeta == false'
     # if 'stdinput == true' remove 'sdy'
     - name: sdy
       title: 'Standard Deviation of the Outcome'
       type: Number
-      default: 1         
-      
+      default: 1
+
     - name: k
       title: 'Total Number of Predictors'
       type: Integer
       default: 1
-      
+
     - name: r2
       title: 'Expected Model (Adj) R-squared'
       type: Number

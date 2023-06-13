@@ -12,7 +12,7 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             expbeta0 = 1,
             beta1 = 0.25,
             beta0 = 0,
-			meanexposure = 1,
+            meanexposure = 1,
             r2otherx = 0,
             power = 0.8,
             alpha = 0.05,
@@ -29,7 +29,6 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             sdlog = 1,
             lambda = 1,
             rate = 1,
-            probability = 0.5,
             n = 200, ...) {
 
             super$initialize(
@@ -68,7 +67,7 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "beta0",
                 beta0,
                 default=0)
-			private$..meanexposure <- jmvcore::OptionNumber$new(
+            private$..meanexposure <- jmvcore::OptionNumber$new(
                 "meanexposure",
                 meanexposure,
                 default=1)
@@ -104,7 +103,7 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 distribution,
                 options=list(
                     "normal",
-					"lognormal",
+                    "lognormal",
                     "poisson",
                     "uniform",
                     "exponential",
@@ -151,10 +150,6 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "rate",
                 rate,
                 default=1)
-            private$..probability <- jmvcore::OptionNumber$new(
-                "probability",
-                probability,
-                default=0.5)
             private$..n <- jmvcore::OptionNumber$new(
                 "n",
                 n,
@@ -166,7 +161,7 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..expbeta0)
             self$.addOption(private$..beta1)
             self$.addOption(private$..beta0)
-			self$.addOption(private$..meanexposure)
+            self$.addOption(private$..meanexposure)
             self$.addOption(private$..r2otherx)
             self$.addOption(private$..power)
             self$.addOption(private$..alpha)
@@ -183,7 +178,6 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..sdlog)
             self$.addOption(private$..lambda)
             self$.addOption(private$..rate)
-            self$.addOption(private$..probability)
             self$.addOption(private$..n)
         }),
     active = list(
@@ -193,7 +187,7 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         expbeta0 = function() private$..expbeta0$value,
         beta1 = function() private$..beta1$value,
         beta0 = function() private$..beta0$value,
-		meanexposure = function() private$..meanexposure$value,
+        meanexposure = function() private$..meanexposure$value,
         r2otherx = function() private$..r2otherx$value,
         power = function() private$..power$value,
         alpha = function() private$..alpha$value,
@@ -206,11 +200,10 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         max = function() private$..max$value,
         size = function() private$..size$value,
         prob = function() private$..prob$value,
-        meanlog = function() private$..meanlo$value,
+        meanlog = function() private$..meanlog$value,
         sdlog = function() private$..sdlog$value,
         lambda = function() private$..lambda$value,
         rate = function() private$..rate$value,
-        probability = function() private$..probability$value,
         n = function() private$..n$value),
     private = list(
         ..calculate = NA,
@@ -219,7 +212,7 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..expbeta0 = NA,
         ..beta1 = NA,
         ..beta0 = NA,
-		..meanexposure = NA,
+        ..meanexposure = NA,
         ..r2otherx = NA,
         ..power = NA,
         ..alpha = NA,
@@ -236,7 +229,6 @@ zpoisregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..sdlog = NA,
         ..lambda = NA,
         ..rate = NA,
-        ..probability = NA,
         ..n = NA)
 )
 
@@ -282,10 +274,11 @@ zpoisregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 revision = revision,
                 pause = NULL,
                 completeWhenFilled = FALSE,
-                requiresMissings = FALSE)
+                requiresMissings = FALSE,
+                weightsSupport = 'na')
         }))
 
-#' Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)
+#' Poisson Regression Coef (z Test)
 #'
 #' 
 #' @param calculate .
@@ -294,6 +287,7 @@ zpoisregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param expbeta0 .
 #' @param beta1 .
 #' @param beta0 .
+#' @param meanexposure .
 #' @param r2otherx .
 #' @param power .
 #' @param alpha .
@@ -310,7 +304,6 @@ zpoisregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param sdlog .
 #' @param lambda .
 #' @param rate .
-#' @param probability .
 #' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
@@ -326,7 +319,7 @@ zpoisreg <- function(
     expbeta0 = 1,
     beta1 = 0.25,
     beta0 = 0,
-	meanexposure = 1,
+    meanexposure = 1,
     r2otherx = 0,
     power = 0.8,
     alpha = 0.05,
@@ -343,7 +336,6 @@ zpoisreg <- function(
     sdlog = 1,
     lambda = 1,
     rate = 1,
-    probability = 0.5,
     n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
@@ -357,7 +349,7 @@ zpoisreg <- function(
         expbeta0 = expbeta0,
         beta1 = beta1,
         beta0 = beta0,
-		meanexposure = meanexposure,
+        meanexposure = meanexposure,
         r2otherx = r2otherx,
         power = power,
         alpha = alpha,
@@ -374,7 +366,6 @@ zpoisreg <- function(
         sdlog = sdlog,
         lambda = lambda,
         rate = rate,
-        probability = probability,
         n = n)
 
     analysis <- zpoisregClass$new(

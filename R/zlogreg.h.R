@@ -29,7 +29,6 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             sdlog = 1,
             lambda = 1,
             rate = 1,
-            probability = 0.5,
             n = 200, ...) {
 
             super$initialize(
@@ -105,7 +104,7 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 distribution,
                 options=list(
                     "normal",
-					"lognormal",
+                    "lognormal",
                     "poisson",
                     "uniform",
                     "exponential",
@@ -152,10 +151,6 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "rate",
                 rate,
                 default=1)
-            private$..probability <- jmvcore::OptionNumber$new(
-                "probability",
-                probability,
-                default=0.5)
             private$..n <- jmvcore::OptionNumber$new(
                 "n",
                 n,
@@ -184,7 +179,6 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..sdlog)
             self$.addOption(private$..lambda)
             self$.addOption(private$..rate)
-            self$.addOption(private$..probability)
             self$.addOption(private$..n)
         }),
     active = list(
@@ -211,7 +205,6 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         sdlog = function() private$..sdlog$value,
         lambda = function() private$..lambda$value,
         rate = function() private$..rate$value,
-        probability = function() private$..probability$value,
         n = function() private$..n$value),
     private = list(
         ..calculate = NA,
@@ -237,7 +230,6 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..sdlog = NA,
         ..lambda = NA,
         ..rate = NA,
-        ..probability = NA,
         ..n = NA)
 )
 
@@ -283,10 +275,11 @@ zlogregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 revision = revision,
                 pause = NULL,
                 completeWhenFilled = FALSE,
-                requiresMissings = FALSE)
+                requiresMissings = FALSE,
+                weightsSupport = 'na')
         }))
 
-#' Logistic Regression Single Coefficient (Large Sample Approx Wald’s z Test)
+#' Logistic Regression Coef (z Test)
 #'
 #' 
 #' @param calculate .
@@ -312,7 +305,6 @@ zlogregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param sdlog .
 #' @param lambda .
 #' @param rate .
-#' @param probability .
 #' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
@@ -345,7 +337,6 @@ zlogreg <- function(
     sdlog = 1,
     lambda = 1,
     rate = 1,
-    probability = 0.5,
     n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
@@ -376,7 +367,6 @@ zlogreg <- function(
         sdlog = sdlog,
         lambda = lambda,
         rate = rate,
-        probability = probability,
         n = n)
 
     analysis <- zlogregClass$new(

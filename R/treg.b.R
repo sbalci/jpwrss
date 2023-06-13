@@ -7,21 +7,21 @@ tregClass <-
             inherit = tregBase,
             private = list(
                 .run = function() {
-						
+
 					calculate <- self$options$calculate
                     beta1 <- self$options$beta1
                     beta0 <- self$options$beta0
 					margin <- self$options$margin
 					p <- self$options$p
-					if(predictor == "binary") {sdx <- sqrt(p * (1 - p)}
-					if(predictor == "continuous") {sdx <- self$options$sdx}
+					if (predictor == "binary") {sdx <- sqrt(p * (1 - p))}
+					if (predictor == "continuous") {sdx <- self$options$sdx}
 					k <- self$options$k
 					r2 <- self$options$r2
 					alternative <- self$options$alternative
                     alpha <- self$options$alpha
                     power <- NULL
                     n <- NULL
-				
+
 					if (calculate == "selectpower") {
 
                        n <- self$options$n
@@ -42,7 +42,7 @@ tregClass <-
                     }
 
                     if (calculate == "selectsamplesize") {
-                        
+
 						power <- self$options$power
 
                        results_1 <- pwrss::pwrss.t.reg(
@@ -59,7 +59,7 @@ tregClass <-
 						)
 
                     }
-					
+
 					results_2 <-  paste0(
                                 switch(alternative,
                                     `not equal` = "H0: beta1 = beta0 \n HA: beta1 != beta0 \n",
@@ -111,6 +111,7 @@ tregClass <-
                     image <- self$results$plot
                     image$setState(results_1)
                 },
+
                 .plot = function(image, ggtheme, theme, ...) {
                     # read data ----
 
@@ -124,3 +125,4 @@ tregClass <-
             )
         )
     }
+
