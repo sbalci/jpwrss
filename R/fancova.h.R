@@ -164,10 +164,11 @@ fancovaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 revision = revision,
                 pause = NULL,
                 completeWhenFilled = FALSE,
-                requiresMissings = FALSE)
+                requiresMissings = FALSE,
+                weightsSupport = 'na')
         }))
 
-#' Analysis of (Co)Variance (F test)
+#' ANOVA or ANCOVA (F test)
 #'
 #' 
 #' @param calculate .

@@ -9,6 +9,7 @@ fregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             calculate = "selectpower",
             regmod = "rsqdev",
             r2 = 0.01,
+            f2 = 0.01,
             k = 1,
             m = 1,
             power = 0.8,
@@ -28,15 +29,13 @@ fregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
-            
-			private$..regmod <- jmvcore::OptionList$new(
+            private$..regmod <- jmvcore::OptionList$new(
                 "regmod",
                 regmod,
                 options=list(
                     "rsqdev",
                     "rsqdif"),
                 default="rsqdev")
-				
             private$..r2 <- jmvcore::OptionNumber$new(
                 "r2",
                 r2,
@@ -110,17 +109,17 @@ fregResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="Linear Regression(F Test)",
+                title="Linear Regression (F Test)",
                 refs=list(
                     "pwrss"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="Linear Regression(F Test)"))
+                title="Linear Regression (F Test)"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="Linear Regression(F Test)",
+                title="Linear Regression (F Test)",
                 renderFun=".plot"))}))
 
 fregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -140,7 +139,8 @@ fregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 revision = revision,
                 pause = NULL,
                 completeWhenFilled = FALSE,
-                requiresMissings = FALSE)
+                requiresMissings = FALSE,
+                weightsSupport = 'na')
         }))
 
 #' Linear Regression R squared or R squared Difference (F Test)

@@ -34,12 +34,20 @@ For more documentation, see the
 \details{
 \code{jpwrss}
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{http://www.serdarbalci.com/jpwrss/}
+}
+
+}
 \author{
 \strong{Maintainer}: Metin Bulus \email{bulusmetin@gmail.com}
 
 Authors:
 \itemize{
   \item Serdar Balci \email{serdarbalci@serdarbalci.com} (\href{https://orcid.org/0000-0002-7852-3851}{ORCID})
+  \item Maurizio Agosti
 }
 
 }

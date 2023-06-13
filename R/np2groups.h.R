@@ -216,7 +216,8 @@ np2groupsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 revision = revision,
                 pause = NULL,
                 completeWhenFilled = FALSE,
-                requiresMissings = FALSE)
+                requiresMissings = FALSE,
+                weightsSupport = 'na')
         }))
 
 #' Difference between Two Groups (Non-parametric Tests for Independent and Paired Samples)

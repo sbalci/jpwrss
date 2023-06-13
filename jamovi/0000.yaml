@@ -1,14 +1,14 @@
 ---
 title: Jamovi Module for Statistical Power and Sample Size Calculation Tools
 name: jpwrss
-version: 0.0.0.13
+version: 0.0.0.14
 jms: '1.0'
-authors: 
+authors:
   - Metin Bulus
   - Serdar Balci
   - Maurizio Agosti
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2023-05-21'
+date: '2023-06-13'
 type: R
 description: >-
   Wrapper `jamovi` Module for `pwrss` Package Statistical power and minimum
@@ -75,11 +75,11 @@ analyses:
     menuGroup: jpwrss
     menuTitle: Goodness-of-Fit or Independence (Chi-square Test)
     menuSubgroup: Contingency Tables
-  - title: Analysis of (Co)Variance (F test)
+  - title: ANOVA or ANCOVA (F test)
     name: fancova
     ns: jpwrss
     menuGroup: jpwrss
-    menuTitle: Analysis of (Co)Variance (F test)
+    menuTitle: ANOVA or ANCOVA (F test)
     menuSubgroup: Analysis of Variance
   - title: Linear Regression R squared or R squared Difference (F Test)
     name: freg
@@ -87,11 +87,11 @@ analyses:
     menuGroup: jpwrss
     menuTitle: Linear Regression R squared or R squared Difference (F Test)
     menuSubgroup: Regression
-  - title: Repeated Measures Analysis of Variance (F test)
+  - title: Repeated Measures ANOVA (F test)
     name: frmanova
     ns: jpwrss
     menuGroup: jpwrss
-    menuTitle: Repeated Measures Analysis of Variance (F test)
+    menuTitle: Repeated Measures ANOVA (F test)
     menuSubgroup: Analysis of Variance
   - title: >-
       Difference between Two Groups (Non-parametric Tests for Independent and

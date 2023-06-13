@@ -2,7 +2,7 @@
 % Please edit documentation in R/fancova.h.R
 \name{fancova}
 \alias{fancova}
-\title{Analysis of (Co)Variance (F test)}
+\title{ANOVA or ANCOVA (F test)}
 \usage{
 fancova(
   calculate = "selectpower",
@@ -52,5 +52,5 @@ A results object containing:
 }
 }
 \description{
-Analysis of (Co)Variance (F test)
+ANOVA or ANCOVA (F test)
 }

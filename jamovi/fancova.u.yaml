@@ -9,27 +9,27 @@ children:
     children:
       - type: ComboBox
         name: calculate
-        
+
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: eta2
         format: number
-        
+
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: f2
         format: number
-        
+
   - type: LayoutBox
     margin: large
     children:
       - type: CheckBox
         name: covadj
-        
+
   - type: LayoutBox
     margin: large
     children:
@@ -37,20 +37,20 @@ children:
         name: ncov
         format: number
         enable: '(covadj:true)'
-        
+
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: nway
-        
+
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: nlevelsA
         format: number
-        
+
   - type: LayoutBox
     margin: large
     children:
@@ -58,7 +58,7 @@ children:
         name: nlevelsB
         format: number
         enable: '(!nway:1)'
-        
+
   - type: LayoutBox
     margin: large
     children:
@@ -66,8 +66,8 @@ children:
         name: nlevelsC
         format: number
         enable: '(nway:3)'
-        
-   - type: Label
+
+  - type: Label
     label: Alpha, Power, Sample Size
     fitToGrid: true
     children:

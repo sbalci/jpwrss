@@ -2,7 +2,7 @@
 % Please edit documentation in R/frmanova.h.R
 \name{frmanova}
 \alias{frmanova}
-\title{Repeated Measures Analysis of Variance (F test)}
+\title{Repeated Measures ANOVA (F test)}
 \usage{
 frmanova(
   calculate = "selectpower",
@@ -49,5 +49,5 @@ A results object containing:
 }
 }
 \description{
-Repeated Measures Analysis of Variance (F test)
+Repeated Measures ANOVA (F test)
 }
