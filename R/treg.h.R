@@ -8,9 +8,11 @@ tregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         initialize = function(
             calculate = "selectpower",
             stdinput = FALSE,
+			predictor = "continuous",
             beta1 = 0.25,
             beta0 = 0,
             margin = 0,
+			p = 0.50,
             sdx = 1,
             sdy = 1,
             k = 1,
@@ -37,6 +39,13 @@ tregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "stdinput",
                 stdinput,
                 default=FALSE)
+			private$..predictor <- jmvcore::OptionList$new(
+                "predictor",
+                predictor,
+                options=list(
+                    "continuous",
+                    "binary"),
+                default="continuous")
             private$..beta1 <- jmvcore::OptionNumber$new(
                 "beta1",
                 beta1,
@@ -49,6 +58,10 @@ tregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "margin",
                 margin,
                 default=0)
+			private$..p <- jmvcore::OptionNumber$new(
+                "p",
+                p,
+                default=0.50)
             private$..sdx <- jmvcore::OptionNumber$new(
                 "sdx",
                 sdx,
@@ -91,9 +104,11 @@ tregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 
             self$.addOption(private$..calculate)
             self$.addOption(private$..stdinput)
+			self$.addOption(private$..predictor)
             self$.addOption(private$..beta1)
             self$.addOption(private$..beta0)
             self$.addOption(private$..margin)
+			self$.addOption(private$..p)
             self$.addOption(private$..sdx)
             self$.addOption(private$..sdy)
             self$.addOption(private$..k)
@@ -106,9 +121,11 @@ tregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     active = list(
         calculate = function() private$..calculate$value,
         stdinput = function() private$..stdinput$value,
+		predictor = function() private$..predictor$value,
         beta1 = function() private$..beta1$value,
         beta0 = function() private$..beta0$value,
         margin = function() private$..margin$value,
+		p = function() private$..p$value,
         sdx = function() private$..sdx$value,
         sdy = function() private$..sdy$value,
         k = function() private$..k$value,
@@ -120,9 +137,11 @@ tregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     private = list(
         ..calculate = NA,
         ..stdinput = NA,
+		..predictor = NA,
         ..beta1 = NA,
         ..beta0 = NA,
         ..margin = NA,
+		..p = NA,
         ..sdx = NA,
         ..sdy = NA,
         ..k = NA,
@@ -145,17 +164,17 @@ tregResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="Linear Regression Single Coefficient (t or z Test)",
+                title="Linear Regression Coef (t Test)",
                 refs=list(
                     "pwrss"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="One Proportion z test"))
+                title="Linear Regression Coef (t Test)"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="A proportion against a Constant (z Test)",
+                title="Linear Regression Coef (t Test)",
                 renderFun=".plot"))}))
 
 tregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -175,8 +194,7 @@ tregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 revision = revision,
                 pause = NULL,
                 completeWhenFilled = FALSE,
-                requiresMissings = FALSE,
-                weightsSupport = 'na')
+                requiresMissings = FALSE)
         }))
 
 #' Linear Regression Single Coefficient (t or z Test)
@@ -205,9 +223,11 @@ tregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 treg <- function(
     calculate = "selectpower",
     stdinput = FALSE,
+	predictor = "continuous",
     beta1 = 0.25,
     beta0 = 0,
     margin = 0,
+	p = 0.50,
     sdx = 1,
     sdy = 1,
     k = 1,
@@ -224,9 +244,11 @@ treg <- function(
     options <- tregOptions$new(
         calculate = calculate,
         stdinput = stdinput,
+		predictor = predictor,
         beta1 = beta1,
         beta0 = beta0,
         margin = margin,
+		p = p,
         sdx = sdx,
         sdy = sdy,
         k = k,

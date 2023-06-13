@@ -7,127 +7,60 @@ tregClass <-
             inherit = tregBase,
             private = list(
                 .run = function() {
-                    pwrss.t.reg(
-                        beta1 = 0.20, k = 3, r2 = 0.30,
-                        power = .80, alpha = 0.05, alternative = "not equal"
-                    )
+						
+					calculate <- self$options$calculate
+                    beta1 <- self$options$beta1
+                    beta0 <- self$options$beta0
+					margin <- self$options$margin
+					p <- self$options$p
+					if(predictor == "binary") {sdx <- sqrt(p * (1 - p)}
+					if(predictor == "continuous") {sdx <- self$options$sdx}
+					k <- self$options$k
+					r2 <- self$options$r2
+					alternative <- self$options$alternative
+                    alpha <- self$options$alpha
+                    power <- NULL
+                    n <- NULL
+				
+					if (calculate == "selectpower") {
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.t.reg(
-                        beta1 = 0.60, sdy = 12, sdx = 4, k = 3, r2 = 0.30,
-                        power = .80, alpha = 0.05, alternative = "not equal"
-                    )
+                       n <- self$options$n
 
+                       results_1 <- pwrss::pwrss.t.reg(
+							beta1 = beta1,
+							beta0 = beta0,
+							margin = margin,
+							sdx = sdx,
+							sdy = sdy,
+							k = k,
+							r2 = r2,
+							alpha = alpha,
+							n = n,
+							alternative = alternative
+						)
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    p <- 0.50
-                    pwrss.t.reg(
-                        beta1 = 0.20, k = 3, r2 = 0.30, sdx = sqrt(p * (1 - p)),
-                        power = .80, alpha = 0.05, alternative = "not equal"
-                    )
+                    }
 
+                    if (calculate == "selectsamplesize") {
+                        
+						power <- self$options$power
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    p <- 0.50
-                    pwrss.t.reg(
-                        beta1 = 0.20, beta0 = 0.10, margin = -0.05,
-                        k = 3, r2 = 0.30, sdx = sqrt(p * (1 - p)),
-                        power = .80, alpha = 0.05, alternative = "non-inferior"
-                    )
+                       results_1 <- pwrss::pwrss.t.reg(
+							beta1 = beta1,
+							beta0 = beta0,
+							margin = margin,
+							sdx = sdx,
+							sdy = sdy,
+							k = k,
+							r2 = r2,
+							alpha = alpha,
+							power = power,
+							alternative = alternative
+						)
 
-
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    p <- 0.50
-                    pwrss.t.reg(
-                        beta1 = 0.20, beta0 = 0.10, margin = 0.05,
-                        k = 3, r2 = 0.30, sdx = sqrt(p * (1 - p)),
-                        power = .80, alpha = 0.05, alternative = "superior"
-                    )
-
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    p <- 0.50
-                    pwrss.t.reg(
-                        beta1 = 0.20, beta0 = 0.20, margin = 0.05,
-                        k = 3, r2 = 0.30, sdx = sqrt(p * (1 - p)),
-                        power = .80, alpha = 0.05, alternative = "equivalent"
-                    )
-
-
-
-
-
-
-
-
-                    pwrss.t.reg(
-                        beta1 = 0.25,
-                        beta0 = 0,
-                        margin = 0,
-                        sdx = 1,
-                        sdy = 1,
-                        k = 1,
-                        r2 = (beta1 * sdx / sdy)^2,
-                        alpha = 0.05,
-                        n = NULL,
-                        power = NULL,
-                        alternative = c(
-                            "not equal",
-                            "less",
-                            "greater",
-                            "non-inferior",
-                            "superior",
-                            "equivalent"
-                        ),
-                        verbose = TRUE
-                    )
-                    pwrss.z.reg(
-                        beta1 = 0.25,
-                        beta0 = 0,
-                        margin = 0,
-                        sdx = 1,
-                        sdy = 1,
-                        k = 1,
-                        r2 = (beta1 * sdx / sdy)^2,
-                        alpha = 0.05,
-                        n = NULL,
-                        power = NULL,
-                        alternative = c(
-                            "not equal",
-                            "less",
-                            "greater",
-                            "non-inferior",
-                            "superior",
-                            "equivalent"
-                        ),
-                        verbose = TRUE
-                    )
-
-
-
-
-
-                    pwrss.t.regression <-
-                        pwrss.t.reg <- function(beta1 = 0.25,
-                                                beta0 = 0,
-                                                margin = 0,
-                                                sdx = 1,
-                                                sdy = 1,
-                                                k = 1,
-                                                r2 = (beta1 * sdx / sdy)^2,
-                                                alpha = 0.05,
-                                                n = NULL,
-                                                power = NULL,
-                                                alternative = c(
-                                                    "not equal",
-                                                    "less",
-                                                    "greater",
-                                                    "non-inferior",
-                                                    "superior",
-                                                    "equivalent"
-                                                ),
-                                                verbose = TRUE) {
-                            paste0(
-                                " Linear Regression Coefficient (t Test) \n",
+                    }
+					
+					results_2 <-  paste0(
                                 switch(alternative,
                                     `not equal` = "H0: beta1 = beta0 \n HA: beta1 != beta0 \n",
                                     `greater` = "H0: beta1 = beta0 \n HA: beta1 > beta0 \n",
@@ -156,10 +89,10 @@ tregClass <-
                                 dQuote(results_1[["parms"]][["alternative"]]),
                                 "\n",
                                 "Degrees of freedom =",
-                                round(v, 3),
+                                 round(results_1[["df"]], 3),
                                 "\n",
                                 "Non-centrality parameter =",
-                                round(lambda, 3),
+                                 round(results_1[["ncp"]], 3),
                                 "\n",
                                 "Type I error rate =",
                                 round(as.numeric(results_1[["parms"]][["alpha"]]), 3),
@@ -168,9 +101,6 @@ tregClass <-
                                 round(1 - as.numeric(results_1[["power"]]), 3),
                                 "\n"
                             )
-                        }
-
-
 
 
                     # self$results$text1$setContent(print(results_1))
