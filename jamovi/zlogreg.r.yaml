@@ -1,6 +1,6 @@
 ---
 name:  zlogreg
-title: Logistic Regression Single Coefficient (Large Sample Approx Wald’s z Test)
+title: Logistic Regression Coef (z Test)
 jrs:   '1.1'
 
 items:
@@ -10,12 +10,12 @@ items:
 
 
     - name:  text2
-      title: One Proportion z test
+      title: Logistic Regression Coef (z Test)
       type:  Preformatted
 
 
     - name: plot
-      title: 'A proportion against a Constant (z Test)'
+      title: Logistic Regression Coef (z Test)
       type: Image
       renderFun: .plot
 
