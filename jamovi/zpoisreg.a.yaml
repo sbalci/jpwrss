@@ -1,6 +1,6 @@
 ---
 name:  zpoisreg
-title: Poisson Regression Single Coefficient (Large Sample Approx. Wald’s z Test)
+title: Poisson Regression Coef (z Test)
 menuSubgroup: Regression
 menuGroup: jpwrss
 version: '1.0.0'
@@ -51,6 +51,11 @@ options:
       title: 'Regression Coefficient under Null Hypothesis'
       type: Number
       default: 0
+      
+    - name: meanexposure
+      title: 'Mean Exposure Time'
+      type: Number
+      default: 1
 
     - name: r2otherx
       title: 'Proportion of Variance in the Predictor Explained by Other Covariates'
@@ -88,8 +93,6 @@ options:
           name: demidenko(vc)
         - title: Demidenko (2007)
           name: demidenko
-        - title: Signorini (1991)
-          name: signorini
       default: demidenko(vc)
 
     - name: distribution
@@ -98,6 +101,8 @@ options:
       options:
         - title: Normal
           name: normal
+        - title: Lognormal
+          name: lognormal
         - title: Poisson
           name: poisson
         - title: Uniform
@@ -135,7 +140,8 @@ options:
       default: 1
 
     # not in the function per se
-    # conditional on 'distribution == binomial'
+    # 'size' conditional on 'distribution == binomial'
+    # 'prob' conditional on 'distribution == binomial' or 'distribution == bernoulli'
     # define distribution = list(dist = "binomial", size = size, prob = prob)
     - name: size
       title: 'Size'
@@ -150,7 +156,7 @@ options:
     # not in the function per se
     # conditional on 'distribution == lognormal'
     # define distribution = list(dist = "lognormal", meanlog = meanlog, sdlog = sdlog)
-    - name: meanlo
+    - name: meanlog
       title: 'Mean on the Log Scale'
       type: Number
       default: 0
@@ -175,13 +181,6 @@ options:
       type: Number
       default: 1
 
-    # not in the function per se
-    # conditional on 'distribution == binomial'
-    # define distribution = list(dist = "binomial", prob = prob)
-    - name: probability
-      title: 'Probability'
-      type: Number
-      default: 0.50
 
     - name: n
       title: 'Sample Size'

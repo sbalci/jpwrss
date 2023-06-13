@@ -1,6 +1,6 @@
 ---
 name:  treg
-title: Linear Regression Single Coefficient (t or z Test)
+title: Linear Regression Coef (t Test)
 menuGroup: jpwrss
 menuSubgroup: Regression
 version: '1.0.0'
@@ -17,6 +17,23 @@ options:
           name: selectsamplesize
       default: selectpower
     
+    # not in the function per se
+    - name: predictor
+        title: 'Alternative Hypothesis'
+        type: List
+        options:
+            - title: Continuous
+            name: continuous
+            - title: Binary
+            name: binary
+        default: continuous
+        
+    # title conditional on 'stdbeta = false'
+    - name: p
+      title: 'Sampling Rate for Binary Predictor'
+      type: Number
+      default: 0.50
+      
     # not in the function per se
     - name: stdinput
       title: "Standardized Input?"

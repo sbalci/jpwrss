@@ -1,4 +1,4 @@
-title: Linear Regression Single Coefficient (t or z Test)
+title: Linear Regression Coef (t Test)
 name: treg
 jus: '3.0'
 stage: 0
@@ -9,73 +9,99 @@ children:
     children:
       - type: ComboBox
         name: calculate
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: CheckBox
+        name: predictor
+        
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: CheckBox
+        name: p 
+        format: number
+        enable: '(predictor:binary)'        
+        
   - type: LayoutBox
     margin: large
     children:
       - type: CheckBox
         name: stdinput
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: beta1
         format: number
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: beta0
         format: number
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: margin
         format: number
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: sdx
         format: number
+        enable: '(stdinput:true & predictor:continuous)' 
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: sdy
         format: number
+        enable: '(stdinput:true)' 
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: k
         format: number
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: r2
         format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: power
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: alpha
-        format: number
+        
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: alternative
-  - type: LayoutBox
-    margin: large
+        
+ - type: Label
+    label: Alpha, Power, Sample Size
+    fitToGrid: true
     children:
-      - type: TextBox
-        name: 'n'
-        format: number
+     - type: LayoutBox
+       margin: large
+       children:
+         - type: TextBox
+           name: alpha
+           format: number
+         - type: TextBox
+           name: power
+           format: number
+           enable: '(calculate:selectsamplesize)'
+         - type: TextBox
+           name: 'n'
+           format: number
+           enable: '(calculate:selectpower)'

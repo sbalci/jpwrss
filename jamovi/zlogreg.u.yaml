@@ -1,4 +1,4 @@
-title: Logistic Regression Single Coefficient (Large Sample Approx Wald’s z Test)
+title: Logistic Regression Coef (z Test))
 name: zlogreg
 jus: '3.0'
 stage: 0
@@ -9,143 +9,133 @@ children:
     children:
       - type: ComboBox
         name: calculate
+        
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: typeinput
-  - type: LayoutBox
-    margin: large
+        
+        
+   - type: Label
+    label: Estimate
+    fitToGrid: true
     children:
-      - type: TextBox
-        name: p0
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: p1
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: oddsratio
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: beta1
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: beta0
-        format: number
+     - type: LayoutBox
+       margin: large
+       children:
+         - type: TextBox
+            name: p0
+            format: number
+            enable: '(!typeinput:regcoef)'
+        - type: TextBox
+            name: p1
+            format: number
+            enable: '(typeinput:prob)' 
+        - type: TextBox
+            name: oddsratio
+            format: number
+            enable: '(typeinput:oddsratio)'
+        - type: TextBox
+            name: beta1
+            format: number
+            enable: '(typeinput:regcoef)'
+        - type: TextBox
+            name: beta0
+            format: number
+            enable: '(typeinput:regcoef)'  
+        
+        
+
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: r2otherx
         format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: power
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: alpha
-        format: number
+        
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: alternative
+        
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: method
+        
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: distribution
-  - type: LayoutBox
-    margin: large
+
+ - type: Label
+    label: Distribution Parameters
+    fitToGrid: true
     children:
-      - type: TextBox
-        name: mean
-        format: number
-  - type: LayoutBox
-    margin: large
+     - type: LayoutBox
+       margin: large
+       children:
+        - type: TextBox
+            name: mean
+            format: number
+            enable: '(distribution:normal)' 
+        - type: TextBox
+            name: sd
+            format: number
+            enable: '(distribution:normal)' 
+        - type: TextBox
+            name: min
+            format: number
+            enable: '(distribution:uniform)' 
+        - type: TextBox
+            name: max
+            format: number
+            enable: '(distribution:uniform)' 
+        - type: TextBox
+            name: size
+            format: number
+            enable: '(distribution:binomial)' 
+        - type: TextBox
+            name: prob
+            format: number
+            enable: '(distribution:binomial & distribution:bernoulli)' 
+        - type: TextBox
+            name: meanlog
+            format: number
+            enable: '(distribution:lognormal)' 
+        - type: TextBox
+            name: sdlog
+            format: number
+            enable: '(distribution:lognormal)' 
+        - type: TextBox
+            name: lambda
+            format: number
+            enable: '(distribution:poisson)' 
+        - type: TextBox
+            name: rate
+            format: number
+            enable: '(distribution:exponential)' 
+
+ - type: Label
+    label: Alpha, Power, Sample Size
+    fitToGrid: true
     children:
-      - type: TextBox
-        name: sd
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: min
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: max
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: size
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: prob
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: meanlo
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: sdlog
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: lambda
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: rate
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: probability
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: 'n'
-        format: number
+     - type: LayoutBox
+       margin: large
+       children:
+         - type: TextBox
+           name: alpha
+           format: number
+         - type: TextBox
+           name: power
+           format: number
+           enable: '(calculate:selectsamplesize)'
+         - type: TextBox
+           name: 'n'
+           format: number
+           enable: '(calculate:selectpower)'
