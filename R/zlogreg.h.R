@@ -25,7 +25,7 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             max = 1,
             size = 1,
             prob = 0.5,
-            meanlo = 0,
+            meanlog = 0,
             sdlog = 1,
             lambda = 1,
             rate = 1,
@@ -98,14 +98,14 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 method,
                 options=list(
                     "demidenko(vc)",
-                    "demidenko",
-                    "hsieh"),
+                    "demidenko"),
                 default="demidenko(vc)")
             private$..distribution <- jmvcore::OptionList$new(
                 "distribution",
                 distribution,
                 options=list(
                     "normal",
+					"lognormal",
                     "poisson",
                     "uniform",
                     "exponential",
@@ -136,9 +136,9 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "prob",
                 prob,
                 default=0.5)
-            private$..meanlo <- jmvcore::OptionNumber$new(
-                "meanlo",
-                meanlo,
+            private$..meanlog <- jmvcore::OptionNumber$new(
+                "meanlog",
+                meanlog,
                 default=0)
             private$..sdlog <- jmvcore::OptionNumber$new(
                 "sdlog",
@@ -180,7 +180,7 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..max)
             self$.addOption(private$..size)
             self$.addOption(private$..prob)
-            self$.addOption(private$..meanlo)
+            self$.addOption(private$..meanlog)
             self$.addOption(private$..sdlog)
             self$.addOption(private$..lambda)
             self$.addOption(private$..rate)
@@ -207,7 +207,7 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         max = function() private$..max$value,
         size = function() private$..size$value,
         prob = function() private$..prob$value,
-        meanlo = function() private$..meanlo$value,
+        meanlog = function() private$..meanlog$value,
         sdlog = function() private$..sdlog$value,
         lambda = function() private$..lambda$value,
         rate = function() private$..rate$value,
@@ -233,7 +233,7 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..max = NA,
         ..size = NA,
         ..prob = NA,
-        ..meanlo = NA,
+        ..meanlog = NA,
         ..sdlog = NA,
         ..lambda = NA,
         ..rate = NA,
@@ -253,17 +253,17 @@ zlogregResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="Logistic Regression Single Coefficient (Large Sample Approx Wald’s z Test)",
+                title="Logistic Regression Coef (z Test)",
                 refs=list(
                     "pwrss"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="One Proportion z test"))
+                title="Logistic Regression Coef (z Test)"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="A proportion against a Constant (z Test)",
+                title="Logistic Regression Coef (z Test)",
                 renderFun=".plot"))}))
 
 zlogregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -283,8 +283,7 @@ zlogregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 revision = revision,
                 pause = NULL,
                 completeWhenFilled = FALSE,
-                requiresMissings = FALSE,
-                weightsSupport = 'na')
+                requiresMissings = FALSE)
         }))
 
 #' Logistic Regression Single Coefficient (Large Sample Approx Wald’s z Test)
@@ -309,7 +308,7 @@ zlogregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param max .
 #' @param size .
 #' @param prob .
-#' @param meanlo .
+#' @param meanlog .
 #' @param sdlog .
 #' @param lambda .
 #' @param rate .
@@ -342,7 +341,7 @@ zlogreg <- function(
     max = 1,
     size = 1,
     prob = 0.5,
-    meanlo = 0,
+    meanlog = 0,
     sdlog = 1,
     lambda = 1,
     rate = 1,
@@ -373,7 +372,7 @@ zlogreg <- function(
         max = max,
         size = size,
         prob = prob,
-        meanlo = meanlo,
+        meanlog = meanlog,
         sdlog = sdlog,
         lambda = lambda,
         rate = rate,
