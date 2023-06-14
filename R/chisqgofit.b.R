@@ -9,66 +9,76 @@ chisqgofitClass <-
             inherit = chisqgofitBase,
             private = list(
                 .run = function() {
+				
+                    calculate <- self$options$calculate
+					typeinput <- self$options$typeinput
+					p1 <- self$options$p1
+					w <- self$options$w
+                    df <- self$options$df
+					alpha <- self$options$alpha
+                    power <- NULL
+                    n <- NULL
                     
                     
-                    prob.mat <- c(0.28, 0.72)
-                    pwrss.chisq.gofit(p1 = c(0.28, 0.72),
-                                      p0 = c(0.50, 0.50),
-                                      alpha = 0.05, power = 0.80)
+					if (calculate == "selectpower") {
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.chisq.gofit(w = 0.44, df = 1,
-                                      alpha = 0.05, power = 0.80)
+                       n <- self$options$n
+						
+						if(typeinput == "stdeff") {
+							results_1 <- pwrss::pwrss.chisq.gofit(
+								w = w,
+								df = df,
+								alpha = alpha,
+								n = n
+								)
+						} else {
+							results_1 <- pwrss::pwrss.chisq.gofit(
+								p1 = p1,
+								alpha = alpha,
+								n = n
+								)
+						}
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    prob.mat <- rbind(c(0.056, 0.132),
-                                      c(0.944, 0.868))
-                    colnames(prob.mat) <- c("Girl", "Boy")
-                    rownames(prob.mat) <- c("ADHD", "No ADHD")
-                    prob.mat
-                    pwrss.chisq.gofit(p1 = prob.mat,
-                                      alpha = 0.05, power = 0.80)
-
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.chisq.gofit(w = 0.1302134, df = 1,
-                                      alpha = 0.05, power = 0.80)
+								
+                    }
 
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    prob.mat <- cbind(c(0.6759, 0.1559, 0.1281, 0.0323, 0.0078),
-                                      c(0.6771, 0.1519, 0.1368, 0.0241, 0.0101))
-                    rownames(prob.mat) <- c("Normal", "Mild", "Moderate", "Severe", "Extremely Severe")
-                    colnames(prob.mat) <- c("Female", "Male")
-                    prob.mat
-                    pwrss.chisq.gofit(p1 = prob.mat,
-                                      alpha = 0.05, power = 0.80)
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    pwrss.chisq.gofit(w = 0.03022008, df = 4,
-                                      alpha = 0.05, power = 0.80)
+                    if (calculate == "selectsamplesize") {
+                        
+						power <- self$options$power
 
+						if(typeinput == "stdeff") {
+							results_1 <- pwrss::pwrss.chisq.gofit(
+								w = w,
+								df = df,
+								alpha = alpha,
+								power = power
+								)
+						} else {
+							results_1 <- pwrss::pwrss.chisq.gofit(
+								p1 = p1,
+								alpha = alpha,
+								power = power
+								)
+						}
+
+                    }
+					
+					
                     
+                    results_2 <-  paste0(
+						"H0: w = 0 \n HA: w > 0 \n",
+						"------------------------------ \n",
+						" Statistical power =", round(as.numeric(results_1[["power"]]), 3), "\n",
+						" n =",  ceiling(results_1[["n"]]), "\n",
+						"------------------------------ \n",
+						"Alternative =", dQuote(alternative),"\n",
+						"Non-centrality parameter =", round(results_1[["ncp"]], 3), "\n",
+						"Type I error rate =", round(as.numeric(alpha), 3), "\n",
+						"Type II error rate =", round(1 - as.numeric(results_1[["power"]]), 3), "\n"
+						)
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    pwrss.chisq.gofit(
-                        p1 = c(0.50, 0.50),
-                        p0 = .chisq.fun(p1)$p0,
-                        w = .chisq.fun(p1)$w,
-                        df = .chisq.fun(p1)$df,
-                        n = NULL,
-                        power = NULL,
-                        alpha = 0.05,
-                        verbose = TRUE
-                    )
 
                     # self$results$text1$setContent(print(results_1))
 

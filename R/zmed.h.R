@@ -7,7 +7,9 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(
             calculate = "selectpower",
+			predictor = "continuous",
             stdinput = FALSE,
+			p = 0.50,
             a = 0.25,
             b = 0,
             cp = 0,
@@ -15,11 +17,9 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             sdx = 1,
             sdm = 1,
             r2y = 0,
-            r2m = 0,
             power = 0.8,
             alpha = 0.05,
             alternative = "not equal",
-            mc = FALSE,
             n = 200, ...) {
 
             super$initialize(
@@ -35,10 +35,18 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
-            private$..stdinput <- jmvcore::OptionBool$new(
+            private$..predictor <- jmvcore::OptionBool$new(
+                "predictor",
+                predictor,
+                default="continuous")
+			private$..stdinput <- jmvcore::OptionBool$new(
                 "stdinput",
                 stdinput,
                 default=FALSE)
+			private$..p <- jmvcore::OptionNumber$new(
+                "p",
+                p,
+                default=0.50)
             private$..a <- jmvcore::OptionNumber$new(
                 "a",
                 a,
@@ -67,10 +75,6 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "r2y",
                 r2y,
                 default=0)
-            private$..r2m <- jmvcore::OptionNumber$new(
-                "r2m",
-                r2m,
-                default=0)
             private$..power <- jmvcore::OptionNumber$new(
                 "power",
                 power,
@@ -87,17 +91,15 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "greater",
                     "less"),
                 default="not equal")
-            private$..mc <- jmvcore::OptionBool$new(
-                "mc",
-                mc,
-                default=FALSE)
             private$..n <- jmvcore::OptionNumber$new(
                 "n",
                 n,
                 default=200)
 
             self$.addOption(private$..calculate)
+			self$.addOption(private$..predictor)
             self$.addOption(private$..stdinput)
+			self$.addOption(private$..p)
             self$.addOption(private$..a)
             self$.addOption(private$..b)
             self$.addOption(private$..cp)
@@ -105,16 +107,16 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..sdx)
             self$.addOption(private$..sdm)
             self$.addOption(private$..r2y)
-            self$.addOption(private$..r2m)
             self$.addOption(private$..power)
             self$.addOption(private$..alpha)
             self$.addOption(private$..alternative)
-            self$.addOption(private$..mc)
             self$.addOption(private$..n)
         }),
     active = list(
         calculate = function() private$..calculate$value,
+		predictor = function() private$..predictor$value,
         stdinput = function() private$..stdinput$value,
+		p = function() private$..p$value,
         a = function() private$..a$value,
         b = function() private$..b$value,
         cp = function() private$..cp$value,
@@ -122,15 +124,15 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         sdx = function() private$..sdx$value,
         sdm = function() private$..sdm$value,
         r2y = function() private$..r2y$value,
-        r2m = function() private$..r2m$value,
         power = function() private$..power$value,
         alpha = function() private$..alpha$value,
         alternative = function() private$..alternative$value,
-        mc = function() private$..mc$value,
         n = function() private$..n$value),
     private = list(
         ..calculate = NA,
+		..predictor = NA,
         ..stdinput = NA,
+		..p = NA,
         ..a = NA,
         ..b = NA,
         ..cp = NA,
@@ -138,11 +140,9 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..sdx = NA,
         ..sdm = NA,
         ..r2y = NA,
-        ..r2m = NA,
         ..power = NA,
         ..alpha = NA,
         ..alternative = NA,
-        ..mc = NA,
         ..n = NA)
 )
 
@@ -158,17 +158,17 @@ zmedResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)",
+                title="Mediation (Sobel's z Test)",
                 refs=list(
                     "pwrss"))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="One Proportion z test"))
+                title="Mediation (Sobel's z Test)"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="A proportion against a Constant (z Test)",
+                title="Mediation (Sobel's z Test)",
                 renderFun=".plot"))}))
 
 zmedBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -188,8 +188,7 @@ zmedBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 revision = revision,
                 pause = NULL,
                 completeWhenFilled = FALSE,
-                requiresMissings = FALSE,
-                weightsSupport = 'na')
+                requiresMissings = FALSE)
         }))
 
 #' Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)
@@ -219,7 +218,9 @@ zmedBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @export
 zmed <- function(
     calculate = "selectpower",
+	predictor = "continuous",
     stdinput = FALSE,
+	p = 0.50,
     a = 0.25,
     b = 0,
     cp = 0,
@@ -227,11 +228,9 @@ zmed <- function(
     sdx = 1,
     sdm = 1,
     r2y = 0,
-    r2m = 0,
     power = 0.8,
     alpha = 0.05,
     alternative = "not equal",
-    mc = FALSE,
     n = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
@@ -240,7 +239,9 @@ zmed <- function(
 
     options <- zmedOptions$new(
         calculate = calculate,
+		predictor = predictor,
         stdinput = stdinput,
+		p = p,
         a = a,
         b = b,
         cp = cp,
@@ -248,11 +249,9 @@ zmed <- function(
         sdx = sdx,
         sdm = sdm,
         r2y = r2y,
-        r2m = r2m,
         power = power,
         alpha = alpha,
         alternative = alternative,
-        mc = mc,
         n = n)
 
     analysis <- zmedClass$new(

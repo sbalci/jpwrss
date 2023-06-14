@@ -115,11 +115,11 @@ chisqgofitResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="text2",
-                title="One Proportion z test"))
+                title="Goodness-of-Fit or Independence (Chi-square Test)"))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="A proportion against a Constant (z Test)",
+                title="Goodness-of-Fit or Independence (Chi-square Test)",
                 renderFun=".plot"))}))
 
 chisqgofitBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -139,8 +139,7 @@ chisqgofitBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 revision = revision,
                 pause = NULL,
                 completeWhenFilled = FALSE,
-                requiresMissings = FALSE,
-                weightsSupport = 'na')
+                requiresMissings = FALSE)
         }))
 
 #' Goodness-of-Fit or Independence (Chi-square Test)

@@ -10,82 +10,87 @@ zmedClass <-
             private = list(
                 .run = function() {
                     
+                    calculate <- self$options$calculate
+					predictor <- self$options$predictor
+					stdinput <- self$options$stdinput
+					p <- self$options$p
+                    a <- self$options$a
+                    b <- self$options$b
+					cp <- self$options$cp
+					if(predictor == "binary") {sdx <- sqrt(p * (1 - p))}
+					if(predictor == "continuous") {sdx <- self$options$sdx}
+					sdm <- self$options$sdm
+					sdy <- self$options$sdy
+					r2m.x <- self$options$r2m
+					r2y.mx <- self$options$r2y
+					alpha <- self$options$alpha
+					alternative <- self$options$alternative
+                    power <- NULL
+                    n <- NULL
                     
-                    
-                    pwrss.z.med(a = 0.25, b = 0.25, cp = 0.10,
-                                power = 0.80, alpha = 0.05)
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    # base R-squared values are 0 (zero)
-                    # do not specify 'cp'
-                    pwrss.z.med(a = 0.25, b = 0.25,
-                                r2m = 0, r2y = 0,
-                                power = 0.80, alpha = 0.05)
+                    if (calculate == "selectpower") {
 
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    p <- 0.50 # proportion of subjects in one of the groups
-                    pwrss.z.med(a = 0.25, b = 0.25, cp = 0.10,
-                                sdx = sqrt(p*(1-p)),
-                                power = 0.80, alpha = 0.05)
-
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    # binary X
-                    p <- 0.50 # proportion of subjects in one of the groups
-                    pwrss.z.med(a = 0.25, b = 0.25, cp = 0.10,
-                                sdx = sqrt(p*(1-p)),
-                                n = 300, alpha = 0.05)
-
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    # continuous X
-                    pwrss.z.med(a = 0.25, b = 0.25, cp = 0.10,
-                                r2m = 0.50, r2y = 0.50,
-                                power = 0.80, alpha = 0.05)
-
-                    ## ---- message = FALSE, fig.width = 7, fig.height = 5, results = TRUE----------
-                    # binary X
-                    p <- 0.50 # proportion of subjects in one of the groups
-                    pwrss.z.med(a = 0.25, b = 0.25, cp = 0.10,
-                                sdx = sqrt(p*(1-p)), r2y = 0.50,
-                                power = 0.80, alpha = 0.05)
-                    
-                    
-                    
-                    
-                    
-                    
-                    design3 <- pwrss.z.med(a = 0.10, b = 0.20, cp = 0.10,
-                                           power = .80, alpha = 0.05)
-                    plot(design3)
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    pwrss.z.med(
-                        a,
-                        b,
-                        cp = 0,
-                        sdx = 1,
-                        sdm = 1,
-                        sdy = 1,
-                        r2m.x = a ^ 2 * sdx ^ 2 / sdm ^ 2,
-                        r2y.mx = (b ^ 2 * sdm ^ 2 + cp ^ 2 * sdx ^ 2) / sdy ^
-                            2,
-                        n = NULL,
-                        power = NULL,
-                        alpha = 0.05,
-                        alternative = c("not equal", "less", "greater"),
-                        mc = TRUE,
-                        nsims = 1000,
-                        ndraws = 1000,
-                        verbose = TRUE
-                    )
+                       n <- self$options$n
+						
+						results_1 <- pwrss::pwrss.z.med(
+								a = a,
+								b = b,
+								cp = cp,
+								sdx = sdx,
+								sdm = sdm,
+								sdy = sdy,
+								r2m.x = r2m.x,
+								r2y.mx = r2y.mx,
+								alpha = alpha,
+								alternative = alternative,
+								n = n,
+								mc = FALSE
+								)
+								
+                    }
 
 
 
+
+                    if (calculate == "selectsamplesize") {
+                        
+						power <- self$options$power
+
+						results_1 <- pwrss::pwrss.z.med(
+								a = a,
+								b = b,
+								cp = cp,
+								sdx = sdx,
+								sdm = sdm,
+								sdy = sdy,
+								r2m.x = r2m.x,
+								r2y.mx = r2y.mx,
+								alpha = alpha,
+								alternative = alternative,
+								power = power,
+								mc = FALSE
+								)
+
+                    }
+                    
+                   
+
+
+					results_2 <-  paste0(
+						switch(alternative,
+							`not equal` = "H0: a * b = 0 \n HA: a * b != 0 \n",
+							`greater` = "H0: a * b <= 0 \n HA: a * b > 0 \n",
+							`less` = "H0: a * b >= 0 \n HA: a * b < 0 \n"),
+						"------------------------------ \n",
+						" Statistical power (Sobel) =", round(as.numeric(results_1[["power"]][[1]]), 3), "\n",
+						" n (Sobel) =",  ceiling(results_1[["n"]][[1]]), "\n",
+						"------------------------------ \n",
+						"Alternative =", dQuote(alternative),"\n",
+						"Non-centrality parameter =", round(results_1[["ncp"]][[1]], 3), "\n",
+						"Type I error rate =", round(as.numeric(alpha), 3), "\n",
+						"Type II error rate =", round(1 - as.numeric(results_1[["power"]][[1]]), 3), "\n"
+						)
 
 
 
