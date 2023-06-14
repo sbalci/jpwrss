@@ -10,12 +10,12 @@ items:
 
 
     - name:  text2
-      title: One Proportion z test
+      title: Goodness-of-Fit or Independence (Chi-square Test)
       type:  Preformatted
 
 
     - name: plot
-      title: 'A proportion against a Constant (z Test)'
+      title: Goodness-of-Fit or Independence (Chi-square Test)
       type: Image
       renderFun: .plot
 
