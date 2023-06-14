@@ -1,6 +1,6 @@
 ---
 name:  zmed
-title: Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)
+title: Mediation (Sobel's z Test)
 menuSubgroup: Mediation
 menuGroup: jpwrss
 version: '1.0.0'
@@ -16,12 +16,30 @@ options:
         - title: Sample Size
           name: selectsamplesize
       default: selectpower
+      
+    - name: predictor
+      title: 'Predictor'
+      type: List
+      options:
+        - title: Binary
+          name: binary
+        - title: Continuous
+          name: continuous
+      default: continuous
 
     # not in the function per se
     - name: stdinput
       title: "Standardized Input?"
       type: Bool
       default: false 
+      
+      
+    # conditional on predictor = 'continuous'
+    - name: p
+      # title: 'Standardized Regression Coefficient for X -> M (Path a)'
+      title: 'Sampling Rate for Predictor X'
+      type: Number
+      default: 0.50
       
     # title conditional on 'stdbeta = false'
     - name: a
@@ -69,11 +87,7 @@ options:
       title: 'Expected (Adj) R-squared for the Outcome Model'
       type: Number
       default: 0
-      
-    - name: r2m
-      title: 'Expected (Adj) R-squared for the Mediator Model'
-      type: Number
-      default: 0
+     
 
     - name: power
       title: 'Statistical Power (1- Beta)'
@@ -97,11 +111,6 @@ options:
           name: less
       default: not equal
     
-    # conditional on 'calculate == selectpower'
-    - name: mc
-      title: "Monte Carlo Power"
-      type: Bool
-      default: false 
       
     - name: n
       title: 'Sample Size'
