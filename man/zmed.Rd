@@ -2,11 +2,13 @@
 % Please edit documentation in R/zmed.h.R
 \name{zmed}
 \alias{zmed}
-\title{Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)}
+\title{Mediation (Sobel's z Test)}
 \usage{
 zmed(
   calculate = "selectpower",
+  predictor = "continuous",
   stdinput = FALSE,
+  p = 0.5,
   a = 0.25,
   b = 0,
   cp = 0,
@@ -14,18 +16,20 @@ zmed(
   sdx = 1,
   sdm = 1,
   r2y = 0,
-  r2m = 0,
   power = 0.8,
   alpha = 0.05,
   alternative = "not equal",
-  mc = FALSE,
   n = 200
 )
 }
 \arguments{
 \item{calculate}{.}
 
+\item{predictor}{.}
+
 \item{stdinput}{.}
+
+\item{p}{.}
 
 \item{a}{.}
 
@@ -41,15 +45,11 @@ zmed(
 
 \item{r2y}{.}
 
-\item{r2m}{.}
-
 \item{power}{.}
 
 \item{alpha}{.}
 
 \item{alternative}{.}
-
-\item{mc}{.}
 
 \item{n}{.}
 }
@@ -61,5 +61,5 @@ A results object containing:
 }
 }
 \description{
-Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)
+Mediation (Sobel's z Test)
 }

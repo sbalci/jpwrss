@@ -14,39 +14,39 @@ children:
     children:
       - type: ComboBox
         name: typeinput
-        
+
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: w
         format: number
-        enable: '(typeinput:stdeff)' 
+        enable: '(typeinput:stdeff)'
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: df
         format: number
-        enable: '(typeinput:stdeff)' 
-        
+        enable: '(typeinput:stdeff)'
+
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: nrow
         format: number
-        enable: '(typeinput:cellprob)' 
+        enable: '(typeinput:cellprob)'
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: ncol
         format: number
-        enable: '(typeinput:cellprob)' 
+        enable: '(typeinput:cellprob)'
 
 
- - type: Label
+  - type: Label
     label: Alpha, Power, Sample Size
     fitToGrid: true
     children:

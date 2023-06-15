@@ -1,14 +1,14 @@
 ---
 title: Jamovi Module for Statistical Power and Sample Size Calculation Tools
 name: jpwrss
-version: 0.0.0.15
+version: 0.0.0.16
 jms: '1.0'
 authors:
   - Metin Bulus
   - Serdar Balci
   - Maurizio Agosti
 Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
-date: '2023-06-13'
+date: '2023-06-15'
 type: R
 description: >-
   Wrapper `jamovi` Module for `pwrss` Package Statistical power and minimum
@@ -149,11 +149,11 @@ analyses:
     menuGroup: jpwrss
     menuTitle: Logistic Regression Coef (z Test)
     menuSubgroup: Regression
-  - title: 'Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)'
+  - title: Mediation (Sobel's z Test)
     name: zmed
     ns: jpwrss
     menuGroup: jpwrss
-    menuTitle: 'Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)'
+    menuTitle: Mediation (Sobel's z Test)
     menuSubgroup: Mediation
   - title: Poisson Regression Coef (z Test)
     name: zpoisreg

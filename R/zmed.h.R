@@ -7,9 +7,9 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(
             calculate = "selectpower",
-			predictor = "continuous",
+            predictor = "continuous",
             stdinput = FALSE,
-			p = 0.50,
+            p = 0.5,
             a = 0.25,
             b = 0,
             cp = 0,
@@ -35,18 +35,21 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
-            private$..predictor <- jmvcore::OptionBool$new(
+            private$..predictor <- jmvcore::OptionList$new(
                 "predictor",
                 predictor,
+                options=list(
+                    "binary",
+                    "continuous"),
                 default="continuous")
-			private$..stdinput <- jmvcore::OptionBool$new(
+            private$..stdinput <- jmvcore::OptionBool$new(
                 "stdinput",
                 stdinput,
                 default=FALSE)
-			private$..p <- jmvcore::OptionNumber$new(
+            private$..p <- jmvcore::OptionNumber$new(
                 "p",
                 p,
-                default=0.50)
+                default=0.5)
             private$..a <- jmvcore::OptionNumber$new(
                 "a",
                 a,
@@ -97,9 +100,9 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 default=200)
 
             self$.addOption(private$..calculate)
-			self$.addOption(private$..predictor)
+            self$.addOption(private$..predictor)
             self$.addOption(private$..stdinput)
-			self$.addOption(private$..p)
+            self$.addOption(private$..p)
             self$.addOption(private$..a)
             self$.addOption(private$..b)
             self$.addOption(private$..cp)
@@ -114,9 +117,9 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         }),
     active = list(
         calculate = function() private$..calculate$value,
-		predictor = function() private$..predictor$value,
+        predictor = function() private$..predictor$value,
         stdinput = function() private$..stdinput$value,
-		p = function() private$..p$value,
+        p = function() private$..p$value,
         a = function() private$..a$value,
         b = function() private$..b$value,
         cp = function() private$..cp$value,
@@ -130,9 +133,9 @@ zmedOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         n = function() private$..n$value),
     private = list(
         ..calculate = NA,
-		..predictor = NA,
+        ..predictor = NA,
         ..stdinput = NA,
-		..p = NA,
+        ..p = NA,
         ..a = NA,
         ..b = NA,
         ..cp = NA,
@@ -188,14 +191,17 @@ zmedBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 revision = revision,
                 pause = NULL,
                 completeWhenFilled = FALSE,
-                requiresMissings = FALSE)
+                requiresMissings = FALSE,
+                weightsSupport = 'na')
         }))
 
-#' Indirect Effect in Mediation Analysis (z, Joint, and Monte Carlo Tests)
+#' Mediation (Sobel's z Test)
 #'
 #' 
 #' @param calculate .
+#' @param predictor .
 #' @param stdinput .
+#' @param p .
 #' @param a .
 #' @param b .
 #' @param cp .
@@ -203,11 +209,9 @@ zmedBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param sdx .
 #' @param sdm .
 #' @param r2y .
-#' @param r2m .
 #' @param power .
 #' @param alpha .
 #' @param alternative .
-#' @param mc .
 #' @param n .
 #' @return A results object containing:
 #' \tabular{llllll}{
@@ -218,9 +222,9 @@ zmedBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @export
 zmed <- function(
     calculate = "selectpower",
-	predictor = "continuous",
+    predictor = "continuous",
     stdinput = FALSE,
-	p = 0.50,
+    p = 0.5,
     a = 0.25,
     b = 0,
     cp = 0,
@@ -239,9 +243,9 @@ zmed <- function(
 
     options <- zmedOptions$new(
         calculate = calculate,
-		predictor = predictor,
+        predictor = predictor,
         stdinput = stdinput,
-		p = p,
+        p = p,
         a = a,
         b = b,
         cp = cp,
