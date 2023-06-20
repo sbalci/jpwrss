@@ -7,7 +7,6 @@
 fancova(
   calculate = "selectpower",
   eta2 = 0.01,
-  f2 = 0.01,
   covadj = FALSE,
   ncov = 1,
   nway = "1",
@@ -23,8 +22,6 @@ fancova(
 \item{calculate}{.}
 
 \item{eta2}{.}
-
-\item{f2}{.}
 
 \item{covadj}{.}
 

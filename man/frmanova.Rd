@@ -7,7 +7,6 @@
 frmanova(
   calculate = "selectpower",
   eta2 = 0.01,
-  f2 = 0.01,
   corrrm = 0.5,
   nlevels = 2,
   nrm = 2,
@@ -22,8 +21,6 @@ frmanova(
 \item{calculate}{.}
 
 \item{eta2}{.}
-
-\item{f2}{.}
 
 \item{corrrm}{.}
 

@@ -32,7 +32,7 @@ children:
         enable: '(covadj:true)'
 
 
-- type: Label
+  - type: Label
     label: Design
     fitToGrid: true
     children:
