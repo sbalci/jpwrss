@@ -1,7 +1,7 @@
 ---
 title: Jamovi Module for Statistical Power and Sample Size Calculation Tools
 name: jpwrss
-version: 0.0.0.17
+version: 0.0.0.18
 jms: '1.0'
 authors:
   - Metin Bulus
