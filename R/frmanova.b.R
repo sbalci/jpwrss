@@ -10,9 +10,9 @@ frmanovaClass <-
                     
 					calculate <- self$options$calculate
                     eta2 <- self$options$eta2
-                    n.levels <- self$options$nlevels
-					n.rm <- self$options$nrm
-					corr.rm <- self$options$corrrm
+                    nlevels <- self$options$nlevels
+					nrm <- self$options$nrm
+					corrrm <- self$options$corrrm
 					type <- self$options$type
 					epsilon <- self$options$epsilon
                     alpha <- self$options$alpha
@@ -26,9 +26,9 @@ frmanovaClass <-
 
                        results_1 <- pwrss::pwrss.f.rmanova(
 							eta2 = eta2,
-							corr.rm = corr.rm,
-							n.levels = n.levels,
-							n.rm = n.rm,
+							corr.rm = corrrm,
+							n.levels = nlevels,
+							n.rm = nrm,
 							epsilon = epsilon,
 							alpha = alpha,
 							type = type,
@@ -43,9 +43,9 @@ frmanovaClass <-
 
                        results_1 <- pwrss::pwrss.f.rmanova(
 							eta2 = eta2,
-							corr.rm = corr.rm,
-							n.levels = n.levels,
-							n.rm = n.rm,
+							corr.rm = corrrm,
+							n.levels = nlevels,
+							n.rm = nrm,
 							epsilon = epsilon,
 							alpha = alpha,
 							type = type,
@@ -59,10 +59,10 @@ frmanovaClass <-
                                 "H0: eta2 = 0 (or f2 = 0) \n HA: eta2 > 0 (or f2 > 0) \n",
                                 "------------------------------ \n",
                                 "Number of levels (groups) =",
-                                n.levels,
+                                nlevels,
                                 "\n",
                                 "Number of repeated measurements =",
-                                n.rm,
+                                nrm,
                                 "\n",
                                 "------------------------------ \n",
                                 " Statistical power =",

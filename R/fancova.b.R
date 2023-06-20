@@ -13,11 +13,11 @@ fancovaClass <-
                     
                     calculate <- self$options$calculate
                     eta2 <- self$options$eta2
-                    n.way <- self$options$n.way
-					if (nway == "1") {n.levels <- self$options$nlevelsA}
-					if (nway == "2") {n.levels <- c(self$options$nlevelsA, self$options$nlevelsB)}
-					if (nway == "3") {n.levels <- c(self$options$nlevelsA, self$options$nlevelsB, self$options$nlevelsC)}
-					n.covariates <- self$options$n.covariates
+                    nway <- self$options$nway
+					if (nway == "1") {nlevels <- self$options$nlevelsA}
+					if (nway == "2") {nlevels <- c(self$options$nlevelsA, self$options$nlevelsB)}
+					if (nway == "3") {nlevels <- c(self$options$nlevelsA, self$options$nlevelsB, self$options$nlevelsC)}
+					ncov <- self$options$ncov
                     alpha <- self$options$alpha
                     power <- NULL
                     n <- NULL
@@ -27,9 +27,9 @@ fancovaClass <-
                        n <- self$options$n
 
                        results_1 <- pwrss::pwrss.f.ancova(
-							eta2 = 0.01,
-							n.levels = n.levels,
-							n.covariates = n.covariates,
+							eta2 = eta2,
+							n.levels = nlevels,
+							n.covariates = ncov,
 							alpha = alpha,
 							n = n
                     )
@@ -41,9 +41,9 @@ fancovaClass <-
 						power <- self$options$power
 
                         results_1 <- pwrss::pwrss.f.ancova(
-							eta2 = 0.01,
-							n.levels = n.levels,
-							n.covariates = n.covariates,
+							eta2 = eta2,
+							n.levels = nlevels,
+							n.covariates = ncov,
 							alpha = alpha,
 							power = power
                     )
@@ -71,21 +71,21 @@ fancovaClass <-
                                     `1` = c(" Factor A: ", n.levels, " levels \n"),
                                     `2` = c(
                                         " Factor A: ",
-                                        n.levels[1],
+                                        nlevels[1],
                                         " levels \n",
                                         " Factor B: ",
-                                        n.levels[2],
+                                        nlevels[2],
                                         " levels \n"
                                     ),
                                     `3` = c(
                                         " Factor A: ",
-                                        n.levels[1],
+                                        nlevels[1],
                                         " levels \n",
                                         " Factor B: ",
-                                        n.levels[2],
+                                        nlevels[2],
                                         " levels \n",
                                         " Factor C: ",
-                                        n.levels[3],
+                                        nlevels[3],
                                         " levels \n"
                                     )
                                 ),
