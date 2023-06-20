@@ -31,7 +31,6 @@ children:
         format: number
         enable: (covadj)
 
-
   - type: Label
     label: Design
     fitToGrid: true
