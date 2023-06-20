@@ -20,16 +20,10 @@ options:
     # use either 'eta2' or 'f2' 
     # update 'eta2' automatically when 'f2' is defined
     - name: eta2
-      title: 'Expected Eta-square'
+      title: '(Partial) Eta-square'
       type: Number
       default: 0.01
     
-    # update 'f2' automatically when 'eta2' is defined
-    # or remove 'f2'
-    - name: f2
-      title: 'Expected f-square'
-      type: Number
-      default: 0.01
      
     - name: corrrm
       title: "Correlation between Repeated Measures"
@@ -47,7 +41,7 @@ options:
       default: 2
    
     - name: epsilon
-      title: "Non-sperhicity Correction Factor"
+      title: "Non-sphericity Correction Factor"
       type: Number
       default: 0.50
       
