@@ -20,13 +20,6 @@ children:
   - type: LayoutBox
     margin: large
     children:
-      - type: TextBox
-        name: f2
-        format: number
-
-  - type: LayoutBox
-    margin: large
-    children:
       - type: CheckBox
         name: covadj
 
@@ -38,34 +31,28 @@ children:
         format: number
         enable: '(covadj:true)'
 
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: ComboBox
-        name: nway
 
-  - type: LayoutBox
-    margin: large
+- type: Label
+    label: Design
+    fitToGrid: true
     children:
-      - type: TextBox
-        name: nlevelsA
-        format: number
+     - type: LayoutBox
+       margin: large
+       children:
+         - type: ComboBox
+           name: nway
+         - type: TextBox
+           name: nlevelsA
+           format: number
+         - type: TextBox
+           name: nlevelsB
+           format: number
+           enable: '(!nway:1)'
+         - type: TextBox
+           name: nlevelsC
+           format: number
+           enable: '(nway:3)'
 
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: nlevelsB
-        format: number
-        enable: '(!nway:1)'
-
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: nlevelsC
-        format: number
-        enable: '(nway:3)'
 
   - type: Label
     label: Alpha, Power, Sample Size

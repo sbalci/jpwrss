@@ -9,48 +9,43 @@ children:
     children:
       - type: ComboBox
         name: calculate
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: eta2
         format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: f2
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: corrrm
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: nlevels
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: nrm
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: epsilon
-        format: number
+        
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: type
+           
   
+  - type: Label
+    label: Design
+    fitToGrid: true
+    children:
+     - type: LayoutBox
+       margin: large
+       children:
+         - type: TextBox
+           name: nlevels
+           format: number
+         - type: TextBox
+           name: nrm
+           format: number
+         - type: TextBox
+           name: corrrm
+           format: number
+           enable: '(!nrm:1)'
+         - type: TextBox
+           name: epsilon
+           format: number
+           enable: '(!nrm:1)'
+             
   
   - type: Label
     label: Alpha, Power, Sample Size
