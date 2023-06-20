@@ -29,8 +29,7 @@ children:
       - type: TextBox
         name: ncov
         format: number
-        enable: '(covadj)'
-
+        enable: (covadj)
 
   - type: Label
     label: Design
@@ -47,11 +46,11 @@ children:
          - type: TextBox
            name: nlevelsB
            format: number
-           enable: '(!nway:1)'
+           enable: (!nway:1)
          - type: TextBox
            name: nlevelsC
            format: number
-           enable: '(nway:3)'
+           enable: (nway:3)
 
 
   - type: Label
@@ -67,8 +66,8 @@ children:
          - type: TextBox
            name: power
            format: number
-           enable: '(calculate:selectsamplesize)'
+           enable: (calculate:selectsamplesize)
          - type: TextBox
            name: 'n'
            format: number
-           enable: '(calculate:selectpower)'
+           enable: (calculate:selectpower)
