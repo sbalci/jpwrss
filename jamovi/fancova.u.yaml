@@ -29,7 +29,7 @@ children:
       - type: TextBox
         name: ncov
         format: number
-        enable: '(covadj:true)'
+        enable: '(covadj)'
 
 
   - type: Label
