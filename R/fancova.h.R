@@ -8,7 +8,6 @@ fancovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         initialize = function(
             calculate = "selectpower",
             eta2 = 0.01,
-            f2 = 0.01,
             covadj = FALSE,
             ncov = 1,
             nway = "1",
@@ -35,10 +34,6 @@ fancovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..eta2 <- jmvcore::OptionNumber$new(
                 "eta2",
                 eta2,
-                default=0.01)
-            private$..f2 <- jmvcore::OptionNumber$new(
-                "f2",
-                f2,
                 default=0.01)
             private$..covadj <- jmvcore::OptionBool$new(
                 "covadj",
@@ -83,7 +78,6 @@ fancovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 
             self$.addOption(private$..calculate)
             self$.addOption(private$..eta2)
-            self$.addOption(private$..f2)
             self$.addOption(private$..covadj)
             self$.addOption(private$..ncov)
             self$.addOption(private$..nway)
@@ -97,7 +91,6 @@ fancovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     active = list(
         calculate = function() private$..calculate$value,
         eta2 = function() private$..eta2$value,
-        f2 = function() private$..f2$value,
         covadj = function() private$..covadj$value,
         ncov = function() private$..ncov$value,
         nway = function() private$..nway$value,
@@ -110,7 +103,6 @@ fancovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     private = list(
         ..calculate = NA,
         ..eta2 = NA,
-        ..f2 = NA,
         ..covadj = NA,
         ..ncov = NA,
         ..nway = NA,
@@ -173,7 +165,6 @@ fancovaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' 
 #' @param calculate .
 #' @param eta2 .
-#' @param f2 .
 #' @param covadj .
 #' @param ncov .
 #' @param nway .
@@ -193,7 +184,6 @@ fancovaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 fancova <- function(
     calculate = "selectpower",
     eta2 = 0.01,
-    f2 = 0.01,
     covadj = FALSE,
     ncov = 1,
     nway = "1",
@@ -211,7 +201,6 @@ fancova <- function(
     options <- fancovaOptions$new(
         calculate = calculate,
         eta2 = eta2,
-        f2 = f2,
         covadj = covadj,
         ncov = ncov,
         nway = nway,

@@ -8,7 +8,6 @@ frmanovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         initialize = function(
             calculate = "selectpower",
             eta2 = 0.01,
-            f2 = 0.01,
             corrrm = 0.5,
             nlevels = 2,
             nrm = 2,
@@ -34,10 +33,6 @@ frmanovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..eta2 <- jmvcore::OptionNumber$new(
                 "eta2",
                 eta2,
-                default=0.01)
-            private$..f2 <- jmvcore::OptionNumber$new(
-                "f2",
-                f2,
                 default=0.01)
             private$..corrrm <- jmvcore::OptionNumber$new(
                 "corrrm",
@@ -78,7 +73,6 @@ frmanovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 
             self$.addOption(private$..calculate)
             self$.addOption(private$..eta2)
-            self$.addOption(private$..f2)
             self$.addOption(private$..corrrm)
             self$.addOption(private$..nlevels)
             self$.addOption(private$..nrm)
@@ -91,7 +85,6 @@ frmanovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     active = list(
         calculate = function() private$..calculate$value,
         eta2 = function() private$..eta2$value,
-        f2 = function() private$..f2$value,
         corrrm = function() private$..corrrm$value,
         nlevels = function() private$..nlevels$value,
         nrm = function() private$..nrm$value,
@@ -103,7 +96,6 @@ frmanovaOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     private = list(
         ..calculate = NA,
         ..eta2 = NA,
-        ..f2 = NA,
         ..corrrm = NA,
         ..nlevels = NA,
         ..nrm = NA,
@@ -165,7 +157,6 @@ frmanovaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' 
 #' @param calculate .
 #' @param eta2 .
-#' @param f2 .
 #' @param corrrm .
 #' @param nlevels .
 #' @param nrm .
@@ -184,7 +175,6 @@ frmanovaBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 frmanova <- function(
     calculate = "selectpower",
     eta2 = 0.01,
-    f2 = 0.01,
     corrrm = 0.5,
     nlevels = 2,
     nrm = 2,
@@ -201,7 +191,6 @@ frmanova <- function(
     options <- frmanovaOptions$new(
         calculate = calculate,
         eta2 = eta2,
-        f2 = f2,
         corrrm = corrrm,
         nlevels = nlevels,
         nrm = nrm,
