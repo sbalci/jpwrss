@@ -17,6 +17,7 @@ fancovaClass <-
 					if (nway == "1") {nlevels <- self$options$nlevelsA}
 					if (nway == "2") {nlevels <- c(self$options$nlevelsA, self$options$nlevelsB)}
 					if (nway == "3") {nlevels <- c(self$options$nlevelsA, self$options$nlevelsB, self$options$nlevelsC)}
+					covadj <- self$options$covadj
 					ncov <- self$options$ncov
                     alpha <- self$options$alpha
                     power <- NULL
@@ -61,14 +62,14 @@ fancovaClass <-
                                     `3` = "Three"
                                 ),
                                 ifelse(
-                                    ncov > 0,
+                                    covadj == true,
                                     "-way Analysis of Covariance (ANCOVA) \n ",
                                     "-way Analysis of Variance (ANOVA) \n "
                                 ),
                                 " H0: 'eta2' or 'f2' = 0 \n  HA: 'eta2' or 'f2' > 0 \n --------------------------------------\n",
                                 switch(
                                     nway,
-                                    `1` = c(" Factor A: ", n.levels, " levels \n"),
+                                    `1` = c(" Factor A: ", nlevels, " levels \n"),
                                     `2` = c(
                                         " Factor A: ",
                                         nlevels[1],
