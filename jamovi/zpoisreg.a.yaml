@@ -84,17 +84,6 @@ options:
           name: less
       default: not equal
 
-    # may not need to include this, use the function default?
-    - name: method
-      title: 'Method'
-      type: List
-      options:
-        - title: Demidenko (2007)(Variance Corrected)
-          name: demidenko(vc)
-        - title: Demidenko (2007)
-          name: demidenko
-      default: demidenko(vc)
-
     - name: distribution
       title: 'Distribution of the Predictor'
       type: List
@@ -113,7 +102,7 @@ options:
           name: binomial
         - title: Bernoulli
           name: bernoulli
-      default: not equal
+      default: normal
 
     # not in the function per se
     # conditional on 'distribution == normal'

@@ -22,12 +22,6 @@ children:
       - type: TextBox
         name: r2
         format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: f2
-        format: number
 
   - type: LayoutBox
     margin: large
@@ -35,6 +29,7 @@ children:
       - type: TextBox
         name: k
         format: number
+        
   - type: LayoutBox
     margin: large
     children:

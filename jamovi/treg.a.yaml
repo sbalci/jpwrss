@@ -28,7 +28,7 @@ options:
           name: binary
       default: continuous
 
-    # title conditional on 'stdbeta = false'
+    # title conditional on predictor = 'binary'
     - name: p
       title: 'Sampling Rate for Binary Predictor'
       type: Number
