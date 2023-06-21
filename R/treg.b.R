@@ -9,15 +9,38 @@ tregClass <-
                 .run = function() {
 
 					calculate <- self$options$calculate
+					predictor <- self$options$predictor
+					stdinput <- self$options$stdinput
                     beta1 <- self$options$beta1
                     beta0 <- self$options$beta0
-					margin <- self$options$margin
-					p <- self$options$p
-					if (predictor == "binary") {sdx <- sqrt(p * (1 - p))}
-					if (predictor == "continuous") {sdx <- self$options$sdx}
 					k <- self$options$k
 					r2 <- self$options$r2
 					alternative <- self$options$alternative
+						
+					if (stdinput) {
+						if (predictor == "binary") {
+							p <- self$options$p
+							sdx <- sqrt(p * (1 - p))
+						} else {
+							sdx <- 1
+						}
+						sdy <- 1
+					} else {
+						if (predictor == "binary") {
+							p <- self$options$p
+							sdx <- sqrt(p * (1 - p))
+						} else {
+							sdx <- self$options$sdx
+						}
+						sdy <- self$options$sdy
+					}
+
+					if (alternative %in% c("equivalent", "non-inferior", "superior"))) {
+							margin <- self$options$margin
+						} else {
+							margin <- 0
+						}
+						
                     alpha <- self$options$alpha
                     power <- NULL
                     n <- NULL
@@ -86,7 +109,7 @@ tregClass <-
                                 "\n",
                                 "------------------------------ \n",
                                 "Alternative =",
-                                dQuote(results_1[["parms"]][["alternative"]]),
+                                dQuote(alternative),
                                 "\n",
                                 "Degrees of freedom =",
                                  round(results_1[["df"]], 3),

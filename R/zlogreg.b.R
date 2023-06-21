@@ -10,9 +10,6 @@ zlogregClass <-
             private = list(
                 .run = function() {
                     
-					
-					
-					
 					calculate <- self$options$calculate
 					typeinput <- self$options$typeinput
 					p1 <- self$options$p1
@@ -22,7 +19,6 @@ zlogregClass <-
                     beta0 <- self$options$beta0
 					r2.other.x <- self$options$r2otherx
 					alternative <- self$options$alternative
-					method <- self$options$method
 					distribution <- self$options$distribution
 					mean <- self$options$mean
 					sd <- self$options$sd
@@ -61,7 +57,6 @@ zlogregClass <-
 							r2.other.x = r2.other.x,
 							alpha = alpha,
 							alternative = alternative,
-							method = method,
 							distribution = dist,
 							n = n
 							)
@@ -72,7 +67,6 @@ zlogregClass <-
 							r2.other.x = r2.other.x,
 							alpha = alpha,
 							alternative = alternative,
-							method = method,
 							distribution = dist,
 							n = n
 							)
@@ -83,7 +77,6 @@ zlogregClass <-
 							r2.other.x = r2.other.x,
 							alpha = alpha,
 							alternative = alternative,
-							method = method,
 							distribution = dist,
 							n = n
 							)
@@ -109,7 +102,6 @@ zlogregClass <-
 							r2.other.x = r2.other.x,
 							alpha = alpha,
 							alternative = alternative,
-							method = method,
 							distribution = dist,
 							power = power
 							)
@@ -120,7 +112,6 @@ zlogregClass <-
 							r2.other.x = r2.other.x,
 							alpha = alpha,
 							alternative = alternative,
-							method = method,
 							distribution = dist,
 							power = power
 							)
@@ -131,7 +122,6 @@ zlogregClass <-
 							r2.other.x = r2.other.x,
 							alpha = alpha,
 							alternative = alternative,
-							method = method,
 							distribution = dist,
 							power = power
 							)
@@ -145,9 +135,8 @@ zlogregClass <-
 							`greater` = "H0: beta1 = 0 \n HA: beta1 > 0 \n",
 							`less` = "H0: beta1 = 0 \n HA: beta1 < 0 \n"),
 						"Distribution of X =", sQuote(tolower(distribution)), "\n",
-						"Method =", toupper(method), "\n",
 						"------------------------------ \n",
-						" Statistical power =", round(1 - as.numeric(results_1[["power"]]), 3), "\n",
+						" Statistical power =", round(as.numeric(results_1[["power"]]), 3), "\n",
 						" n =",  ceiling(results_1[["n"]]), "\n",
 						"------------------------------ \n",
 						"Alternative =", dQuote(alternative),"\n",

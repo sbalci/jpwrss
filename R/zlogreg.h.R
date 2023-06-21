@@ -17,8 +17,7 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             power = 0.8,
             alpha = 0.05,
             alternative = "not equal",
-            method = "demidenko(vc)",
-            distribution = "not equal",
+            distribution = "normal",
             mean = 0,
             sd = 1,
             min = 0,
@@ -92,13 +91,6 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "greater",
                     "less"),
                 default="not equal")
-            private$..method <- jmvcore::OptionList$new(
-                "method",
-                method,
-                options=list(
-                    "demidenko(vc)",
-                    "demidenko"),
-                default="demidenko(vc)")
             private$..distribution <- jmvcore::OptionList$new(
                 "distribution",
                 distribution,
@@ -110,7 +102,7 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "exponential",
                     "binomial",
                     "bernoulli"),
-                default="not equal")
+                default="normal")
             private$..mean <- jmvcore::OptionNumber$new(
                 "mean",
                 mean,
@@ -167,7 +159,6 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..power)
             self$.addOption(private$..alpha)
             self$.addOption(private$..alternative)
-            self$.addOption(private$..method)
             self$.addOption(private$..distribution)
             self$.addOption(private$..mean)
             self$.addOption(private$..sd)
@@ -193,7 +184,6 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         power = function() private$..power$value,
         alpha = function() private$..alpha$value,
         alternative = function() private$..alternative$value,
-        method = function() private$..method$value,
         distribution = function() private$..distribution$value,
         mean = function() private$..mean$value,
         sd = function() private$..sd$value,
@@ -218,7 +208,6 @@ zlogregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..power = NA,
         ..alpha = NA,
         ..alternative = NA,
-        ..method = NA,
         ..distribution = NA,
         ..mean = NA,
         ..sd = NA,
@@ -293,7 +282,6 @@ zlogregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param power .
 #' @param alpha .
 #' @param alternative .
-#' @param method .
 #' @param distribution .
 #' @param mean .
 #' @param sd .
@@ -325,8 +313,7 @@ zlogreg <- function(
     power = 0.8,
     alpha = 0.05,
     alternative = "not equal",
-    method = "demidenko(vc)",
-    distribution = "not equal",
+    distribution = "normal",
     mean = 0,
     sd = 1,
     min = 0,
@@ -355,7 +342,6 @@ zlogreg <- function(
         power = power,
         alpha = alpha,
         alternative = alternative,
-        method = method,
         distribution = distribution,
         mean = mean,
         sd = sd,

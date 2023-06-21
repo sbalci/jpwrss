@@ -9,7 +9,6 @@ fregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             calculate = "selectpower",
             regmod = "rsqdev",
             r2 = 0.01,
-            f2 = 0.01,
             k = 1,
             m = 1,
             power = 0.8,
@@ -40,10 +39,6 @@ fregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "r2",
                 r2,
                 default=0.01)
-            private$..f2 <- jmvcore::OptionNumber$new(
-                "f2",
-                f2,
-                default=0.01)
             private$..k <- jmvcore::OptionInteger$new(
                 "k",
                 k,
@@ -68,7 +63,6 @@ fregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..calculate)
             self$.addOption(private$..regmod)
             self$.addOption(private$..r2)
-            self$.addOption(private$..f2)
             self$.addOption(private$..k)
             self$.addOption(private$..m)
             self$.addOption(private$..power)
@@ -79,7 +73,6 @@ fregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         calculate = function() private$..calculate$value,
         regmod = function() private$..regmod$value,
         r2 = function() private$..r2$value,
-        f2 = function() private$..f2$value,
         k = function() private$..k$value,
         m = function() private$..m$value,
         power = function() private$..power$value,
@@ -89,7 +82,6 @@ fregOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..calculate = NA,
         ..regmod = NA,
         ..r2 = NA,
-        ..f2 = NA,
         ..k = NA,
         ..m = NA,
         ..power = NA,
@@ -149,7 +141,6 @@ fregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param calculate .
 #' @param regmod .
 #' @param r2 .
-#' @param f2 .
 #' @param k .
 #' @param m .
 #' @param power .
@@ -166,7 +157,6 @@ freg <- function(
     calculate = "selectpower",
     regmod = "rsqdev",
     r2 = 0.01,
-    f2 = 0.01,
     k = 1,
     m = 1,
     power = 0.8,
@@ -181,7 +171,6 @@ freg <- function(
         calculate = calculate,
         regmod = regmod,
         r2 = r2,
-        f2 = f2,
         k = k,
         m = m,
         power = power,
