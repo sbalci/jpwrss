@@ -9,24 +9,21 @@ children:
     children:
       - type: ComboBox
         name: calculate
+        
   - type: LayoutBox
     margin: large
     children:
       - type: CheckBox
         name: stdinput
+        
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: predictor
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: p
-        format: number
+        
   - type: Label
-    label: Estimate
+    label: Estimates
     fitToGrid: true
     children:
       - type: LayoutBox
@@ -42,28 +39,35 @@ children:
             name: cp
             format: number
           - type: TextBox
+            name: p
+            format: number
+            enable: '(predictor:binary)'
+          - type: TextBox
             name: sdx
             format: number
-            enable: '(stdinput:false)'
+            enable: '(!stdinput & !predictor:binary)'
           - type: TextBox
             name: sdm
             format: number
-            enable: '(stdinput:false)'
+            enable: '(!stdinput)'
           - type: TextBox
             name: sdy
             format: number
-            enable: '(stdinput:false)'
+            enable: '(!stdinput)'
+            
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: r2y
         format: number
+        
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: alternative
+        
   - type: Label
     label: 'Alpha, Power, Sample Size'
     fitToGrid: true
