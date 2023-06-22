@@ -9,6 +9,7 @@ children:
     children:
       - type: ComboBox
         name: calculate
+        
   - type: LayoutBox
     margin: large
     children:
@@ -22,6 +23,7 @@ children:
         name: w
         format: number
         enable: '(typeinput:stdeff)'
+        
   - type: LayoutBox
     margin: large
     children:
@@ -37,6 +39,7 @@ children:
         name: nrow
         format: number
         enable: '(typeinput:cellprob)'
+        
   - type: LayoutBox
     margin: large
     children:
