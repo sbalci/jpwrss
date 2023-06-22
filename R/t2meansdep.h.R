@@ -7,7 +7,7 @@ t2meansdepOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(
             calculate = "selectpower",
-            paired.r = 0.5,
+            pairedr = 0.5,
             stdinput = FALSE,
             d = 0.2,
             mu1 = 0.2,
@@ -18,7 +18,6 @@ t2meansdepOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             power = 0.8,
             alpha = 0.05,
             alternative = "not equal",
-            kappa = 1,
             n2 = 200, ...) {
 
             super$initialize(
@@ -34,9 +33,9 @@ t2meansdepOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "selectpower",
                     "selectsamplesize"),
                 default="selectpower")
-            private$..paired.r <- jmvcore::OptionNumber$new(
-                "paired.r",
-                paired.r,
+            private$..pairedr <- jmvcore::OptionNumber$new(
+                "pairedr",
+                pairedr,
                 default=0.5)
             private$..stdinput <- jmvcore::OptionBool$new(
                 "stdinput",
@@ -85,17 +84,13 @@ t2meansdepOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "non-inferior",
                     "superior"),
                 default="not equal")
-            private$..kappa <- jmvcore::OptionNumber$new(
-                "kappa",
-                kappa,
-                default=1)
             private$..n2 <- jmvcore::OptionNumber$new(
                 "n2",
                 n2,
                 default=200)
 
             self$.addOption(private$..calculate)
-            self$.addOption(private$..paired.r)
+            self$.addOption(private$..pairedr)
             self$.addOption(private$..stdinput)
             self$.addOption(private$..d)
             self$.addOption(private$..mu1)
@@ -106,12 +101,11 @@ t2meansdepOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..power)
             self$.addOption(private$..alpha)
             self$.addOption(private$..alternative)
-            self$.addOption(private$..kappa)
             self$.addOption(private$..n2)
         }),
     active = list(
         calculate = function() private$..calculate$value,
-        paired.r = function() private$..paired.r$value,
+        pairedr = function() private$..pairedr$value,
         stdinput = function() private$..stdinput$value,
         d = function() private$..d$value,
         mu1 = function() private$..mu1$value,
@@ -122,11 +116,10 @@ t2meansdepOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         power = function() private$..power$value,
         alpha = function() private$..alpha$value,
         alternative = function() private$..alternative$value,
-        kappa = function() private$..kappa$value,
         n2 = function() private$..n2$value),
     private = list(
         ..calculate = NA,
-        ..paired.r = NA,
+        ..pairedr = NA,
         ..stdinput = NA,
         ..d = NA,
         ..mu1 = NA,
@@ -137,7 +130,6 @@ t2meansdepOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..power = NA,
         ..alpha = NA,
         ..alternative = NA,
-        ..kappa = NA,
         ..n2 = NA)
 )
 
@@ -191,7 +183,7 @@ t2meansdepBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param calculate .
-#' @param paired.r .
+#' @param pairedr .
 #' @param stdinput .
 #' @param d .
 #' @param mu1 .
@@ -202,7 +194,6 @@ t2meansdepBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param power .
 #' @param alpha .
 #' @param alternative .
-#' @param kappa .
 #' @param n2 .
 #' @return A results object containing:
 #' \tabular{llllll}{
@@ -213,7 +204,7 @@ t2meansdepBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @export
 t2meansdep <- function(
     calculate = "selectpower",
-    paired.r = 0.5,
+    pairedr = 0.5,
     stdinput = FALSE,
     d = 0.2,
     mu1 = 0.2,
@@ -233,7 +224,7 @@ t2meansdep <- function(
 
     options <- t2meansdepOptions$new(
         calculate = calculate,
-        paired.r = paired.r,
+        pairedr = pairedr,
         stdinput = stdinput,
         d = d,
         mu1 = mu1,
@@ -244,7 +235,6 @@ t2meansdep <- function(
         power = power,
         alpha = alpha,
         alternative = alternative,
-        kappa = kappa,
         n2 = n2)
 
     analysis <- t2meansdepClass$new(

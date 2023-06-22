@@ -9,22 +9,36 @@ t2meansdepClass <-
                 .run = function() {
 
 					calculate <- self$options$calculate
-					mu1 <- self$options$mu1
-					mu2 <- self$options$mu2
-					sd1 <- self$options$sd1
-					sd2 <- self$options$sd2
-					alpha <- self$options$alpha
-					paired.r <- self$options$paired.r
-					power <- NULL
+					stdinput <- self$options$stdinput
 					alternative <- self$options$alternative
-					margin <- self$options$margin
+						
+					if(stdinput) {
+						mu1 <- self$options$d
+						mu2 <- 0
+						sd1 <- 1
+						sd2 <- 1
+					} else {
+						mu1 <- self$options$mu1
+						mu2 <- self$options$mu2
+						sd1 <- self$options$sd1
+						sd2 <- self$options$sd2
+					}
+					
+					if (alternative %in% c("equivalent", "non-inferior", "superior"))) {
+						margin <- self$options$margin
+					} else {
+						margin <- 0
+					}
+					
+					alpha <- self$options$alpha
+					pairedr <- self$options$pairedr
+					power <- NULL
 					kappa <- self$options$kappa
 					n <- NULL
 
 					if (calculate == "selectpower") {
 
-						n <- self$options$n
-
+						n2 <- self$options$n2
 
 						results_1 <- pwrss::pwrss.t.2means(
 							mu1 = mu1,
@@ -32,10 +46,10 @@ t2meansdepClass <-
 							sd1 = sd1,
 							sd2 = sd2,
 							paired = TRUE,
-							paired.r = paired.r,
+							paired.r = pairedr,
 							alpha = alpha,
 							alternative = alternative,
-							n2 = n,
+							n2 = n2,
 							margin = margin
 							)
 
@@ -45,14 +59,13 @@ t2meansdepClass <-
 
 						power <- self$options$power
 
-
 						results_1 <- pwrss::pwrss.t.2means(
 							mu1 = mu1,
 							mu2 = mu2,
 							sd1 = sd1,
 							sd2 = sd2,
 							paired = TRUE,
-							paired.r = paired.r,
+							paired.r = pairedr,
 							alpha = alpha,
 							alternative = alternative,
 							power = power,
@@ -80,7 +93,7 @@ t2meansdepClass <-
                         "\n",
                         "------------------------------ \n",
                         "Alternative =",
-                        dQuote(results_1[["parms"]][["alternative"]]),
+                        sQuote(alternative),
                         "\n",
                         "Degrees of freedom =",
                         round(as.numeric(results_1[["df"]]), 3),
