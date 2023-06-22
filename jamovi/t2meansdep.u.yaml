@@ -14,7 +14,7 @@ children:
     margin: large
     children:
       - type: TextBox
-        name: paired.r
+        name: pairedr
         format: number
         
   - type: LayoutBox
@@ -31,37 +31,29 @@ children:
         format: number
         enable: '(stdinput:true)'
         
-  - type: LayoutBox
-    margin: large
+  - type: Label
+    label: 'Means and Standard Deviations'
+    fitToGrid: true
     children:
-      - type: TextBox
-        name: mu1
-        format: number
-        enable: '(stdinput:false)'
-        
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: mu2
-        format: number
-        enable: '(stdinput:false)'
-        
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: sd1
-        format: number
-        enable: '(stdinput:false)'
-        
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: sd2
-        format: number
-        enable: '(stdinput:false)'
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: TextBox
+            name: mu1
+            format: number
+            enable: '(!stdinput)'
+          - type: TextBox
+            name: mu2
+            format: number
+            enable: '(!stdinput)'
+          - type: TextBox
+            name: sd1
+            format: number
+            enable: '(!stdinput)'
+          - type: TextBox
+            name: sd2
+            format: number
+            enable: '(!stdinput)'
         
   - type: LayoutBox
     margin: large
@@ -71,38 +63,28 @@ children:
         format: number
         enable: '(!alternative:not equal)'
         
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: power
-        format: number
-        enable: '(calculate:selectsamplesize)'
-        
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: alpha
-        format: number
-        
+
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: alternative
         
-  - type: LayoutBox
-    margin: large
+  - type: Label
+    label: 'Alpha, Power, Sample Size'
+    fitToGrid: true
     children:
-      - type: TextBox
-        name: kappa
-        format: number
-        
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: n2
-        format: number
-        enable: '(calculate:selectpower)'
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: TextBox
+            name: alpha
+            format: number
+          - type: TextBox
+            name: power
+            format: number
+            enable: '(calculate:selectsamplesize)'
+          - type: TextBox
+            name: n2
+            format: number
+            enable: '(calculate:selectpower)'

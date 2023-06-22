@@ -18,12 +18,12 @@ options:
       default: selectpower
 
     - name: r1
-      title: 'Expected Correlation in the First Group'
+      title: 'Correlation in the First Group'
       type: Number
       default: 0.5
 
     - name: r2
-      title: 'Expected Correlation in the Second Group'
+      title: 'Correlation in the Second Group'
       type: Number
       default: 0.4
 

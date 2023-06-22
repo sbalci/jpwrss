@@ -17,7 +17,7 @@ options:
           name: selectsamplesize
       default: selectpower
 
-    - name: paired.r
+    - name: pairedr
       title: 'Correlation between First and Second Measurements in Paired Samples'
       type: Number
       default: 0.50
@@ -44,12 +44,12 @@ options:
     # title is conditional on 'paired' argument
     # inputs can be on the same panel, separate panel or pop-up window
     - name: mu1
-      title: 'Expected Mean in the First Time Point'
+      title: 'Mean in the First Time Point'
       type: Number
       default: 0.20
       
     - name: mu2
-      title: 'Expected Mean in the Second Time Point'
+      title: 'Mean in the Second Time Point'
       type: Number
       default: 0
       
@@ -95,11 +95,6 @@ options:
         - title: Superior
           name: superior
       default: not equal
-
-    - name: kappa
-      title: 'Ratio of the Sample Size in the First Group to the Second Group'
-      type: Number
-      default: 1
 
     # title is conditional on 'paired' argument
     - name: n2
