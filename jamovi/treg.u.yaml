@@ -9,71 +9,84 @@ children:
     children:
       - type: ComboBox
         name: calculate
+        
   - type: LayoutBox
     margin: large
     children:
       - type: CheckBox
         name: stdinput
+        
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: predictor
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: beta1
         format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: p
-        format: number
+         
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: beta0
         format: number
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: margin
         format: number
+           
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: p
+        format: number
+        enable: '(predictor:binary)'
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: sdx
         format: number
-        enable: '(stdinput:true & predictor:continuous)'
+        enable: '(!stdinput & !predictor:binary)'
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: sdy
         format: number
-        enable: '(stdinput:true)'
+        enable: '(!stdinput)'
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: k
         format: number
+        
   - type: LayoutBox
     margin: large
     children:
       - type: TextBox
         name: r2
         format: number
+        
   - type: LayoutBox
     margin: large
     children:
       - type: ComboBox
         name: alternative
+        
   - type: Label
     label: 'Alpha, Power, Sample Size'
     fitToGrid: true
