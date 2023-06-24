@@ -12,24 +12,30 @@ z2propsClass <-
                     p1 <- self$options$p1
                     p2 <- self$options$p2
                     alpha <- self$options$alpha
-                    power <- NULL
                     alternative <- self$options$alternative
-                    arcsin.trans <- self$options$arcsin.trans
-                    margin <- self$options$margin
+					
+					if (alternative %in% c("equivalent", "non-inferior", "superior"))) {
+						margin <- self$options$margin
+					} else {
+						margin <- 0
+					}
+					
+                    arcsintrans <- self$options$arcsintrans
 					kappa <- self$options$kappa
+					power <- NULL
                     n2 <- NULL
 				
 
 					if (calculate == "selectpower") {
 
-                        n <- self$options$n
+                        n2 <- self$options$n2
 
                         results_1 <- pwrss::pwrss.z.2props(
                             p1 = p1,
                             p2 = p2,
                             alpha = alpha,
                             alternative = alternative,
-                            arcsin.trans = arcsin.trans,
+                            arcsin.trans = arcsintrans,
 							kappa = kappa,
                             n2 = n2,
                             margin = margin
@@ -47,7 +53,7 @@ z2propsClass <-
                             alpha = alpha,
                             power = power,
                             alternative = alternative,
-                            arcsin.trans = arcsin.trans,
+                            arcsin.trans = arcsintrans,
 							kappa = kappa,
                             margin = margin
                         )
@@ -56,11 +62,11 @@ z2propsClass <-
 
 
 
-                    if (arcsin.trans) {
+                    if (arcsintrans) {
                         results_2 <- paste0("Approach: Arcsin Transformation \n")
                     }
 
-                    if (!arcsin.trans) {
+                    if (!arcsintrans) {
                         results_2 <- paste0("Approach: Normal Approximation \n")
                     }
 
@@ -87,7 +93,7 @@ z2propsClass <-
                                 "\n",
                                 "------------------------------ \n",
                                 "Alternative =",
-                                dQuote(results_1[["parms"]][["alternative"]]),
+                                sQuote(alternative),
                                 "\n",
                                 "Non-centrality parameter =",
                                 ceiling(results_1[["ncp"]]),

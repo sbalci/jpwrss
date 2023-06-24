@@ -13,7 +13,7 @@ z2propsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             power = 0.8,
             alpha = 0.05,
             alternative = "not equal",
-            arcsin.trans = FALSE,
+            arcsintrans = FALSE,
             kappa = 1,
             n2 = 200, ...) {
 
@@ -61,9 +61,9 @@ z2propsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "non-inferior",
                     "superior"),
                 default="not equal")
-            private$..arcsin.trans <- jmvcore::OptionBool$new(
-                "arcsin.trans",
-                arcsin.trans,
+            private$..arcsintrans <- jmvcore::OptionBool$new(
+                "arcsintrans",
+                arcsintrans,
                 default=FALSE)
             private$..kappa <- jmvcore::OptionNumber$new(
                 "kappa",
@@ -81,7 +81,7 @@ z2propsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..power)
             self$.addOption(private$..alpha)
             self$.addOption(private$..alternative)
-            self$.addOption(private$..arcsin.trans)
+            self$.addOption(private$..arcsintrans)
             self$.addOption(private$..kappa)
             self$.addOption(private$..n2)
         }),
@@ -93,7 +93,7 @@ z2propsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         power = function() private$..power$value,
         alpha = function() private$..alpha$value,
         alternative = function() private$..alternative$value,
-        arcsin.trans = function() private$..arcsin.trans$value,
+        arcsintrans = function() private$..arcsintrans$value,
         kappa = function() private$..kappa$value,
         n2 = function() private$..n2$value),
     private = list(
@@ -104,7 +104,7 @@ z2propsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..power = NA,
         ..alpha = NA,
         ..alternative = NA,
-        ..arcsin.trans = NA,
+        ..arcsintrans = NA,
         ..kappa = NA,
         ..n2 = NA)
 )
@@ -165,7 +165,7 @@ z2propsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param power .
 #' @param alpha .
 #' @param alternative .
-#' @param arcsin.trans .
+#' @param arcsintrans .
 #' @param kappa .
 #' @param n2 .
 #' @return A results object containing:
@@ -199,7 +199,7 @@ z2props <- function(
         power = power,
         alpha = alpha,
         alternative = alternative,
-        arcsin.trans = arcsin.trans,
+        arcsintrans = arcsintrans,
         kappa = kappa,
         n2 = n2)
 

@@ -67,7 +67,7 @@ z2corrsClass <-
                                 "\n",
                                 "------------------------------ \n",
                                 "Alternative =",
-                                dQuote(results_1[["parms"]][["alternative"]]),
+                                sQuote(alternative),
                                 "\n",
                                 "Non-centrality parameter =",
                                 round(as.numeric(results_1[["ncp"]]), 3),
