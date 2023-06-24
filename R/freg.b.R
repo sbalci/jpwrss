@@ -11,7 +11,8 @@ fregClass <-
 					calculate <- self$options$calculate
                     r2 <- self$options$r2
                     k <- self$options$k
-					m <- self$options$m
+					if(type == "rsqdev") {m <- k}
+					if(type == "rsqdif") {m <- self$options$m}
                     alpha <- self$options$alpha
                     power <- NULL
                     alternative <- self$options$alternative
@@ -19,8 +20,7 @@ fregClass <-
 					
 					 if (calculate == "selectpower") {
 
-                        n <- self$options$n
-
+                       n <- self$options$n
 
                        results_1 <- pwrss::pwrss.f.reg(
 							r2 = r2,
