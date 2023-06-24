@@ -12,9 +12,14 @@ chisqgofitClass <-
 				
                     calculate <- self$options$calculate
 					typeinput <- self$options$typeinput
-					p1 <- self$options$p1
-					w <- self$options$w
-                    df <- self$options$df
+					
+					if(typeinput == "stdeff") {
+						w <- self$options$w
+						df <- self$options$df
+					} else {
+						p1 <- self$options$p1
+					}
+					
 					alpha <- self$options$alpha
                     power <- NULL
                     n <- NULL
