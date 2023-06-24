@@ -13,16 +13,31 @@ zmedClass <-
                     calculate <- self$options$calculate
 					predictor <- self$options$predictor
 					stdinput <- self$options$stdinput
-					p <- self$options$p
-                    a <- self$options$a
+					a <- self$options$a
                     b <- self$options$b
 					cp <- self$options$cp
-					if(predictor == "binary") {sdx <- sqrt(p * (1 - p))}
-					if(predictor == "continuous") {sdx <- self$options$sdx}
-					sdm <- self$options$sdm
-					sdy <- self$options$sdy
-					r2m.x <- self$options$r2m
-					r2y.mx <- self$options$r2y
+					
+					if(stdinput) {
+						if(predictor == "binary") {
+							p <- self$options$p
+							sdx <- sqrt(p * (1 - p))
+						} else {
+							sdx <- 1
+						}
+						sdm <- 1
+						sdy <- 1
+					} else {
+						if(predictor == "binary") {
+							p <- self$options$p
+							sdx <- sqrt(p * (1 - p))
+						} else {
+							sdx <- self$options$sdx
+						}
+						sdm <- self$options$sdm
+						sdy <- self$options$sdy
+					}
+					
+					r2y <- self$options$r2y
 					alpha <- self$options$alpha
 					alternative <- self$options$alternative
                     power <- NULL
@@ -31,7 +46,7 @@ zmedClass <-
 
                     if (calculate == "selectpower") {
 
-                       n <- self$options$n
+                        n <- self$options$n
 						
 						results_1 <- pwrss::pwrss.z.med(
 								a = a,
@@ -40,8 +55,8 @@ zmedClass <-
 								sdx = sdx,
 								sdm = sdm,
 								sdy = sdy,
-								r2m.x = r2m.x,
-								r2y.mx = r2y.mx,
+								r2m.x = 0,
+								r2y.mx = r2y,
 								alpha = alpha,
 								alternative = alternative,
 								n = n,
@@ -64,8 +79,8 @@ zmedClass <-
 								sdx = sdx,
 								sdm = sdm,
 								sdy = sdy,
-								r2m.x = r2m.x,
-								r2y.mx = r2y.mx,
+								r2m.x = 0,
+								r2y.mx = r2y,
 								alpha = alpha,
 								alternative = alternative,
 								power = power,
@@ -86,7 +101,7 @@ zmedClass <-
 						" Statistical power (Sobel) =", round(as.numeric(results_1[["power"]][[1]]), 3), "\n",
 						" n (Sobel) =",  ceiling(results_1[["n"]][[1]]), "\n",
 						"------------------------------ \n",
-						"Alternative =", dQuote(alternative),"\n",
+						"Alternative =", sQuote(alternative),"\n",
 						"Non-centrality parameter =", round(results_1[["ncp"]][[1]], 3), "\n",
 						"Type I error rate =", round(as.numeric(alpha), 3), "\n",
 						"Type II error rate =", round(1 - as.numeric(results_1[["power"]][[1]]), 3), "\n"
