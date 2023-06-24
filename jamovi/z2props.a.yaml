@@ -18,12 +18,12 @@ options:
       default: selectpower
 
     - name: p1
-      title: 'Expected Proportion in the First Group'
+      title: 'Proportion in the First Group'
       type: Number
       default: 0.4
 
     - name: p2
-      title: 'Expected Proportion in the Second Group'
+      title: 'Proportion in the Second Group'
       type: Number
       default: 0.5
 
@@ -60,8 +60,8 @@ options:
           name: superior
       default: not equal
 
-    - name: arcsin.trans
-      title: "Arcsine Transformation"
+    - name: arcsintrans
+      title: "Arcsine Transformation?"
       type: Bool
       default: false
 

@@ -38,12 +38,12 @@ options:
     # remove 'd'
     # inputs can be on the same panel, separate panel or pop-up window
     - name: mu1
-      title: 'Expected Mean in the First Group'
+      title: 'Mean in the First Group'
       type: Number
       default: 0.20
       
     - name: mu2
-      title: 'Expected Mean in the Second Group'
+      title: 'Mean in the Second Group'
       type: Number
       default: 0
       
