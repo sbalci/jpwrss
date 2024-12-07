@@ -7,24 +7,24 @@ z2propsClass <-
             inherit = z2propsBase,
             private = list(
                 .run = function() {
-                  
+
 					calculate <- self$options$calculate
                     p1 <- self$options$p1
                     p2 <- self$options$p2
                     alpha <- self$options$alpha
                     alternative <- self$options$alternative
-					
-					if (alternative %in% c("equivalent", "non-inferior", "superior"))) {
+
+					if (alternative %in% c("equivalent", "non-inferior", "superior")) {
 						margin <- self$options$margin
 					} else {
 						margin <- 0
 					}
-					
+
                     arcsintrans <- self$options$arcsintrans
 					kappa <- self$options$kappa
 					power <- NULL
                     n2 <- NULL
-				
+
 
 					if (calculate == "selectpower") {
 
@@ -44,7 +44,7 @@ z2propsClass <-
                     }
 
                     if (calculate == "selectsamplesize") {
-					
+
                         power <- self$options$power
 
                         results_1 <- pwrss::pwrss.z.2props(
@@ -115,9 +115,9 @@ z2propsClass <-
 
                     image <- self$results$plot
                     image$setState(results_1)
-                
+
                 },
-				
+
                 .plot = function(image, ggtheme, theme, ...) {
                     # read data ----
 
@@ -128,7 +128,7 @@ z2propsClass <-
                     print(plot)
                     TRUE
                 }
-				
+
             )
         )
     }

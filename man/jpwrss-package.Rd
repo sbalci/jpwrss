@@ -3,7 +3,6 @@
 \docType{package}
 \name{jpwrss-package}
 \alias{jpwrss-package}
-\alias{_PACKAGE}
 \alias{jpwrss}
 \title{Jamovi Module for Statistical Power and Sample Size Calculation Tools}
 \description{

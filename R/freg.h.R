@@ -135,7 +135,7 @@ fregBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 weightsSupport = 'na')
         }))
 
-#' Linear Regression R squared or R squared Difference (F Test)
+#' Linear Regression R-squared or R-squared Difference (F Test)
 #'
 #' 
 #' @param calculate .

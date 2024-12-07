@@ -11,7 +11,7 @@ t2meansdepClass <-
 					calculate <- self$options$calculate
 					stdinput <- self$options$stdinput
 					alternative <- self$options$alternative
-						
+
 					if(stdinput) {
 						mu1 <- self$options$d
 						mu2 <- 0
@@ -23,13 +23,13 @@ t2meansdepClass <-
 						sd1 <- self$options$sd1
 						sd2 <- self$options$sd2
 					}
-					
-					if (alternative %in% c("equivalent", "non-inferior", "superior"))) {
+
+					if (alternative %in% c("equivalent", "non-inferior", "superior")) {
 						margin <- self$options$margin
 					} else {
 						margin <- 0
 					}
-					
+
 					alpha <- self$options$alpha
 					pairedr <- self$options$pairedr
 					power <- NULL

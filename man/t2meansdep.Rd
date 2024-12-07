@@ -6,7 +6,7 @@
 \usage{
 t2meansdep(
   calculate = "selectpower",
-  paired.r = 0.5,
+  pairedr = 0.5,
   stdinput = FALSE,
   d = 0.2,
   mu1 = 0.2,
@@ -17,14 +17,13 @@ t2meansdep(
   power = 0.8,
   alpha = 0.05,
   alternative = "not equal",
-  kappa = 1,
   n2 = 200
 )
 }
 \arguments{
 \item{calculate}{.}
 
-\item{paired.r}{.}
+\item{pairedr}{.}
 
 \item{stdinput}{.}
 
@@ -45,8 +44,6 @@ t2meansdep(
 \item{alpha}{.}
 
 \item{alternative}{.}
-
-\item{kappa}{.}
 
 \item{n2}{.}
 }

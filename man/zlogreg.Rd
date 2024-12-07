@@ -16,8 +16,7 @@ zlogreg(
   power = 0.8,
   alpha = 0.05,
   alternative = "not equal",
-  method = "demidenko(vc)",
-  distribution = "not equal",
+  distribution = "normal",
   mean = 0,
   sd = 1,
   min = 0,
@@ -53,8 +52,6 @@ zlogreg(
 \item{alpha}{.}
 
 \item{alternative}{.}
-
-\item{method}{.}
 
 \item{distribution}{.}
 

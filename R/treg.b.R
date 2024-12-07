@@ -16,7 +16,7 @@ tregClass <-
 					k <- self$options$k
 					r2 <- self$options$r2
 					alternative <- self$options$alternative
-						
+
 					if (stdinput) {
 						if (predictor == "binary") {
 							p <- self$options$p
@@ -35,12 +35,12 @@ tregClass <-
 						sdy <- self$options$sdy
 					}
 
-					if (alternative %in% c("equivalent", "non-inferior", "superior"))) {
+					if (alternative %in% c("equivalent", "non-inferior", "superior")) {
 							margin <- self$options$margin
 						} else {
 							margin <- 0
 						}
-						
+
                     alpha <- self$options$alpha
                     power <- NULL
                     n <- NULL

@@ -81,11 +81,11 @@ analyses:
     menuGroup: jpwrss
     menuTitle: ANOVA or ANCOVA (F test)
     menuSubgroup: Analysis of Variance
-  - title: Linear Regression R squared or R squared Difference (F Test)
+  - title: Linear Regression R-squared or R-squared Difference (F Test)
     name: freg
     ns: jpwrss
     menuGroup: jpwrss
-    menuTitle: Linear Regression R squared or R squared Difference (F Test)
+    menuTitle: Linear Regression R-squared or R-squared Difference (F Test)
     menuSubgroup: Regression
   - title: Repeated Measures ANOVA (F test)
     name: frmanova

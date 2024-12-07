@@ -215,7 +215,6 @@ t2meansdep <- function(
     power = 0.8,
     alpha = 0.05,
     alternative = "not equal",
-    kappa = 1,
     n2 = 200) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))

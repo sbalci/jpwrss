@@ -12,7 +12,7 @@ z2props(
   power = 0.8,
   alpha = 0.05,
   alternative = "not equal",
-  arcsin.trans = FALSE,
+  arcsintrans = FALSE,
   kappa = 1,
   n2 = 200
 )
@@ -32,7 +32,7 @@ z2props(
 
 \item{alternative}{.}
 
-\item{arcsin.trans}{.}
+\item{arcsintrans}{.}
 
 \item{kappa}{.}
 

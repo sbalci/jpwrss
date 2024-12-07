@@ -2,13 +2,12 @@
 % Please edit documentation in R/freg.h.R
 \name{freg}
 \alias{freg}
-\title{Linear Regression R squared or R squared Difference (F Test)}
+\title{Linear Regression R-squared or R-squared Difference (F Test)}
 \usage{
 freg(
   calculate = "selectpower",
   regmod = "rsqdev",
   r2 = 0.01,
-  f2 = 0.01,
   k = 1,
   m = 1,
   power = 0.8,
@@ -22,8 +21,6 @@ freg(
 \item{regmod}{.}
 
 \item{r2}{.}
-
-\item{f2}{.}
 
 \item{k}{.}
 
@@ -43,5 +40,5 @@ A results object containing:
 }
 }
 \description{
-Linear Regression R squared or R squared Difference (F Test)
+Linear Regression R-squared or R-squared Difference (F Test)
 }
