@@ -11,13 +11,13 @@ ttestClass <-
                 .run = function() {
                     
                     
-                    power.t.test(ncp = 1.96, df = 99, alpha = 0.05,
+                    pwrss::power.t.test(ncp = 1.96, df = 99, alpha = 0.05,
                                  alternative = "equivalent", plot = TRUE)
                     
-                    power.t.test(ncp = c(0.50, 1.00, 1.50, 2.00, 2.50), plot = FALSE,
+                    pwrss::power.t.test(ncp = c(0.50, 1.00, 1.50, 2.00, 2.50), plot = FALSE,
                                  df = 99, alpha = 0.05, alternative = "not equal")
                     
-                    power.t.test(
+                    pwrss::power.t.test(
                         ncp,
                         df,
                         alpha = 0.05,

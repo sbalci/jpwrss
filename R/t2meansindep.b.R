@@ -1,15 +1,34 @@
 # This file is a generated template, your changes will not be overwritten
 
 t2meansindepClass <-
-  if (requireNamespace("jmvcore", quietly = TRUE)) {
-    R6::R6Class(
-      "t2meansindepClass",
-      inherit = t2meansindepBase,
-      private = list(
-        .run = function() {
-          calculate <- self$options$calculate
-          stdinput <- self$options$stdinput
-          alternative <- self$options$alternative
+    if (requireNamespace("jmvcore", quietly = TRUE)) {
+        R6::R6Class(
+            "t2meansindepClass",
+            inherit = t2meansindepBase,
+            private = list(
+                .run = function() {
+                    
+					calculate <- self$options$calculate
+					stdinput <- self$options$stdinput
+					alternative <- self$options$alternative
+					
+					if(stdinput) {
+						mu1 <- self$options$d
+						mu2 <- 0
+						sd1 <- 1
+						sd2 <- 1
+					} else {
+						mu1 <- self$options$mu1
+						mu2 <- self$options$mu2
+						sd1 <- self$options$sd1
+						sd2 <- self$options$sd2
+					}
+					
+					if (alternative %in% c("equivalent", "non-inferior", "superior")) {
+						margin <- self$options$margin
+					} else {
+						margin <- 0
+					}
 
           if (stdinput) {
             mu1 <- self$options$d
